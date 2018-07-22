@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="com.alfresco.client.api.tests.core.SharedLinkTest"/>
+      <class name="com.alfresco.client.api.tests.core.TagApiTest"/>
+      <class name="com.alfresco.client.api.tests.core.ActivityStreamApiTest"/>
+      <class name="com.alfresco.client.api.tests.core.NodesApiTest"/>
+      <class name="com.alfresco.client.api.tests.core.CommentsApiTest"/>
+      <class name="com.alfresco.client.api.tests.core.FavoritesApiTest"/>
+      <class name="com.alfresco.client.api.tests.core.PeopleApiTest"/>
+      <class name="com.alfresco.client.api.tests.core.TrashcanApiTest"/>
+      <class name="com.alfresco.client.api.tests.core.SiteApiTest"/>
+      <class name="com.alfresco.client.api.tests.core.RatingApiTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.alfresco.org/model/dictionary/1.0" name="bibo:Biblioteca">
+    <description>Alfresco model support the Bibliographic Ontology</description>
+    <author>Alvaro</author>
+    <imports>
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+    </imports>
+    <namespaces>
+        <namespace uri="http://holocracia.uy/model/biblo/1.1" prefix="bibo"/>
+    </namespaces>
+    <data-types/>
+    <constraints/>
+    <types>
+        <type name="bibo:collection">
+            <title>Collection</title>
+            <description>A collection of Documents or Collections</description>
+            <parent>cm:folder</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="bibo:quote">
+            <title>Quote</title>
+            <description>An excerpted collection of words.</description>
+            <parent>bibo:excerpt</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="bibo:report">
+            <title>Report</title>
+            <description>A document describing an account or statement describing in detail an event, situation, or the like, usually as the result of observation, inquiry, etc..</description>
+            <parent>bibo:document</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="bibo:document">
+            <title>Document</title>
+            <description>A document (noun) is a bounded physical representation of body of information designed with the capacity (and usually intent) to communicate. A document may manifest symbolic, diagrammatic or sensory-representational information.</description>
+            <parent>cm:content</parent>
+            <properties>
+                <property name="bibo:isReferencedBy">
+                    <title>Is Referenced By</title>
+                    <description>http://purl.org/dc/terms/isReferencedBy</description>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <multiple>true</multiple>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+                <property name="bibo:term_status">
+                    <title>Estado de terminación</title>
+                    <description>http://www.w3.org/2003/06/sw-vocab-status/ns#term_status</description>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                    <constraints>
+                        <constraint name="bibo:LIST_6583f396-1848-4c71-85e1-c532b3c71095" type="LIST">
+                            <parameter name="allowedValues">
+                                <list>
+                                    <value>stable</value>
+                                    <value>unstable</value>
+                                </list>
+                            </parameter>
+                            <parameter name="sorted">
+                                <value>false</value>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+                <property name="bibo:isDefinedBy">
+                    <title>Is Defined By</title>
+                    <description>http://www.w3.org/2000/01/rdf-schema#isDefinedBy</description>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+            </properties>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="bibo:excerpt">
+            <title>Excerpt</title>
+            <description>A passage selected from a larger work.</description>
+            <parent>bibo:documentPart</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="bibo:book">
+            <title>Book</title>
+            <description>A written or printed work of fiction or nonfiction, usually on sheets of paper fastened or bound together within covers.</description>
+            <parent>bibo:document</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="bibo:documentPart">
+            <title>DocumentPart</title>
+            <description>A distinct part of a larger document or collected document.</description>
+            <parent>bibo:document</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+    </types>
+    <aspects>
+        <aspect name="bibo:Proceedings">
+            <title>Proceedings</title>
+            <description>A compilation of documents published from an event, such as a conference.</description>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </aspect>
+    </aspects>
+</model>

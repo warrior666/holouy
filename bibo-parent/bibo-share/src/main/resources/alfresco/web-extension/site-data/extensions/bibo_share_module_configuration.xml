@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><module>
+   <id>bibo-module</id>
+   <auto-deploy>true</auto-deploy>
+   <configurations>
+      
+      <!-- Document Library config section -->
+      <config condition="DocumentLibrary" evaluator="string-compare" replace="false">
+      </config>
+
+      <!-- Form configuration section - type -->
+      
+      <!-- Form configuration section - aspect -->
+      
+      <!-- Entity form designer configuration -->
+      <config condition="FormDefinition" evaluator="string-compare">
+         <form-definition id="document">[{"elementconfig":{"label":"","appearance":"bordered-panel"},"pseudonym":"cmm/editor/layout/2cols","label":"cmm.form-editor.palette.two-column","type":["layout"],"column":[{"pseudonym":"cmm/editor/property/text","id":"cm:title","elementconfig":{"infoname":"cm:title","infolabel":"Título","infotype":"d:text","force":true},"label":"Título [cm:title]","type":["property"]},{"pseudonym":"cmm/editor/property/text","id":"cm:author","elementconfig":{"infoname":"cm:author","infolabel":"Autor","infotype":"d:text","force":true},"label":"Autor [cm:author]","type":["property"]},{"pseudonym":"cmm/editor/property/datetime","id":"cm:created","elementconfig":{"infoname":"cm:created","infolabel":"Fecha de creación","infotype":"d:datetime","for-mode":"view"},"label":"Fecha de creación [cm:created]","type":["property"]}]}]</form-definition>
+      </config>
+
+   </configurations>
+</module>
