@@ -19,8 +19,14 @@
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
 	<bean id="webscript.alfresco.tutorials.helloworld.get"
 		  class="org.alfresco.platformsample.HelloWorldWebScript"
 		  parent="webscript">
+	</bean>
+	
+	<bean id="webscript.alfresco.tutorials.javadir.get" class="org.alfresco.platformsample.JavaDirWebScript"
+		parent="webscript">
+		<property name="repository" ref="repositoryHelper" />
 	</bean>
 </beans>

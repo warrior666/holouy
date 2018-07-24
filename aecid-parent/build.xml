@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="tomcat-demo" default="install_amps" basedir=".">
+	<property file="build.properties" />
+		
+	<property name="war-file-name" value="${project-name}.war" />
+	<property name="source-directory" value="bibo-repo/src/main/java" />
+	<property name="classes-directory" value="bibo-repo/target/classes" />
+	<property name="web-directory" value="web" />
+	<property name="web-xml-file" value="web/WEB-INF/web.xml" />
+	<property name="catalina-ant-dir" value="/opt/apache-tomcat-8.0.52/lib/"/>
+
+	<!-- Set these as required -->
+	<property name="alfresco.sdk" value="/home/alvaro/holocracia/git/alfresco_sdk/lib"/>
+	<property name="spring.sdk" value="/home/tony/spring_framework/spring-framework-3.2.2.RELEASE/libs"/>	
+	<property name="alfresco.install" value="/opt/alfresco-community"/>
+
+	<property name="repo.war.file" value="${alfresco.install}/tomcat/webapps/alfresco"/>
+	<property name="share.war.file" value="${alfresco.install}/tomcat/webapps/share"/>
+		
+	<property name="module.id" value="aecid"/>
+	<property name="version.id" value="1.0.0-SNAPSHOT"/>
+	
+	<property name="project.dir" value="."/>
+
+	<property name="repo.module" value="alfresco"/>
+	<property name="share.module" value="share"/>
+		
+	<property name="repo.dir" value="${project.dir}/aecid-repo"/>
+	<property name="share.dir" value="${project.dir}/aecid-share"/>
+		
+	<property name="repo.build.dir" value="${repo.dir}/target"/>
+	<property name="share.build.dir" value="${share.dir}/target"/>
+	
+	<property name="config.dir" value="${project.dir}/config"/>
+	
+	<property name="repo.jar.file" value="${repo.build.dir}/${module.id}-repo-${version.id}.jar"/>
+	<property name="repo.amp.file" value="${repo.build.dir}/${module.id}-repo-${version.id}.amp"/>
+	
+	<property name="share.jar.file" value="${share.build.dir}/${module.id}-share-${version.id}.jar"/>
+	<property name="share.amp.file" value="${share.build.dir}/${module.id}-share-${version.id}.amp"/>
+
+	<property name="mmt.path" value="${alfresco.install}/bin/alfresco-mmt.jar"/>
+	<property name="repo.mmt.install" value="install ${repo.amp.file} ${repo.war.file} -verbose"/>
+	<property name="share.mmt.install" value="install ${share.amp.file} ${share.war.file} -verbose"/>
+	
+	<path id="catalina-ant-classpath">
+	    <fileset dir="${catalina-ant-dir}">
+	        <include name="catalina-ant.jar"/>
+	        <include name="tomcat-coyote.jar"/>
+	        <include name="tomcat-util.jar"/>
+	        <include name="tomcat-juli.jar"/>
+	    </fileset>
+	</path>
+	
+	<tstamp prefix="build-info">
+		<format property="current-date" pattern="d-MMMM-yyyy" locale="en" />
+		<format property="current-time" pattern="hh:mm:ss a z" locale="en" />
+		<format property="year-month-day" pattern="yyyy-MM-dd" locale="en" />
+	</tstamp>
+	
+	<property name="build-directory" value="build" />
+
+	<property name="ftp-remotedir" value="uploaded-wars/${project-name}/${build-info.year-month-day}" />
+
+	<taskdef name="start" classname="org.apache.catalina.ant.StartTask" classpathref="catalina-ant-classpath"/>
+	<taskdef name="stop" classname="org.apache.catalina.ant.StopTask" classpathref="catalina-ant-classpath"/>
+	<taskdef name="list" classname="org.apache.catalina.ant.ListTask" classpathref="catalina-ant-classpath"/>
+	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" classpathref="catalina-ant-classpath"/>
+	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" classpathref="catalina-ant-classpath"/>
+
+	<target name="stop" description="stop application in tomcat">
+		<stop url="${tomcat-manager-url}" username="${tomcat-manager-username}"
+			password="${tomcat-manager-password}" path="/${repo.module}" />
+		
+		<stop url="${tomcat-manager-url}" username="${tomcat-manager-username}"
+					password="${tomcat-manager-password}" path="/${share.module}" />
+	</target>
+
+	<target name="start" description="start application in tomcat">
+		<start url="${tomcat-manager-url}" username="${tomcat-manager-username}"
+			password="${tomcat-manager-password}" path="/${repo.module}" />
+		<start url="${tomcat-manager-url}" username="${tomcat-manager-username}"
+			password="${tomcat-manager-password}" path="/${share.module}" />
+	</target>
+	
+	<target name="list" description="List modules from Tomcat">
+		<list 
+			failonerror="no"
+			url="${tomcat-manager-url}"
+			username="${tomcat-manager-username}"
+			password="${tomcat-manager-password}"
+		/>
+	</target>
+	
+	<target name="undeploy" description="undeploy from tomcat">
+		<undeploy 
+			failonerror="no"
+			url="${tomcat-manager-url}"
+			username="${tomcat-manager-username}"
+			password="${tomcat-manager-password}"
+			path="/${project-name}"
+		/>
+	</target>
+	
+	<target name="deploy" description="deploy to tomcat">
+		<echo>deploying from client</echo>
+		<deploy 
+			url="${tomcat-manager-url}"
+			username="${tomcat-manager-username}"
+			password="${tomcat-manager-password}"
+			path="/${project-name}"
+			war="file:/projects/workspace/${project-name}/${build-directory}/${war-file-name}"
+		/>
+	</target>
+	
+	<target name="war" depends="">
+		<mkdir dir="${build-directory}" />
+		<delete file="${build-directory}/${war-file-name}" />
+		<war warfile="${build-directory}/${war-file-name}" webxml="${web-xml-file}">
+			<classes dir="${classes-directory}" />
+			<fileset dir="${web-directory}">
+				<!-- Need to exclude it since webxml is an attribute of the war tag above -->
+				<exclude name="WEB-INF/web.xml" />
+			</fileset>
+			<manifest>
+				<attribute name="Built-By" value="${builder}" />
+				<attribute name="Built-On" value="${build-info.current-date}" />
+				<attribute name="Built-At" value="${build-info.current-time}" />
+			</manifest>
+		</war>
+	</target>
+
+	<target name="ftp" depends="" description="upload war file to server">
+		<ftp 
+			server="${ftp-server}" remotedir="${ftp-remotedir}"
+			userid="${ftp-userid}" password="${ftp-password}"
+			action="mkdir" verbose="yes">
+		</ftp>
+		<ftp 
+			server="${ftp-server}" remotedir="${ftp-remotedir}"
+			userid="${ftp-userid}" password="${ftp-password}"
+			action="send" verbose="yes" depends="yes">
+			<fileset file="${build-directory}/${war-file-name}" />
+		</ftp>
+	</target>
+
+	<target name="mail-upload-complete">
+		<mail from="ant@cakelycakes.com"
+		      tolist="bigcakes@cakelycakes.com"
+		      subject="${war-file-name} was uploaded to the server"
+		      message="The ${war-file-name} file was uploaded to ${ftp-server} in ${ftp-remotedir}"/>
+	</target>
+
+	<target name="build-and-ftp" depends="war,ftp,mail-upload-complete" />
+	<target name="build-and-deploy" depends="war,undeploy,deploy" />
+	
+
+	<!--
+		<target name="compile">
+			<mkdir dir="${build.dir}/classes" />
+			<javac classpathref="class.path" srcdir="${source-directory}" destdir="${build.dir}/classes" />
+		</target>
+	
+		<target name="package-jar">
+			<jar destfile="${jar.file}" >
+				<fileset dir="${build.dir}/classes" excludes="**/custom*,**/*Test*" includes="**/*.class" />
+			</jar>
+		</target>
+
+		<target name="package-amp" depends="mkdirs, package-jar" description="Package the Module" >
+			<zip destfile="${amp.file}" >
+				<fileset dir="${project.dir}/build" includes="lib/*.jar" />
+				<fileset dir="${project.dir}" includes="config/**/*.*" excludes="**/module.properties" />
+				<fileset dir="${project.dir}/config/alfresco/module/${module.id}" includes="module.properties" />
+			</zip>
+		</target>
+-->
+	
+		<target name="install_amps" description="Update the WAR Alfresco y Share files." >
+			<echo>Installing AMP ${repo.amp.file} into WAR ${repo.war.file}</echo>
+			<java jar="${mmt.path}" fork="true" failonerror="true">
+				<arg line="${repo.mmt.install}"/>
+			</java>
+
+			<echo>Installing AMP ${share.amp.file} into WAR ${share.war.file}</echo>
+			<java jar="${mmt.path}" fork="true" failonerror="true">
+				<arg line="${share.mmt.install}"/>
+			</java>
+		</target>
+</project>
