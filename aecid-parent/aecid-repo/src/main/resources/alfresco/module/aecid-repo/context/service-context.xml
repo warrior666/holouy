@@ -36,4 +36,14 @@
     <property name="nodeService" ref="NodeService"/>
     <property name="nodeLocatorService" ref="nodeLocatorService"/>
   </bean>
+  
+  <bean id="renamer" class="org.aecid.alfresco.RenameActionExecuter" parent="action-executer">
+   <property name="fileFolderService">
+        <ref bean="FileFolderService" />
+    </property>
+
+    <property name="nodeService">
+        <ref bean="NodeService" />
+    </property>
+</bean>
 </beans>

@@ -40,8 +40,8 @@
 	<property name="share.amp.file" value="${share.build.dir}/${module.id}-share-${version.id}.amp"/>
 
 	<property name="mmt.path" value="${alfresco.install}/bin/alfresco-mmt.jar"/>
-	<property name="repo.mmt.install" value="install ${repo.amp.file} ${repo.war.file} -verbose"/>
-	<property name="share.mmt.install" value="install ${share.amp.file} ${share.war.file} -verbose"/>
+	<property name="repo.mmt.install" value="install ${repo.amp.file} ${repo.war.file} -verbose -force"/>
+	<property name="share.mmt.install" value="install ${share.amp.file} ${share.war.file} -verbose -force"/>
 	
 	<path id="catalina-ant-classpath">
 	    <fileset dir="${catalina-ant-dir}">

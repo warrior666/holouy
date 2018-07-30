@@ -11,6 +11,7 @@ import org.springframework.extensions.webscripts.DeclarativeWebScript;
 import org.springframework.extensions.webscripts.WebScriptException;
 import org.springframework.extensions.webscripts.WebScriptRequest;
 
+
 public class JavaDirWebScript extends DeclarativeWebScript {
 	private Repository repository;
 
