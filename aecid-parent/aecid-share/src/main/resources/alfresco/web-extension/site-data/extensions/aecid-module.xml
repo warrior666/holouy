@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><module>
+   <id>CMM_AECID</id>
+   <auto-deploy>true</auto-deploy>
+   <configurations>
+      
+      <!-- Document Library config section -->
+      <config condition="DocumentLibrary" evaluator="string-compare" replace="false">
+         <create-content>
+      <content id="plain-text" mimetype="text/plain" label="Nuevo Proyecto" itemid="aecid:dscProy" icon="ax"/>
+   </create-content>
+   
+      </config>
+
+      <!-- Form configuration section - type -->
+      
+      <!-- Form configuration section - aspect -->
+      
+      <!-- Entity form designer configuration -->
+      <config condition="FormDefinition" evaluator="string-compare">
+      </config>
+
+   </configurations>
+</module>

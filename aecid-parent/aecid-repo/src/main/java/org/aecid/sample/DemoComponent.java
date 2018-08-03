@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alfresco.platformsample;
+package org.aecid.sample;
 
 import org.alfresco.repo.module.AbstractModuleComponent;
 import org.alfresco.repo.nodelocator.NodeLocatorService;
@@ -24,14 +24,7 @@ import org.alfresco.service.cmr.repository.NodeService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-/**
- * A basic component that will be started for this module.
- * Uses the NodeLocatorService to easily find nodes and the
- * NodeService to display them
- *
- * @author Gabriele Columbro
- * @author Maurizio Pillitu
- */
+
 public class DemoComponent extends AbstractModuleComponent {
     private static Log logger = LogFactory.getLog(DemoComponent.class);
 

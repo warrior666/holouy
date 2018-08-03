@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alfresco.platformsample;
+package org.aecid.sample;
 
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -26,13 +26,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-/**
- * Unit testing the Web Script Java Controller
- *
- * @author martin.bergljung@alfresco.com
- * @version 1.0
- * @since 3.0
- */
+
 public class HelloWorldWebScriptControllerTest {
 
     @Test
@@ -43,9 +37,12 @@ public class HelloWorldWebScriptControllerTest {
 
         String helloPropName = "fromJava";
         String helloPropExpectedValue = "HelloFromJava";
+        
         HelloWorldWebScript ws = new HelloWorldWebScript();
         Map<String, Object> model = ws.executeImpl(req, status, cache);
 
+        System.out.println("Example: " + model.size());
+        
         assertNotNull("Response from Web Script Java Controller is null", model);
         assertEquals("Incorrect Web Script Java Controller Response",
                 helloPropExpectedValue, model.get(helloPropName));

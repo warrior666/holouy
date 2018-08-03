@@ -1,4 +1,4 @@
-package org.alfresco.platformsample;
+package org.aecid.sample;
 
 import java.util.HashMap;
 import java.util.Map;

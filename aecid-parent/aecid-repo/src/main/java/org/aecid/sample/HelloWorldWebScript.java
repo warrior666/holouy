@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alfresco.platformsample;
+package org.aecid.sample;
 
 import org.springframework.extensions.webscripts.Cache;
 import org.springframework.extensions.webscripts.DeclarativeWebScript;
@@ -27,12 +27,7 @@ import org.apache.commons.logging.LogFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * A demonstration Java controller for the Hello World Web Script.
- *
- * @author martin.bergljung@alfresco.com
- * @since 2.1.0
- */
+
 public class HelloWorldWebScript extends DeclarativeWebScript {
     private static Log logger = LogFactory.getLog(HelloWorldWebScript.class);
 

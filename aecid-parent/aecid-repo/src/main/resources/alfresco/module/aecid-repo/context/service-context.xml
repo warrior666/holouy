@@ -19,13 +19,14 @@
   xmlns="http://www.springframework.org/schema/beans" 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans
           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+          
   <!-- A simple class that is initialized by Spring -->
   <bean id="org.alfresco.Demo" class="org.alfresco.platformsample.Demo" init-method="init"/>
   <!-- A simple module component that will be executed once.
          Note. this module component will only be executed once, and then there will be an entry for it in the Repo DB.
          So doing for example $ mvn clean install alfresco:run twice will only execute this component the first time.
          You need to remove /alf_data_dev for it to be executed again. -->
-  <bean id="org.alfresco.DemoComponent" class="org.alfresco.platformsample.DemoComponent" parent="module.baseComponent">
+  <bean id="org.aecid.DemoComponent" class="org.aecid.sample.DemoComponent" parent="module.baseComponent">
     <property name="moduleId" value="${project.artifactId}"/>
     <!-- See module.properties -->
     <property name="name" value="DemoComponent"/>

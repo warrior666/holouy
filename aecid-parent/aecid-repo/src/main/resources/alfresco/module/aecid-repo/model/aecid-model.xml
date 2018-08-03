@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.alfresco.org/model/dictionary/1.0" name="aecid:contentModel">
+    <author>Administrator</author>
+    <imports>
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+    </imports>
+    <namespaces>
+        <namespace uri="http://aecid.org/model/aecid/1.0" prefix="aecid"/>
+    </namespaces>
+    <data-types/>
+    <constraints/>
+    <types>
+        <type name="aecid:content">
+            <title>Contenido</title>
+            <description>Tipo de documento "padre" para compartir metadata genérica como ser el país y la fecha.</description>
+            <parent>cm:content</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:folderProject">
+            <title>PROY</title>
+            <description>Carpeta para contener todos los documentos asociados a un proyecto, así como definir la metadata a ser heredada por estos por estar dentro de la carpeta.</description>
+            <parent>cm:folder</parent>
+            <properties>
+                <property name="aecid:initialDate">
+                    <title>Fecha inicial</title>
+                    <description>Fecha de inicio del proyecto</description>
+                    <type>d:date</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                    </index>
+                </property>
+                <property name="aecid:finishDate">
+                    <title>Fecha de Fin</title>
+                    <description>Fecha de finalización del proyecto</description>
+                    <type>d:date</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                    </index>
+                </property>
+            </properties>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:dscProy">
+            <title>DSCP</title>
+            <description>Descripción del proyecto</description>
+            <parent>aecid:contentProject</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:contentProject">
+            <title>CONPROY</title>
+            <description>Tipo genérico para compartir la metadata asociada a la carpeta del proyecto.</description>
+            <parent>cm:content</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+    </types>
+    <aspects/>
+</model>

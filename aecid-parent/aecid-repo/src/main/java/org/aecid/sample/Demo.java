@@ -15,14 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alfresco.platformsample;
+package org.aecid.sample;
 
-/**
- * This class does nothing except dump some output to <i>system.out</i>.
- * This is a sample taken from Maven Alfresco SDK
- * 
- * @author Derek Hulley
- */
+
 public class Demo
 {
 	public void init()

@@ -25,7 +25,7 @@
 		  parent="webscript">
 	</bean>
 	
-	<bean id="webscript.alfresco.tutorials.javadir.get" class="org.alfresco.platformsample.JavaDirWebScript"
+	<bean id="webscript.alfresco.tutorials.javadir.get" class="org.aecid.sample.JavaDirWebScript"
 		parent="webscript">
 		<property name="repository" ref="repositoryHelper" />
 	</bean>
