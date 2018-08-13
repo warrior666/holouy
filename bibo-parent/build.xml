@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="tomcat-demo" default="install_amps" basedir=".">
+<project name="bibo-parent" default="install_amps" basedir=".">
 	<property file="build.properties" />
 		
+	<property name="maven.home" value="/opt/apache-maven-3.3.9"/>
+	<property name="maven.opts" value="-Dmaven.multiModuleProjectDirectory"/>
 	<property name="war-file-name" value="${project-name}.war" />
-	<property name="source-directory" value="bibo-repo/src/main/java" />
-	<property name="classes-directory" value="bibo-repo/target/classes" />
+	<property name="source-directory" value="${module-id}-repo/src/main/java" />
+	<property name="classes-directory" value="${module-id}-repo/target/classes" />
 	<property name="web-directory" value="web" />
 	<property name="web-xml-file" value="web/WEB-INF/web.xml" />
+	<property name="catalina-ant-dir" value="/opt/apache-tomcat-8.0.52/lib/"/>
 
 	<!-- Set these as required -->
 	<property name="alfresco.sdk" value="/home/alvaro/holocracia/git/alfresco_sdk/lib"/>
 	<property name="spring.sdk" value="/home/tony/spring_framework/spring-framework-3.2.2.RELEASE/libs"/>	
 	<property name="alfresco.install" value="/opt/alfresco-community"/>
 
-	<property name="repo.war.file" value="${alfresco.install}/tomcat/webapps/alfresco"/>
-	<property name="share.war.file" value="${alfresco.install}/tomcat/webapps/share"/>
+	<property name="tomcat.webapps.folder" value="${alfresco.install}/tomcat/webapps" />
+	<property name="repo.war.file" value="${tomcat.webapps.folder}/alfresco.war"/>
+	<property name="share.war.file" value="${tomcat.webapps.folder}/share.war"/>
 		
-	<property name="module.id" value="bibo"/>
-	<property name="version.id" value="1.0.0-SNAPSHOT"/>
-	
 	<property name="project.dir" value="."/>
 
 	<property name="repo.module" value="alfresco"/>
 	<property name="share.module" value="share"/>
 		
-	<property name="repo.dir" value="${project.dir}/bibo-repo"/>
-	<property name="share.dir" value="${project.dir}/bibo-share"/>
+	<property name="repo.dir" value="${project.dir}/${module-id}-repo"/>
+	<property name="share.dir" value="${project.dir}/${module-id}-share"/>
 		
 	<property name="repo.build.dir" value="${repo.dir}/target"/>
 	<property name="share.build.dir" value="${share.dir}/target"/>
 	
 	<property name="config.dir" value="${project.dir}/config"/>
 	
-	<property name="repo.jar.file" value="${repo.build.dir}/${module.id}-repo-${version.id}.jar"/>
-	<property name="repo.amp.file" value="${repo.build.dir}/${module.id}-repo-${version.id}.amp"/>
+	<property name="repo.jar.file" value="${repo.build.dir}/${module-id}-repo-${version-id}.jar"/>
+	<property name="repo.amp.file" value="${repo.build.dir}/${module-id}-repo-${version-id}.amp"/>
 	
-	<property name="share.jar.file" value="${share.build.dir}/${module.id}-share-${version.id}.jar"/>
-	<property name="share.amp.file" value="${share.build.dir}/${module.id}-share-${version.id}.amp"/>
+	<property name="share.jar.file" value="${share.build.dir}/${module-id}-share-${version-id}.jar"/>
+	<property name="share.amp.file" value="${share.build.dir}/${module-id}-share-${version-id}.amp"/>
 
 	<property name="mmt.path" value="${alfresco.install}/bin/alfresco-mmt.jar"/>
-	<property name="repo.mmt.install" value="install ${repo.amp.file} ${repo.war.file} -verbose"/>
-	<property name="share.mmt.install" value="install ${share.amp.file} ${share.war.file} -verbose"/>
+	<property name="repo.mmt.install" value="install ${repo.amp.file} ${repo.war.file} -verbose -force"/>
+	<property name="share.mmt.install" value="install ${share.amp.file} ${share.war.file} -verbose -force"/>
 	
 	<path id="catalina-ant-classpath">
 	    <fileset dir="${catalina-ant-dir}">
@@ -67,7 +68,7 @@
 	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" classpathref="catalina-ant-classpath"/>
 	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" classpathref="catalina-ant-classpath"/>
 
-	<target name="stop" description="stop application in tomcat">
+	<target name="tomcat-stop" description="stop application in tomcat">
 		<stop url="${tomcat-manager-url}" username="${tomcat-manager-username}"
 			password="${tomcat-manager-password}" path="/${repo.module}" />
 		
@@ -75,14 +76,26 @@
 					password="${tomcat-manager-password}" path="/${share.module}" />
 	</target>
 
-	<target name="start" description="start application in tomcat">
+	<target name="alfresco-stop">
+		  <exec executable="./alfresco.sh" dir="${alfresco.install}">
+		    <arg value="stop"/>
+		  </exec>
+	</target>
+		  	
+	<target name="tomcat-start" description="start application in tomcat">
 		<start url="${tomcat-manager-url}" username="${tomcat-manager-username}"
 			password="${tomcat-manager-password}" path="/${repo.module}" />
 		<start url="${tomcat-manager-url}" username="${tomcat-manager-username}"
 			password="${tomcat-manager-password}" path="/${share.module}" />
 	</target>
 	
-	<target name="list" description="List modules from Tomcat">
+	<target name="alfresco-start">
+		  <exec executable="./alfresco.sh" dir="${alfresco.install}">
+		    <arg value="start"/>
+		  </exec>
+	</target>
+	
+	<target name="tomcat-list" description="List modules from Tomcat">
 		<list 
 			failonerror="no"
 			url="${tomcat-manager-url}"
@@ -91,7 +104,7 @@
 		/>
 	</target>
 	
-	<target name="undeploy" description="undeploy from tomcat">
+	<target name="tomcat-undeploy" description="undeploy from tomcat">
 		<undeploy 
 			failonerror="no"
 			url="${tomcat-manager-url}"
@@ -101,7 +114,7 @@
 		/>
 	</target>
 	
-	<target name="deploy" description="deploy to tomcat">
+	<target name="tomcat-deploy" description="deploy to tomcat">
 		<echo>deploying from client</echo>
 		<deploy 
 			url="${tomcat-manager-url}"
@@ -111,7 +124,24 @@
 			war="file:/projects/workspace/${project-name}/${build-directory}/${war-file-name}"
 		/>
 	</target>
+
+	<target name="delete-backups" description="delete backups apps in tomcat">
+		<echo>deleting from client</echo>
+		<delete includeemptydirs="true">
+		  <fileset dir="${tomcat.webapps.folder}" includes="**/alfresco*.bak/"/>
+		</delete>
+		<delete includeemptydirs="true">
+		  <fileset dir="${tomcat.webapps.folder}" includes="**/share*.bak/"/>
+		</delete>
+	</target>
 	
+	<target name="delete-logs" description="delete logs files in tomcat">
+		<echo>deleting from client</echo>
+		<delete includeemptydirs="true">
+		  <fileset dir="${alfresco.install}" includes="**/*.log*"/>
+		</delete>
+	</target>
+		  	
 	<target name="war" depends="">
 		<mkdir dir="${build-directory}" />
 		<delete file="${build-directory}/${war-file-name}" />
@@ -151,9 +181,51 @@
 	</target>
 
 	<target name="build-and-ftp" depends="war,ftp,mail-upload-complete" />
-	<target name="build-and-deploy" depends="war,undeploy,deploy" />
-	
+	<target name="build-and-deploy" depends="compile,tomcat-undeploy,tomcat-deploy" />
 
+	<target name="compile">
+	<!-- <mvn mavenHome="/opt/apache-maven-3.3.9">
+	    <arg value="install"/>
+	  </mvn>
+		
+		 <maven basedir="${basedir}"
+		             options="${maven.opts}"
+		             goal="install"
+		             resultproperty="maven.build.result"/>
+		-->
+
+		  <exec executable="mvn" dir="${basedir}">
+		    <arg value="install"/>
+		  </exec>
+	</target>
+	
+	
+	 <macrodef name="maven">
+	    <attribute name="options" default="" />
+	    <attribute name="goal" />
+	    <attribute name="basedir" />
+	    <attribute name="resultproperty" default="maven.result" />
+	    <element name="args" implicit="true" optional="true" />
+	    <sequential>
+	      <java classname="org.codehaus.classworlds.Launcher" fork="true"
+	            dir="@{basedir}" resultproperty="@{resultproperty}">
+	        <jvmarg value="-Xmx512m"/>
+	        <classpath>
+	          <fileset dir="${maven.home}/boot">
+	            <include name="*.jar" />
+	          </fileset>
+	          <fileset dir="${maven.home}/lib">
+	            <include name="*.jar" />
+	          </fileset>
+	        </classpath>
+	        <sysproperty key="classworlds.conf" value="${maven.home}/bin/m2.conf" />
+	        <sysproperty key="maven.home" value="${maven.home}" />
+	        <arg line="--batch-mode @{options} @{goal}" />
+	      </java>
+	    </sequential>
+	  </macrodef>
+	
+	
 	<!--
 		<target name="compile">
 			<mkdir dir="${build.dir}/classes" />
@@ -170,7 +242,7 @@
 			<zip destfile="${amp.file}" >
 				<fileset dir="${project.dir}/build" includes="lib/*.jar" />
 				<fileset dir="${project.dir}" includes="config/**/*.*" excludes="**/module.properties" />
-				<fileset dir="${project.dir}/config/alfresco/module/${module.id}" includes="module.properties" />
+				<fileset dir="${project.dir}/config/alfresco/module/${module-id}" includes="module.properties" />
 			</zip>
 		</target>
 -->
@@ -186,4 +258,19 @@
 				<arg line="${share.mmt.install}"/>
 			</java>
 		</target>
+	
+	
+	<target name="compile-and-install">
+		  <antcall target="compile"/>
+		  <antcall target="install_amps"/>
+	</target>
+	
+	
+	<target name="compile-and-deploy">
+		  <antcall target="compile"/>
+		  <antcall target="alfresco-stop"/>
+		  <antcall target="delete-logs"/>
+		  <antcall target="install_amps"/>
+		  <antcall target="alfresco-start"/>
+	</target>
 </project>

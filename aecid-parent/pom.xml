@@ -21,7 +21,7 @@
   <reporting/>
   <modules>
     <module>aecid-share</module>
-    <module>aecid-repo</module>
+    <module>repo</module>
   </modules>
   <repositories/>
   <pluginRepositories/>

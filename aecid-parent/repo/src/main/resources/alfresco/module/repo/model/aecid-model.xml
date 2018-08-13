@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.alfresco.org/model/dictionary/1.0" name="aecid:contentModel">
+    <author>Administrator</author>
+    <imports>
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+    </imports>
+    <namespaces>
+        <namespace uri="http://aecid.org/model/aecid/1.0" prefix="aecid"/>
+    </namespaces>
+    <data-types/>
+    <constraints/>
+    
+    <types>
+        <type name="aecid:content">
+            <title>CONTENT</title>
+            <description>Tipo de documento "padre" para compartir metadata genérica como ser el país y la fecha.</description>
+            <parent>cm:content</parent>
+            <properties>
+                <property name="aecid:keywords">
+                    <title>Palabras Claves</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <multiple>true</multiple>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+                <property name="aecid:contentDate">
+                    <title>Fecha del Documento</title>
+                    <type>d:date</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                    </index>
+                </property>
+            </properties>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        
+        <type name="aecid:contentProject">
+            <title>CONPROY</title>
+            <description>Tipo genérico para compartir la metadata asociada a la carpeta del proyecto.</description>
+            <parent>aecid:content</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        
+        <type name="aecid:dscProy">
+            <title>DSCP</title>
+            <description>Descripción del proyecto</description>
+            <parent>aecid:contentProject</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        
+        <type name="aecid:diagnosis">
+            <title>DIAG</title>
+            <description>Diagnóstico</description>
+            <parent>aecid:product</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:convenio">
+            <title>CONV</title>
+            <description>Convenio Marco</description>
+            <parent>aecid:contentGral</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        
+        <type name="aecid:memo">
+            <title>MDE</title>
+            <description>Memorandum de Entendimiento</description>
+            <parent>aecid:contentGral</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:publication">
+            <title>PUB</title>
+            <description>Publicación</description>
+            <parent>aecid:product</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:trackingSheet">
+            <title>FST</title>
+            <description>Ficha de Seguimiento Trimestral</description>
+            <parent>aecid:contentProject</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:subResolution">
+            <title>SUBRES</title>
+            <description>Subvención Resolución</description>
+            <parent>aecid:subsidy</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:contentGral">
+            <title>CONGRAL</title>
+            <description>Contenidos no asociados a proyectos</description>
+            <parent>aecid:content</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:folderProject">
+            <title>PROY</title>
+            <description>Carpeta para contener todos los documentos asociados a un proyecto, así como definir la metadata a ser heredada por estos por estar dentro de la carpeta.</description>
+            <parent>cm:folder</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:acta">
+            <title>ACTA</title>
+            <parent>aecid:content</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:product">
+            <title>PROD</title>
+            <description>Producto</description>
+            <parent>aecid:content</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:contract">
+            <title>CON</title>
+            <parent>cm:content</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:subExtension">
+            <title>SUBEXT</title>
+            <description>Subvención Extensión</description>
+            <parent>aecid:subsidy</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:evaluation">
+            <title>INFEV</title>
+            <description>Informe Evaluación</description>
+            <parent>aecid:contentProject</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:report">
+            <title>INF</title>
+            <description>Informe</description>
+            <parent>aecid:product</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:formulation">
+            <title>DFORM</title>
+            <description>Documento de formulación</description>
+            <parent>aecid:contentProject</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:generalPlan">
+            <title>POG</title>
+            <description>Plan Operativo General</description>
+            <parent>aecid:contentProject</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:anualPlan">
+            <title>POA</title>
+            <description>Plan Operativo Anual</description>
+            <parent>aecid:contentProject</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:subJustification">
+            <title>SUBJUS</title>
+            <description>Subvención Justificación</description>
+            <parent>aecid:subsidy</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:finalReport">
+            <title>INFF</title>
+            <description>Informe Final</description>
+            <parent>aecid:product</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:subActos">
+            <title>SUBACT</title>
+            <description>Subvención Actos Administrativos</description>
+            <parent>aecid:subsidy</parent>
+            <properties>
+                <property name="aecid:actoType">
+                    <title>Clase de Acto Administrativo</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                    <constraints>
+                        <constraint name="aecid:LIST_ACTOTYPE" type="LIST">
+                            <parameter name="allowedValues">
+                                <list>
+                                    <value>Auditoría</value>
+                                    <value>Reintegro</value>
+                                    <value>Subsanación</value>
+                                    <value>Resolución</value>
+                                    <value>Otros</value>
+                                </list>
+                            </parameter>
+                            <parameter name="caseSensitive">
+                                <value>true</value>
+                            </parameter>
+                            <parameter name="sorted">
+                                <value>false</value>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+            </properties>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:protocol">
+            <title>PROT</title>
+            <description>Protocolo</description>
+            <parent>aecid:product</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:subModification">
+            <title>SUBMOD</title>
+            <description>Subvención Modificación</description>
+            <parent>aecid:subsidy</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:budgetSheet">
+            <title>CEJE</title>
+            <description>Cuadro de Ejecución Presupuestal</description>
+            <parent>aecid:contentProject</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:referenceTerm">
+            <title>TDR</title>
+            <description>Términos de Referencia</description>
+            <parent>aecid:contentProject</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:normative">
+            <title>NORM</title>
+            <description>Normativa</description>
+            <parent>aecid:contentGral</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:subAdenda">
+            <title>SUBADD</title>
+            <description>Subvención Adenda</description>
+            <parent>aecid:subsidy</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:preIdentFile">
+            <title>PREID</title>
+            <description>Ficha pre identificable</description>
+            <parent>aecid:contentProject</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:subsidy">
+            <title>SUB</title>
+            <description>Subvención Estatal</description>
+            <parent>aecid:content</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:subAcept">
+            <title>SUBACE</title>
+            <description>Subvención Aceptación</description>
+            <parent>cm:content</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:agreement">
+            <title>AEC</title>
+            <description>Acuerdo Entidad Colaboradora</description>
+            <parent>aecid:contentGral</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:countryReport">
+            <title>NPAIS</title>
+            <description>Nota País</description>
+            <parent>aecid:contentGral</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+    </types>
+    <aspects>
+        <aspect name="aecid:projectWorkflow">
+            <title>Workflow de Proyecto</title>
+            <properties>
+                <property name="aecid:elaborationDate">
+                    <title>Fecha de Elaboración</title>
+                    <type>d:date</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                    </index>
+                </property>
+                <property name="aecid:status">
+                    <title>Estado</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+            </properties>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </aspect>
+        <aspect name="aecid:projectable">
+            <title>Parte de un proyecto</title>
+            <properties>
+                <property name="aecid:counterpart">
+                    <title>Contraparte</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+                <property name="aecid:fileNumber">
+                    <title>Número de Expediente</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+                <property name="aecid:purpose">
+                    <title>Propósito</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+                <property name="aecid:beneficiary">
+                    <title>Beneficiario</title>
+                    <description>Beneficiario del Proyecto</description>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+                <property name="aecid:executionWay">
+                    <title>Forma de Ejecución</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+                <property name="aecid:projectTitle">
+                    <title>Titulo del Proyecto</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+                <property name="aecid:projectTag">
+                    <title>Etiqueta del Proyecto</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+                <property name="aecid:startDate">
+                    <title>Fecha de Inicio</title>
+                    <type>d:date</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                    </index>
+                </property>
+                <property name="aecid:justificationDate">
+                    <title>Fecha de Justificación</title>
+                    <type>d:date</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                    </index>
+                </property>
+                <property name="aecid:extensionDate">
+                    <title>Fecha de Prórroga</title>
+                    <type>d:date</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                    </index>
+                </property>
+                <property name="aecid:budgetYear">
+                    <title>Año presupuestal</title>
+                    <type>d:int</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                    </index>
+                </property>
+                <property name="aecid:colaborator">
+                    <title>Entidad Colaboradora</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+                <property name="aecid:endingDate">
+                    <title>Fecha de Fin</title>
+                    <type>d:date</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                    </index>
+                </property>
+                <property name="aecid:location">
+                    <title>Localización Geográfica</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+            </properties>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </aspect>
+        <aspect name="aecid:cooperation">
+            <title>Cooperacion</title>
+            <description>Aplica al contenido o carpeta donde se manejen datos sobre la cooperacion (modalidad o programa) </description>
+            <properties>
+                <property name="aecid:program">
+                    <title>Programa</title>
+                    <description>Programa dentro del cual se desarrolla el proyecto.</description>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                    <constraints>
+                        <constraint name="aecid:LIST_PROGRAM" type="LIST">
+                            <parameter name="allowedValues">
+                                <list>
+                                    <value>Arauclima (ARAU)</value>
+                                    <value>Fondo del Agua (FCAS)</value>
+                                    <value>Fondo Mixto (FMIXTO)</value>
+                                    <value>Programa Indígena (PIND)</value>
+                                    <value>Programa Mercosur (PMERC)</value>
+                                    <value>Programa Afro (PAFRO)</value>
+                                    <value>Programa Latinoamericano de Cooperación Técnica (COOTEC)</value>
+                                </list>
+                            </parameter>
+                            <parameter name="caseSensitive">
+                                <value>true</value>
+                            </parameter>
+                            <parameter name="sorted">
+                                <value>false</value>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+                <property name="aecid:modality">
+                    <title>Modalidad de la Cooperacion</title>
+                    <description>Forma a través de la cual se canaliza la ayuda</description>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                    <constraints>
+                        <constraint name="aecid:LIST_MODALITY" type="LIST">
+                            <parameter name="allowedValues">
+                                <list>
+                                    <value>Cooperación técnica (CTEC)</value>
+                                    <value>Formación y gestión del conocimiento (GC)</value>
+                                    <value>Alianzas público privadas para el desarrollo (APPD)</value>
+                                    <value>Cooperación bilateral (CBIL)</value>
+                                    <value>Cooperación regional (CREG)</value>
+                                    <value>Cooperación descentralizada (CDESC)</value>
+                                    <value>Cooperación multilateral (CMULTI)</value>
+                                    <value>Cooperación Multilateral-bilateral (CMB)</value>
+                                    <value>Cooperación Delegada (CD)</value>
+                                    <value>Cooperación Triangular (CT)</value>
+                                    <value>Cooperación Sur Sur (CSS)</value>
+                                </list>
+                            </parameter>
+                            <parameter name="caseSensitive">
+                                <value>true</value>
+                            </parameter>
+                            <parameter name="sorted">
+                                <value>false</value>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+            </properties>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </aspect>
+    </aspects>
+</model>
