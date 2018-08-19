@@ -14,21 +14,19 @@ import org.alfresco.service.cmr.dictionary.TypeDefinition;
 import org.alfresco.service.cmr.model.FileFolderService;
 import org.alfresco.service.cmr.repository.NodeRef;
 import org.alfresco.service.cmr.repository.NodeService;
-import org.alfresco.service.namespace.NamespaceService;
 import org.alfresco.service.namespace.QName;
 import org.apache.log4j.Logger;
 
 public class RenameActionExecuter extends ActionExecuterAbstractBase {
+
+	private final static Logger log = Logger.getLogger(RenameActionExecuter.class);
 
 	private static final String TYPE_SEPARATOR = "-";
 	private static final String PROJECT_TAG_SEPARATOR = "_";
 	private static final String STRING_EMPTY = "";
 	private static final String PROJECT_TAG_PROPERTY = "projectTag";
 	private final static String AECID_MODEL_1_0_URI = "http://aecid.org/model/aecid/1.0";
-	private final static Logger log = Logger.getLogger(RenameActionExecuter.class);
 	
-	// public static final String PARAM_DESTINATION_FOLDER = "destination-folder";
-
 	private NodeService nodeService;
 	private FileFolderService fileFolderService;
 	private DictionaryService dictionaryService;

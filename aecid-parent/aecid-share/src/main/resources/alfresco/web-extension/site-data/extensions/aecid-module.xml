@@ -6,6 +6,25 @@
 			<auto-deploy>true</auto-deploy>
 			<configurations>
 
+	<!-- Custom Execute Script Action -->
+	<config evaluator="string-compare" condition="DocLibActions">
+		<actionGroups>
+			<actionGroup id="folder-browse">
+				<action index="980" id="org_sharextras_execute-script" />
+			</actionGroup>
+			<actionGroup id="folder-details">
+				<action index="980" id="org_sharextras_execute-script" />
+			</actionGroup>
+			<actionGroup id="document-browse">
+				<action index="980" id="org_sharextras_execute-script" />
+			</actionGroup>
+			<actionGroup id="document-details">
+				<action index="980" id="org_sharextras_execute-script" />
+			</actionGroup>
+		</actionGroups>
+	</config>
+
+
 				<config evaluator="string-compare" condition="WebFramework"
 					replace="false">
 					<web-framework>

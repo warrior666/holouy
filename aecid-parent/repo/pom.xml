@@ -7,13 +7,16 @@
   <name>aecid-repo</name>
   <description>AECID repository Alfresco</description>
   <packaging>jar</packaging>
+  
   <parent>
     <groupId>org.aecid</groupId>
     <artifactId>aecid-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
+  
   <properties/>
   <dependencies/>
+  
   <build>
     <plugins>
       <plugin>

@@ -2,13 +2,13 @@ package org.huy.tools.loader;
 
 import java.io.File;
 
-import org.huy.tools.controller.AlfrescoController;
+import org.huy.tools.controller.LoaderController;
 
 public class FolderLoader {
 
-	private AlfrescoController controller;
+	private LoaderController controller;
 
-	public FolderLoader(AlfrescoController client) {
+	public FolderLoader(LoaderController client) {
 		controller = client;
 	}
 

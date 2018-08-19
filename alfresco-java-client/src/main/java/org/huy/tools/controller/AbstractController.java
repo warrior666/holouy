@@ -34,7 +34,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 
-public class AlfrescoController extends AbstractClient<AlfrescoController> {
+public class AbstractController<T> extends AbstractClient<T> {
 
 	protected static FileLoader fileLoader;
 	protected static FolderLoader folderLoader;
@@ -50,31 +50,11 @@ public class AlfrescoController extends AbstractClient<AlfrescoController> {
     public static final String USERID_ADMIN = "admin";
 
     public static final String USER_DISPLAY_ADMIN = "Administrator";
-
-    public static final ArrayList<String> DEFAULT_FOLDER_ASPECTS = new ArrayList<String>(3)
-    {
-        {
-            add("cm:titled");
-            add("cm:auditable");
-            add("app:uifacets");
-        }
-    };
-
-    public static final ArrayList<String> DEFAULT_FILE_ASPECTS = new ArrayList<String>(3)
-    {
-        {
-            add("cm:titled");
-            add("cm:auditable");
-            add("app:uifacets");
-            add("cm:versionable");
-            add("cm:author");
-        }
-    };
-    		
+	
     		
 	protected static final Object LOCK = new Object();
 
-	protected static AlfrescoController mInstance;
+	protected static AbstractController mInstance;
 
 	protected ActivitiesAPI activitiesAPI;
 	protected CommentsAPI commentsAPI;
@@ -94,64 +74,25 @@ public class AlfrescoController extends AbstractClient<AlfrescoController> {
 	// protected GroupsAPI groupsAPI;
 	protected VersionAPI versionAPI;
 
-	
-	public static FileLoader getFileLoader() {
-		return fileLoader;
-	}
-
-	public static FolderLoader getFolderLoader() {
-		return folderLoader;
-	}
-
-
-	public static void process(File root) throws IOException {
-		File[] listOfFiles = root.listFiles();
 		
-		for (int i = 0; i < listOfFiles.length; i++) {
-			if (listOfFiles[i].isFile()) {
-				System.out.println("File " + listOfFiles[i].getName());
-				AlfrescoController.getFileLoader().process(listOfFiles[i]);
-			} else if (listOfFiles[i].isDirectory()) {
-				System.out.println("Directory " + listOfFiles[i].getName());
-				AlfrescoController.getFolderLoader().process(listOfFiles[i]);
-			}
-		}
-	}
-	
-	
-	// ///////////////////////////////////////////////////////////////////////////
-	// CONSTRUCTOR
-	// ///////////////////////////////////////////////////////////////////////////
-	public static void initInstance() {
-		mInstance = prepareClient(DEFAULT_ENDPOINT, DEFAULT_USER, DEFAULT_PASSWORD);
-	}
-
-	public static AlfrescoController getInstance() {
-		return mInstance;
-	}
-	
-	private AlfrescoController(RestClient restClient, OkHttpClient okHttpClient) {
+	protected AbstractController(RestClient restClient, OkHttpClient okHttpClient) {
 		super(restClient, okHttpClient);
-
-		fileLoader = new FileLoader(this);
-		folderLoader = new FolderLoader(this);
-
 	}
 
 
     // ///////////////////////////////////////////////////////////////////////////
     // ALFRESCO CLIENT UTILS
     // ///////////////////////////////////////////////////////////////////////////
-    public static AlfrescoController prepareDefaultClient()
+    public static AbstractController prepareDefaultClient()
     {
-    	AlfrescoController client = new AlfrescoController.Builder().connect("http://cmis.alfresco.com/", "admin", "admin")
+    	AbstractController client = new AbstractController.Builder().connect("http://cmis.alfresco.com/", "admin", "admin")
                 .httpLogging(HttpLoggingInterceptor.Level.BODY).build();
     	return client;
     }
 
-    public static AlfrescoController prepareClient(String endpoint, String username, String password)
+    public static AbstractController prepareClient(String endpoint, String username, String password)
     {
-        return new AlfrescoController.Builder().connect(endpoint, username, password)
+        return new AbstractController.Builder().connect(endpoint, username, password)
                 .httpLogging(HttpLoggingInterceptor.Level.BODY).build();
     }
 
@@ -308,7 +249,7 @@ public class AlfrescoController extends AbstractClient<AlfrescoController> {
 	// ///////////////////////////////////////////////////////////////////////////
 	// BUILDER
 	// ///////////////////////////////////////////////////////////////////////////
-	public static class Builder extends AbstractClient.Builder<AlfrescoController> {
+	public static class Builder extends AbstractClient.Builder<AbstractController> {
 
 		@Override
 		public String getUSerAgent() {
@@ -316,8 +257,8 @@ public class AlfrescoController extends AbstractClient<AlfrescoController> {
 		}
 
 		@Override
-		public AlfrescoController create(RestClient restClient, OkHttpClient okHttpClient) {
-			return new AlfrescoController(new RestClient(endpoint, retrofit, username), okHttpClient);
+		public AbstractController create(RestClient restClient, OkHttpClient okHttpClient) {
+			return new AbstractController(new RestClient(endpoint, retrofit, username), okHttpClient);
 		}
 
 		@Override
@@ -327,7 +268,7 @@ public class AlfrescoController extends AbstractClient<AlfrescoController> {
 
 		// BUILD
 		// ///////////////////////////////////////////////////////////////////////////
-		public AlfrescoController build() {
+		public AbstractController build() {
 			// Create Client
 			mInstance = super.build();
 			return mInstance;

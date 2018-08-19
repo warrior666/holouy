@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import org.huy.tools.controller.AlfrescoController;
+import org.huy.tools.controller.LoaderController;
 import org.huy.tools.model.NodeDTO;
 import org.huy.tools.util.FilenameDocument;
 
@@ -20,10 +20,10 @@ import retrofit2.Response;
 public class FileLoader {
 
 
-	private AlfrescoController controller;
+	private LoaderController controller;
 
 
-	public FileLoader(AlfrescoController client) {
+	public FileLoader(LoaderController client) {
 		controller = client;
 	}
 

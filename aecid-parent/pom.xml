@@ -1,41 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project 
-  xmlns="http://maven.apache.org/POM/4.0.0" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.aecid</groupId>
-  <artifactId>aecid-parent</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>aecid-parent</name>
-  <description>AECID alfresco customization</description>
-  <parent>
-    <groupId>org.alfresco</groupId>
-    <artifactId>generator-alfresco</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-  </parent>
-  <properties/>
-  <dependencies/>
-  <dependencyManagement/>
-  <build/>
-  <reporting/>
-  <modules>
-    <module>aecid-share</module>
-    <module>repo</module>
-  </modules>
-  <repositories/>
-  <pluginRepositories/>
-  <profiles/>
-  <url/>
-  <inceptionYear/>
-  <licenses/>
-  <organization/>
-  <developers/>
-  <contributors/>
-  <issueManagement/>
-  <ciManagement/>
-  <mailingLists/>
-  <scm/>
-  <prerequisites/>
-  <distributionManagement/>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.aecid</groupId>
+	<artifactId>aecid-parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>aecid-parent</name>
+	<description>AECID alfresco customization</description>
+	
+	<parent>
+		<groupId>org.alfresco</groupId>
+		<artifactId>generator-alfresco</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	
+	<properties />
+	<dependencies />
+	<dependencyManagement />
+	<build />
+	<reporting />
+	
+	<modules>
+		<module>aecid-share</module>
+		<module>repo</module>
+	</modules>
+	
+	<repositories />
+	<pluginRepositories />
+	<profiles />
+	<url />
+	<inceptionYear />
+	<licenses />
+	<organization />
+	<developers />
+	<contributors />
+	<issueManagement />
+	<ciManagement />
+	<mailingLists />
+	<scm />
+	<prerequisites />
+	<distributionManagement />
 </project>

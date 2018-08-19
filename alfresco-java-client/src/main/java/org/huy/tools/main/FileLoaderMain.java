@@ -2,14 +2,14 @@ package org.huy.tools.main;
 
 import java.io.File;
 
-import org.huy.tools.controller.AlfrescoController;
+import org.huy.tools.controller.LoaderController;
 
 public class FileLoaderMain {
 
 	
 	public static void main(String[] args) throws Exception {
 
-		AlfrescoController.initInstance();
+		LoaderController.initInstance();
 		
 		if (args.length < 2)
 			throw new Exception("Argumentos insuficientes");
@@ -18,7 +18,7 @@ public class FileLoaderMain {
 
 		File folder = new File(folderPath);
 		
-		AlfrescoController.process(folder);
+		LoaderController.process(folder);
 	}
 
 }

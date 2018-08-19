@@ -4,15 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URLConnection;
 
-import org.huy.tools.controller.AlfrescoController;
-import org.testng.Assert;
+import org.huy.tools.controller.LoaderController;
 
 import com.alfresco.client.api.common.representation.ResultPaging;
 import com.alfresco.client.api.core.NodesAPI;
 import com.alfresco.client.api.core.model.body.NodeBodyCreate;
 import com.alfresco.client.api.core.model.body.NodeBodyUpdate;
 import com.alfresco.client.api.core.model.representation.NodeRepresentation;
-import com.alfresco.client.api.tests.utils.NodeRefUtils;
 import com.google.gson.internal.LinkedTreeMap;
 
 import okhttp3.MediaType;
@@ -28,7 +26,7 @@ public class NodeDTO {
 	NodeRepresentation node;
 
 	public NodeDTO() {
-		nodeService = AlfrescoController.getInstance().getAPI(NodesAPI.class);
+		nodeService = LoaderController.getInstance().getAPI(NodesAPI.class);
 	}
 
 	public void selectFolder(String folder) throws IOException {

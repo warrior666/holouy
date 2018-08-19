@@ -198,9 +198,9 @@
 		      message="The ${war-file-name} file was uploaded to ${ftp-server} in ${ftp-remotedir}"/>
 	</target>
 
-	<target name="build-and-ftp" depends="war,ftp,mail-upload-complete" />
+<!--	<target name="build-and-ftp" depends="war,ftp,mail-upload-complete" />
 	<target name="build-and-deploy" depends="compile,tomcat-undeploy,tomcat-deploy" />
-
+-->
 	<target name="webapps-backup">
 		<copy file="${repo.war.file}" todir="${tomcat.backup.folder}"/>
 		<copy file="${share.war.file}" todir="${tomcat.backup.folder}"/>
