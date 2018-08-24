@@ -16,7 +16,11 @@
     <property name="resourceBundles">
       <list>
         <value>alfresco.web-extension.messages.${project.artifactId}</value>
+        <value>alfresco.web-extension.messages.add-doclib-actions-custom</value>
       </list>
     </property>
   </bean>
+
+  <bean id="alfresco.tutorials.evaluator.isEmailed"
+       class="org.aecid.alfresco.evaluator.CheckIfDocIsEmailedEvaluator" />
 </beans>

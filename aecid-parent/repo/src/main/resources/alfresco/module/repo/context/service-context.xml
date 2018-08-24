@@ -48,7 +48,17 @@
     </property>
 </bean>
 
-<bean id="move-replaced" class="org.aecid.alfresco.MoveReplacedActionExecuter" parent="action-executer">
+  <bean id="sumarizer" class="org.aecid.alfresco.SummaryActionExecuter" parent="action-executer">
+   <property name="fileFolderService">
+        <ref bean="FileFolderService" />
+    </property>
+
+    <property name="nodeService">
+        <ref bean="NodeService" />
+    </property>
+</bean>
+
+<bean id="desclasifier" class="org.aecid.alfresco.MoveReplacedActionExecuter" parent="action-executer">
     <property name="fileFolderService">
         <ref bean="FileFolderService" />
     </property>
@@ -59,6 +69,9 @@
         <ref bean="ContentService" />
     </property>    
     
+</bean>
+
+  <bean id="send-as-email" class="org.aecid.alfresco.SendAsEmailActionExecuter" parent="action-executer">
 </bean>
 
 </beans>

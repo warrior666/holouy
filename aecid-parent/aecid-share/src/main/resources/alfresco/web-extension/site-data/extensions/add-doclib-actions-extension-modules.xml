@@ -1,0 +1,184 @@
+<extension>
+	<modules>
+		<module>
+			<id>Add Document Library Actions</id>
+			<version>1.0</version>
+			<auto-deploy>true</auto-deploy>
+			<configurations>
+
+				<config evaluator="string-compare"
+					condition="DocumentLibrary">
+					<indicators>
+						<indicator id="alfresco.tutorials.indicator.isEmailed"
+							icon="email-16.png" index="100"
+							label="alfresco.tutorials.indicator.isEmailed.label">
+							<evaluator>alfresco.tutorials.evaluator.isEmailed</evaluator>
+						</indicator>
+					</indicators>
+				</config>
+
+				<config evaluator="string-compare" condition="send-as-email"> <!-- ID for the Repository Action that this form is associated with -->
+					<forms>
+						<form>
+							<field-visibility>
+								<show id="to" />
+								<show id="subject" />
+								<show id="body_text" />
+							</field-visibility>
+							<appearance>
+								<field id="to"
+									label-id="alfresco.tutorials.doclib.action.sendAsEmail.form.field.to" />
+								<field id="subject"
+									label-id="alfresco.tutorials.doclib.action.sendAsEmail.form.field.subject" />
+								<field id="body_text"
+									label-id="alfresco.tutorials.doclib.action.sendAsEmail.form.field.body_text">
+									<control
+										template="/org/alfresco/components/form/controls/textarea.ftl" />
+								</field>
+							</appearance>
+						</form>
+					</forms>
+				</config>
+
+				<config evaluator="string-compare" condition="DocLibActions">
+					<actions>
+						<action id="alfresco.tutorials.doclib.action.sendAsEmail"
+							icon="email" type="javascript"
+							label="alfresco.tutorials.doclib.action.sendAsEmail.label">
+							<param name="function">onActionFormDialog</param>
+							<param name="itemKind">action</param>
+							<param name="itemId">send-as-email</param> <!-- Repository action id = Spring Bean id -->
+							<param name="mode">create</param>
+							<param name="destination">{node.nodeRef}</param>
+							<param name="successMessage">alfresco.tutorials.doclib.action.sendAsEmail.msg.success
+							</param>
+							<param name="failureMessage">alfresco.tutorials.doclib.action.sendAsEmail.msg.failure
+							</param>
+							<evaluator negate="true">alfresco.tutorials.evaluator.isEmailed
+							</evaluator>
+						</action>
+
+						<action id="aecid.alfresco.doclib.action.renamer"
+							icon="email" type="javascript"
+							label="aecid.alfresco.doclib.action.renamer.label">
+							<param name="function">onActionSimpleRepoAction</param>
+							<param name="action">renamer</param>
+							<param name="successMessage">aecid.alfresco.doclib.action.renamer.msg.success</param>
+							<param name="failureMessage">aecid.alfresco.doclib.action.renamer.msg.failure</param>
+    					</action>
+
+						<action id="aecid.alfresco.doclib.action.sumarizer"
+							icon="email" type="javascript"
+							label="aecid.alfresco.doclib.action.sumarizer.label">
+							<param name="function">onActionSimpleRepoAction</param>
+							<param name="action">sumarizer</param>
+							<param name="successMessage">aecid.alfresco.doclib.action.sumarizer.msg.success</param>
+							<param name="failureMessage">aecid.alfresco.doclib.action.sumarizer.msg.failure</param>
+    					</action>
+    					
+    					<action id="aecid.alfresco.doclib.action.desclasifier"
+							icon="email" type="javascript"
+							label="aecid.alfresco.doclib.action.desclasifier.label">
+							<param name="function">onActionSimpleRepoAction</param>
+							<param name="action">desclasifier</param>
+							<param name="successMessage">aecid.alfresco.doclib.action.desclasifier.msg.success</param>
+							<param name="failureMessage">aecid.alfresco.doclib.action.desclasifier.msg.failure</param>
+    					</action>
+<!-- 					
+						<action id="alfresco.tutorials.doclib.action.callWebScript"
+							icon="callws" type="javascript"
+							label="alfresco.tutorials.doclib.action.callWebScript.label">
+							<param name="function">onActionCallWebScript</param>
+							<param name="successMessage">alfresco.tutorials.doclib.action.callWebScript.msg.success
+							</param>
+							<param name="failureMessage">alfresco.tutorials.doclib.action.callWebScript.msg.failure
+							</param>
+						</action>
+					</actions>
+-->	
+<!-- 
+					<action id="someco-web-enable" type="javascript"
+						label="actions.someco-web-enable" icon="someco-web-enable">
+						<param name="function">onActionSimpleRepoAction</param>
+						<param name="action">set-web-flag</param>
+						<param name="active">true</param>
+						<param name="successMessage">message.web-flag.enabled</param>
+						<param name="failureMessage">message.web-flag.failure</param>
+					</action>
+					<action id="someco-web-disable" type="javascript"
+						label="actions.someco-web-disable" icon="someco-web-disable">
+						<param name="function">onActionSimpleRepoAction</param>
+						<param name="action">set-web-flag</param>
+						<param name="active">false</param>
+						<param name="successMessage">message.web-flag.disabled</param>
+						<param name="failureMessage">message.web-flag.failure</param>
+					</action>
+-->
+					</actions>
+					
+					<actionGroups>
+						<actionGroup id="document-browse">
+<!-- 							<action index="400"
+								id="alfresco.tutorials.doclib.action.sendAsEmail" />
+-->							<action index="402"
+								id="aecid.alfresco.doclib.action.renamer" />
+							<action index="403"
+								id="aecid.alfresco.doclib.action.sumarizer" />
+							<action index="404"
+								id="aecid.alfresco.doclib.action.desclasifier" />
+						</actionGroup>
+						<actionGroup id="document-details">
+<!-- 							<action index="400"
+								id="alfresco.tutorials.doclib.action.sendAsEmail" />
+								-->
+							<action index="402"
+								id="aecid.alfresco.doclib.action.renamer" />
+							<action index="403"
+								id="aecid.alfresco.doclib.action.sumarizer" />
+							<action index="404"
+								id="aecid.alfresco.doclib.action.desclasifier" />
+						</actionGroup>
+					</actionGroups>
+				</config>					
+<!-- 
+	<config evaluator="string-compare" condition="DocLibActions">
+		<actionGroups>
+			<actionGroup id="folder-browse">
+				<action index="980" id="org_sharextras_execute-script" />
+			</actionGroup>
+			<actionGroup id="folder-details">
+				<action index="980" id="org_sharextras_execute-script" />
+			</actionGroup>
+			<actionGroup id="document-browse">
+				<action index="980" id="org_sharextras_execute-script" />
+			</actionGroup>
+			<actionGroup id="document-details">
+				<action index="980" id="org_sharextras_execute-script" />
+			</actionGroup>
+		</actionGroups>
+	</config>
+-->
+<!-- 
+    <config evaluator="string-compare" condition="DocLibCustom">   
+        <dependencies>
+            <css src="/extras/components/documentlibrary/execute-script-action.css" />
+            <js src="/extras/components/documentlibrary/execute-script-action.js" />
+        </dependencies> 
+    </config>
+	
+    <config evaluator="string-compare" condition="DocLibActions">
+        <actions>
+            <action id="org_sharextras_execute-script" 
+            		type="javascript" 
+            		label="actions.document.execute-script" 
+            		icon="../../../extras/components/documentlibrary/execute-script">
+                <param name="function">onActionExecuteScript</param>
+            </action>
+        </actions>
+    </config>
+    -->
+
+			</configurations>
+		</module>
+	</modules>
+</extension> 

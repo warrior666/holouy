@@ -17,18 +17,14 @@ import org.alfresco.service.cmr.repository.NodeService;
 import org.alfresco.service.namespace.QName;
 import org.apache.log4j.Logger;
 
-public class RenameActionExecuter extends ActionExecuterAbstractBase {
+public class SummaryActionExecuter extends ActionExecuterAbstractBase {
 
-	private final static Logger log = Logger.getLogger(RenameActionExecuter.class);
+	private final static Logger log = Logger.getLogger(SummaryActionExecuter.class);
 
 	private static final String TYPE_SEPARATOR = "-";
 	private static final String PROJECT_TAG_SEPARATOR = "_";
 	private static final String STRING_EMPTY = "";
 	private static final String PROJECT_TAG_PROPERTY = "projectTag";
-	private static final String BUDGET_YEAR_PROPERTY = "budgetYear";
-	private static final String PROGRAM_PROPERTY = "program";
-	private static final String COMPONENT_PROPERTY = "component";
-	
 	private final static String AECID_MODEL_1_0_URI = "http://aecid.org/model/aecid/1.0";
 	
 	private NodeService nodeService;
@@ -47,7 +43,7 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 	 */
 	public void executeImpl(Action ruleAction, NodeRef nodeRef) {
 
-		log.info("executeImpl action renamer by rule v2: " + ruleAction.getActionDefinitionName());
+		log.info("executeImpl Action summary by rule: " + ruleAction.getActionDefinitionName());
 		log.info("Noderef: " + nodeRef.getId());
 		
 		String type = getTypeTitle(nodeRef);
@@ -59,48 +55,39 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 		String name = (String) props.get(ContentModel.PROP_NAME);
 		String title = (String) props.get(ContentModel.PROP_TITLE);
 
-		log.info("renamer name: " + name + " title: " + title);
-		
 		if (title.equals(STRING_EMPTY)) {
 			title = name;
 			nodeService.setProperty(nodeRef, ContentModel.PROP_TITLE, title);
 		}
 		
 		String projectTag = getProperty(props, PROJECT_TAG_PROPERTY);
-		String budgetYear =  getProperty(props, BUDGET_YEAR_PROPERTY);
-		String program =  getProperty(props, PROGRAM_PROPERTY);
-		String component =  getProperty(props, COMPONENT_PROPERTY);
-		
+		String beneficiary = getProperty(props, "beneficiary");
+		String counterpart = getProperty(props, "counterpart");
+		String fileNumber = getProperty(props, "fileNumber");
 		
 		StringWriter sw = new StringWriter();
 
+		sw.write("Titulo: " + title + "\n");
+
 		if (!projectTag.equals(STRING_EMPTY)) {
-			sw.write(projectTag + PROJECT_TAG_SEPARATOR);
+			sw.write("Proyecto: " + projectTag  + "\n");
 		}
 		
-		if (!name.contains(type)) {
-			sw.write(type + TYPE_SEPARATOR);
+		sw.write("Tipo de Contenido: " + type  + "\n");		
+		
+		sw.write("Año Presupuestal: " + getProperty(props, "budgetYear") + "\n");	
+		
+		if (!beneficiary.equals(STRING_EMPTY) || counterpart.equals(STRING_EMPTY)) {
+			sw.write("Beneficiario / Contraparte: " + beneficiary + " / " + counterpart + "\n");
 		}
 		
-		if (!budgetYear.equals(STRING_EMPTY)) {
-			sw.write("(" + budgetYear + ")");
-			log.info("renamer add budgetYear: " + budgetYear);
-			
-		} else if (!program.equals(STRING_EMPTY)) {
-			sw.write(TYPE_SEPARATOR + program);
-			
-			log.info("renamer add program: " + program);
-			
-			if (!component.equals(STRING_EMPTY)) {
-				sw.write(TYPE_SEPARATOR + component);
-			}
+		if (!fileNumber.equals(STRING_EMPTY)) {
+			sw.write("Expediente: " + fileNumber + "\n");		
 		}
 		
-		sw.write(title);
+		log.info("Summary build: " + sw.toString());
 		
-		log.info("Rename: " + sw.toString());
-		
-		nodeService.setProperty(nodeRef, ContentModel.PROP_NAME, sw.toString());
+		nodeService.setProperty(nodeRef, ContentModel.PROP_DESCRIPTION, sw.toString());
 
 	}
 
@@ -148,33 +135,22 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 		case "countryReport" : abrev = "NPAIS"; break;
 		
 		default:
-			abrev = typeTitle;
+			abrev = "";
 		}
 		
-		log.info("getTypeTitle - Looking for abrev: " + abrev + " for qname: " + qtype.getLocalName());
-		
-		return abrev;
+		return typeTitle + "(" + abrev + ")";
 	}
 	
-	private String getProperty(Map<QName, Serializable> props, String key) {
-		QName qname = QName.createQName(AECID_MODEL_1_0_URI, key);
+	private String getProperty(Map<QName, Serializable> props, String prop) {
+		QName qname = QName.createQName(AECID_MODEL_1_0_URI, prop);
 		
 		if (props.containsKey(qname)) {
-			Object o = props.get(qname);
-			if (o instanceof Integer) {
-				return String.valueOf(o);
-				
-			} else if (o instanceof Long) {
-				return String.valueOf(o);
-				
-			} else {
-				return (String) o;
-			}
+			return props.get(qname).toString();
 		}
 		
 		return STRING_EMPTY;
 	}
-	
+
 	public void setDictionaryService(DictionaryService service) {
 		dictionaryService = service;
 	}

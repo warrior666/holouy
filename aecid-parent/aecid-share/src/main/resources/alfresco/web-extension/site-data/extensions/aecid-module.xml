@@ -6,24 +6,6 @@
 			<auto-deploy>true</auto-deploy>
 			<configurations>
 
-	<!-- Custom Execute Script Action -->
-	<config evaluator="string-compare" condition="DocLibActions">
-		<actionGroups>
-			<actionGroup id="folder-browse">
-				<action index="980" id="org_sharextras_execute-script" />
-			</actionGroup>
-			<actionGroup id="folder-details">
-				<action index="980" id="org_sharextras_execute-script" />
-			</actionGroup>
-			<actionGroup id="document-browse">
-				<action index="980" id="org_sharextras_execute-script" />
-			</actionGroup>
-			<actionGroup id="document-details">
-				<action index="980" id="org_sharextras_execute-script" />
-			</actionGroup>
-		</actionGroups>
-	</config>
-
 
 				<config evaluator="string-compare" condition="WebFramework"
 					replace="false">
@@ -114,41 +96,11 @@
 							<subtype name="aecid:agreement" />
 							<subtype name="aecid:countryReport" />
 						</type>
-						
-						<type name="aecid:dscProy" >
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:convenio" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:subResolution" />
-							<subtype name="aecid:contentGral" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:subExtension" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:subJustification" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:subActos" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:subModification" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:normative" />
-							<subtype name="aecid:subAdenda" />
-							<subtype name="aecid:preIdentFile" />
-							<subtype name="aecid:subsidy" />
-							<subtype name="aecid:subAcept" />
-							<subtype name="aecid:agreement" />
-							<subtype name="aecid:countryReport" />
+
+						<type name="aecid:dscProy">
 						</type>
-						
-						<type name="aecid:contentProject" >
+
+						<type name="aecid:contentProject">
 							<subtype name="aecid:dscProy" />
 							<subtype name="aecid:diagnosis" />
 							<subtype name="aecid:memo" />
@@ -169,182 +121,26 @@
 							<subtype name="aecid:preIdentFile" />
 
 						</type>
-													
-						<type name="aecid:diagnosis" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:preIdentFile" />
 
+						<type name="aecid:diagnosis">
 						</type>
-												
-						<type name="aecid:convenio" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:subResolution" />
-							<subtype name="aecid:contentGral" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:subExtension" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:subJustification" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:subActos" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:subModification" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:normative" />
-							<subtype name="aecid:subAdenda" />
-							<subtype name="aecid:preIdentFile" />
-							<subtype name="aecid:subsidy" />
-							<subtype name="aecid:subAcept" />
-							<subtype name="aecid:agreement" />
-							<subtype name="aecid:countryReport" />
+
+						<type name="aecid:convenio">
 						</type>
-												
-						<type name="aecid:memo" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:convenio" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:subResolution" />
-							<subtype name="aecid:contentGral" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:subExtension" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:subJustification" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:subActos" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:subModification" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:normative" />
-							<subtype name="aecid:subAdenda" />
-							<subtype name="aecid:preIdentFile" />
-							<subtype name="aecid:subsidy" />
-							<subtype name="aecid:subAcept" />
-							<subtype name="aecid:agreement" />
-							<subtype name="aecid:countryReport" />
+
+						<type name="aecid:memo">
 						</type>
-												
-						<type name="aecid:publication" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:convenio" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:subResolution" />
-							<subtype name="aecid:contentGral" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:subExtension" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:subJustification" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:subActos" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:subModification" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:normative" />
-							<subtype name="aecid:subAdenda" />
-							<subtype name="aecid:preIdentFile" />
-							<subtype name="aecid:subsidy" />
-							<subtype name="aecid:subAcept" />
-							<subtype name="aecid:agreement" />
-							<subtype name="aecid:countryReport" />
+
+						<type name="aecid:publication">
 						</type>
-												
-						<type name="aecid:trackingSheet" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:preIdentFile" />
+
+						<type name="aecid:trackingSheet">
 						</type>
-												
-						<type name="aecid:subResolution" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:convenio" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:contentGral" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:subExtension" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:subJustification" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:subActos" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:subModification" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:normative" />
-							<subtype name="aecid:subAdenda" />
-							<subtype name="aecid:preIdentFile" />
-							<subtype name="aecid:subsidy" />
-							<subtype name="aecid:subAcept" />
-							<subtype name="aecid:agreement" />
-							<subtype name="aecid:countryReport" />
+
+						<type name="aecid:subResolution">
 						</type>
-						
-						<type name="aecid:contentGral" >
+
+						<type name="aecid:contentGral">
 							<subtype name="aecid:convenio" />
 							<subtype name="aecid:memo" />
 							<subtype name="aecid:publication" />
@@ -353,464 +149,74 @@
 							<subtype name="aecid:agreement" />
 							<subtype name="aecid:countryReport" />
 						</type>
-												
-												
-						<type name="aecid:acta" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:preIdentFile" />
+
+
+						<type name="aecid:acta">
 						</type>
-						
-						<type name="aecid:product" >
+
+						<type name="aecid:product">
 							<subtype name="aecid:publication" />
 							<subtype name="aecid:report" />
 							<subtype name="aecid:finalReport" />
 							<subtype name="aecid:protocol" />
 
 						</type>
-												
-						<type name="aecid:contract" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:preIdentFile" />
+
+						<type name="aecid:contract">
 						</type>
-												
-						<type name="aecid:subExtension" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:convenio" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:subResolution" />
-							<subtype name="aecid:contentGral" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:subJustification" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:subActos" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:subModification" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:normative" />
-							<subtype name="aecid:subAdenda" />
-							<subtype name="aecid:preIdentFile" />
-							<subtype name="aecid:subsidy" />
-							<subtype name="aecid:subAcept" />
-							<subtype name="aecid:agreement" />
-							<subtype name="aecid:countryReport" />
+
+						<type name="aecid:subExtension">
 						</type>
-						
-						<type name="aecid:evaluation" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:preIdentFile" />
+
+						<type name="aecid:evaluation">
 
 						</type>
-						
-						<type name="aecid:report" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
+
+						<type name="aecid:report">
 							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:preIdentFile" />
 
 						</type>
-						
-						<type name="aecid:formulation" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:preIdentFile" />
 
+						<type name="aecid:formulation">
 						</type>
-												
-						<type name="aecid:generalPlan" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:preIdentFile" />
 
+						<type name="aecid:generalPlan">
 						</type>
-						
-						<type name="aecid:anualPlan" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:preIdentFile" />
 
+						<type name="aecid:anualPlan">
 						</type>
-												
-						<type name="aecid:subJustification" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:convenio" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:subResolution" />
-							<subtype name="aecid:contentGral" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:subExtension" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:subActos" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:subModification" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:normative" />
-							<subtype name="aecid:subAdenda" />
-							<subtype name="aecid:preIdentFile" />
-							<subtype name="aecid:subsidy" />
-							<subtype name="aecid:subAcept" />
-							<subtype name="aecid:agreement" />
-							<subtype name="aecid:countryReport" />
-						</type>
-												
-						<type name="aecid:finalReport" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:preIdentFile" />
 
+						<type name="aecid:subJustification">
 						</type>
-												
-						<type name="aecid:subActos" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:convenio" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:subResolution" />
-							<subtype name="aecid:contentGral" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:subExtension" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:subJustification" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:subModification" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:normative" />
-							<subtype name="aecid:subAdenda" />
-							<subtype name="aecid:preIdentFile" />
-							<subtype name="aecid:subsidy" />
-							<subtype name="aecid:subAcept" />
-							<subtype name="aecid:agreement" />
-							<subtype name="aecid:countryReport" />
-						</type>
-												
-						<type name="aecid:protocol" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:preIdentFile" />
 
+						<type name="aecid:finalReport">
 						</type>
-						
-						<type name="aecid:subModification" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:convenio" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:subResolution" />
-							<subtype name="aecid:contentGral" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:subExtension" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:subJustification" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:subActos" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:normative" />
-							<subtype name="aecid:subAdenda" />
-							<subtype name="aecid:preIdentFile" />
-							<subtype name="aecid:subsidy" />
-							<subtype name="aecid:subAcept" />
-							<subtype name="aecid:agreement" />
-							<subtype name="aecid:countryReport" />
-						</type>
-						
-						<type name="aecid:budgetSheet" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:preIdentFile" />
-						</type>
-						
-						<type name="aecid:referenceTerm" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:preIdentFile" />
 
+						<type name="aecid:subActos">
 						</type>
-						
-						<type name="aecid:normative" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:convenio" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:subResolution" />
-							<subtype name="aecid:contentGral" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:subExtension" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:subJustification" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:subActos" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:subModification" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:subAdenda" />
-							<subtype name="aecid:preIdentFile" />
-							<subtype name="aecid:subsidy" />
-							<subtype name="aecid:subAcept" />
-							<subtype name="aecid:agreement" />
-							<subtype name="aecid:countryReport" />
+
+						<type name="aecid:protocol">
 						</type>
-						
-						<type name="aecid:subAdenda" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:convenio" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:subResolution" />
-							<subtype name="aecid:contentGral" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:subExtension" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:subJustification" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:subActos" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:subModification" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:normative" />
-							<subtype name="aecid:subAdenda" />
-							<subtype name="aecid:preIdentFile" />
-							<subtype name="aecid:subsidy" />
-							<subtype name="aecid:subAcept" />
-							<subtype name="aecid:agreement" />
-							<subtype name="aecid:countryReport" />
+
+						<type name="aecid:subModification">
 						</type>
-										
-						<type name="aecid:preIdentFile" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
+
+						<type name="aecid:budgetSheet">
 						</type>
-						
-						<type name="aecid:subsidy" >
+
+						<type name="aecid:referenceTerm">
+						</type>
+
+						<type name="aecid:normative">
+						</type>
+
+						<type name="aecid:subAdenda">
+						</type>
+
+						<type name="aecid:preIdentFile">
+						</type>
+
+						<type name="aecid:subsidy">
 							<subtype name="aecid:subResolution" />
 							<subtype name="aecid:subExtension" />
 							<subtype name="aecid:subJustification" />
@@ -820,113 +226,23 @@
 							<subtype name="aecid:subAcept" />
 
 						</type>
-						
-						<type name="aecid:subAcept" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:convenio" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:subResolution" />
-							<subtype name="aecid:contentGral" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:subExtension" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:subJustification" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:subActos" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:subModification" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:normative" />
-							<subtype name="aecid:subAdenda" />
-							<subtype name="aecid:preIdentFile" />
-							<subtype name="aecid:subsidy" />
-							<subtype name="aecid:agreement" />
-							<subtype name="aecid:countryReport" />
+
+						<type name="aecid:subAcept">
 						</type>
-						
-						<type name="aecid:agreement" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:convenio" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:subResolution" />
-							<subtype name="aecid:contentGral" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:subExtension" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:subJustification" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:subActos" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:subModification" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:normative" />
-							<subtype name="aecid:subAdenda" />
-							<subtype name="aecid:preIdentFile" />
-							<subtype name="aecid:subsidy" />
-							<subtype name="aecid:subAcept" />
-							<subtype name="aecid:countryReport" />
+
+						<type name="aecid:agreement">
 						</type>
-						
-						<type name="aecid:countryReport" >
-							<subtype name="aecid:dscProy" />
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:convenio" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:subResolution" />
-							<subtype name="aecid:contentGral" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
-							<subtype name="aecid:contract" />
-							<subtype name="aecid:subExtension" />
-							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
-							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:subJustification" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:subActos" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:subModification" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
-							<subtype name="aecid:normative" />
-							<subtype name="aecid:subAdenda" />
-							<subtype name="aecid:preIdentFile" />
-							<subtype name="aecid:subsidy" />
-							<subtype name="aecid:subAcept" />
-							<subtype name="aecid:agreement" />
+
+						<type name="aecid:countryReport">
 						</type>
-		
-						
+
+
 						<type name="cm:folder">
 							<subtype name="aecid:folderProject" />
 						</type>
 					</types>
-					
-					
+
+
 					<aspects>
 						<visible>
 							<aspect label="Workflow de Proyecto"
@@ -945,22 +261,45 @@
 					<forms>
 						<form>
 							<field-visibility>
+								<show id="cm:name" />
+
+								<!-- Se editara el nombre estandarizado en caso de que se repita 
+									<show id="cm:title" force="true" /> -->
+
 								<show id="aecid:projectTitle" />
-				<!-- 			<show id="aecid:purpose" />
-								<show id="aecid:executionWay" />
-				-->
+								<!-- <show id="aecid:purpose" /> <show id="aecid:executionWay" /> -->
 								<show id="aecid:projectTag" />
 								<show id="aecid:budgetYear" />
+								<show id="aecid:country" />
 								<show id="aecid:fileNumber" />
 								<show id="aecid:startDate" />
 								<show id="aecid:endingDate" />
 								<show id="aecid:justificationDate" />
 								<show id="aecid:extensionDate" />
+
+								<show id="aecid:modality" />
+								<show id="aecid:program" />
+								<show id="aecid:component" />
+								
 								<show id="aecid:location" />
 								<show id="aecid:beneficiary" />
 								<show id="aecid:counterpart" />
 								<show id="aecid:colaborator" />
+
+								<!-- tags and categories -->
+								<show id="cm:taggable" for-mode="edit" force="true" />
+								<show id="cm:categories" />
+
+								<show id="cm:description" force="true" />
+
+								<show id="size" for-mode="view" />
+								<show id="cm:creator" for-mode="view" />
+								<show id="cm:created" for-mode="view" />
+								<show id="cm:modifier" for-mode="view" />
+								<show id="cm:modified" for-mode="view" />
+
 							</field-visibility>
+
 							<appearance>
 								<set appearance="whitespace" id="aecid:projectable_cmm_set0" />
 								<set appearance="whitespace" id="aecid:projectable_cmm_set1"
@@ -968,43 +307,66 @@
 								<set appearance="whitespace" id="aecid:projectable_cmm_set2"
 									template="/org/alfresco/components/form/2-column-set.ftl" />
 								<set appearance="whitespace" id="aecid:projectable_cmm_set3" />
+
+								<field id="cm:name" set="aecid:projectable_cmm_set0">
+									<control>
+										<control-param name="maxLength">255</control-param>
+									</control>
+								</field>
+								<field id="cm:title" set="aecid:projectable_cmm_set0">
+									<control
+										template="/org/alfresco/components/form/controls/textfield.ftl" />
+								</field>
+
+								<field id="aecid:projectTitle"
+									set="aecid:projectable_cmm_set0">
+								</field>
+								<field id="aecid:country" set="aecid:projectable_cmm_set0">
+								</field>
+
 								<field id="aecid:projectTag"
 									set="aecid:projectable_cmm_set1">
-								</field>
-								<field id="aecid:endingDate"
-									set="aecid:projectable_cmm_set2">
-								</field>
-								<field id="aecid:counterpart"
-									set="aecid:projectable_cmm_set3">
 								</field>
 								<field id="aecid:budgetYear"
 									set="aecid:projectable_cmm_set1">
 								</field>
-								<field id="aecid:justificationDate"
-									set="aecid:projectable_cmm_set2">
-								</field>
-							<!-- 	<field id="aecid:executionWay"
-									set="aecid:projectable_cmm_set0">
-									</field>
-							-->
 								<field id="aecid:fileNumber"
 									set="aecid:projectable_cmm_set1">
 								</field>
-							<!-- 
-								<field id="aecid:purpose" 
-									set="aecid:projectable_cmm_set0">
+
+								<field id="aecid:endingDate"
+									set="aecid:projectable_cmm_set2">
 								</field>
-							-->	
-							
+
+								<field id="aecid:justificationDate"
+									set="aecid:projectable_cmm_set2">
+								</field>
+								<!-- <field id="aecid:executionWay" set="aecid:projectable_cmm_set0"> 
+									</field> -->
+								<!-- <field id="aecid:purpose" set="aecid:projectable_cmm_set0"> 
+									</field> -->
+
 								<field id="aecid:extensionDate"
 									set="aecid:projectable_cmm_set2">
 								</field>
 								<field id="aecid:startDate"
 									set="aecid:projectable_cmm_set2">
 								</field>
-								<field id="aecid:projectTitle"
-									set="aecid:projectable_cmm_set0">
+
+								<field id="aecid:modality"
+									set="aecid:projectable_cmm_set3">
 								</field>
+								<field id="aecid:program" 
+									set="aecid:projectable_cmm_set3">
+								</field>
+								<field id="aecid:component" 
+									set="aecid:projectable_cmm_set3">
+								</field>
+
+								<field id="aecid:counterpart"
+									set="aecid:projectable_cmm_set3">
+								</field>
+
 								<field id="aecid:location"
 									set="aecid:projectable_cmm_set3">
 								</field>
@@ -1014,6 +376,31 @@
 								<field id="aecid:colaborator"
 									set="aecid:projectable_cmm_set3">
 								</field>
+
+								<field id="cm:taggable" set="aecid:projectable_cmm_set3">
+									<control>
+										<control-param name="compactMode">true</control-param>
+										<control-param name="params">aspect=cm:taggable
+										</control-param>
+										<control-param name="createNewItemUri">/api/tag/workspace/SpacesStore
+										</control-param>
+										<control-param name="createNewItemIcon">tag</control-param>
+									</control>
+								</field>
+
+								<field id="cm:categories" set="aecid:projectable_cmm_set3">
+									<control>
+										<control-param name="compactMode">true</control-param>
+									</control>
+								</field>
+
+								<field id="cm:description"
+									set="aecid:projectable_cmm_set3">
+									<control>
+										<control-param name="activateLinks">true</control-param>
+									</control>
+								</field>
+
 							</appearance>
 						</form>
 					</forms>
@@ -1047,7 +434,8 @@
 						[beneficiary]","type":["property"]},{"pseudonym":"cmm/editor/property/text","id":"aecid:counterpart","elementconfig":{"infoname":"counterpart","infolabel":"Contraparte","infotype":"d:text"},"label":"Contraparte
 						[counterpart]","type":["property"]},{"pseudonym":"cmm/editor/property/text","id":"aecid:colaborator","elementconfig":{"infoname":"colaborator","infolabel":"Entidad
 						Colaboradora","infotype":"d:text"},"label":"Entidad Colaboradora
-						[colaborator]","type":["property"]}]}]</form-definition>
+						[colaborator]","type":["property"]}]}]
+					</form-definition>
 				</config>
 
 

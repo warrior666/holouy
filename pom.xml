@@ -117,6 +117,13 @@
         <classifier>classes</classifier>
         <scope>provided</scope>
       </dependency>
+      
+      <dependency>
+  		<groupId>org.alfresco</groupId>
+  		<artifactId>alfresco-share</artifactId>
+        <version>${alfresco.share.version}</version>
+	  </dependency>
+
       <dependency>
         <groupId>${alfresco.groupId}</groupId>
         <artifactId>alfresco-web-framework-commons</artifactId>

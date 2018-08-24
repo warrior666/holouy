@@ -27,7 +27,7 @@ public class MoveReplacedActionExecuter extends ActionExecuterAbstractBase {
 	private final static Logger log = Logger.getLogger(MoveReplacedActionExecuter.class);
 	
 	
-	public static final String NAME = "move-replaced";
+	public static final String NAME = "desclasifier";
 
 	private static final String AECID_MODEL_1_0_URI = "http://aecid.org/model/aecid/1.0";
     

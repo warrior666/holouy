@@ -16,7 +16,36 @@
             <title>CONTENT</title>
             <description>Tipo de documento "padre" para compartir metadata genérica como ser el país y la fecha.</description>
             <parent>cm:content</parent>
+            
             <properties>
+            <property name="aecid:country">
+                    <title>Pais</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                    <constraints>
+                        <constraint name="aecid:LIST_COUNTRIES" type="LIST">
+                            <parameter name="allowedValues">
+                                <list>
+                                    <value>Argentina</value>
+                                    <value>Uruguay</value>
+                                    <value>Brasil</value>
+                                    <value>Chile</value>
+                                    <value>Paraguay</value>
+                                </list>
+                            </parameter>
+                            <parameter name="caseSensitive">
+                                <value>true</value>
+                            </parameter>
+                            <parameter name="sorted">
+                                <value>false</value>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
                 <property name="aecid:keywords">
                     <title>Palabras Claves</title>
                     <type>d:text</type>
@@ -28,9 +57,9 @@
                     </index>
                 </property>
                 <property name="aecid:contentDate">
-                    <title>Fecha del Documento</title>
+                    <title>Fecha Elaboracion</title>
                     <type>d:date</type>
-                    <mandatory>false</mandatory>
+                    <mandatory>true</mandatory>
                     <index enabled="true">
                         <tokenised>TRUE</tokenised>
                     </index>
@@ -38,7 +67,9 @@
             </properties>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+   				<aspect>cm:generalclassifiable</aspect>
+  			</mandatory-aspects>
         </type>
         
         <type name="aecid:contentProject">
@@ -48,7 +79,11 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+            
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
         
         <type name="aecid:dscProy">
@@ -58,7 +93,10 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
         
         <type name="aecid:diagnosis">
@@ -68,7 +106,10 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
         <type name="aecid:convenio">
             <title>CONV</title>
@@ -77,7 +118,7 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects/>
         </type>
         
         <type name="aecid:memo">
@@ -96,7 +137,10 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
         <type name="aecid:trackingSheet">
             <title>FST</title>
@@ -105,8 +149,12 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:subResolution">
             <title>SUBRES</title>
             <description>Subvención Resolución</description>
@@ -114,8 +162,12 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:contentGral">
             <title>CONGRAL</title>
             <description>Contenidos no asociados a proyectos</description>
@@ -125,6 +177,7 @@
             <overrides/>
             <mandatory-aspects/>
         </type>
+        
         <type name="aecid:folderProject">
             <title>PROY</title>
             <description>Carpeta para contener todos los documentos asociados a un proyecto, así como definir la metadata a ser heredada por estos por estar dentro de la carpeta.</description>
@@ -132,8 +185,12 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:acta">
             <title>ACTA</title>
             <parent>aecid:content</parent>
@@ -142,15 +199,20 @@
             <overrides/>
             <mandatory-aspects/>
         </type>
+        
         <type name="aecid:product">
             <title>PROD</title>
             <description>Producto</description>
-            <parent>aecid:content</parent>
+            <parent>aecid:contentProject</parent>
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:contract">
             <title>CON</title>
             <parent>cm:content</parent>
@@ -159,6 +221,7 @@
             <overrides/>
             <mandatory-aspects/>
         </type>
+        
         <type name="aecid:subExtension">
             <title>SUBEXT</title>
             <description>Subvención Extensión</description>
@@ -166,8 +229,12 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:evaluation">
             <title>INFEV</title>
             <description>Informe Evaluación</description>
@@ -175,8 +242,12 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:report">
             <title>INF</title>
             <description>Informe</description>
@@ -184,8 +255,12 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:formulation">
             <title>DFORM</title>
             <description>Documento de formulación</description>
@@ -193,8 +268,12 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:generalPlan">
             <title>POG</title>
             <description>Plan Operativo General</description>
@@ -202,8 +281,12 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:anualPlan">
             <title>POA</title>
             <description>Plan Operativo Anual</description>
@@ -211,8 +294,12 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:subJustification">
             <title>SUBJUS</title>
             <description>Subvención Justificación</description>
@@ -220,8 +307,12 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:finalReport">
             <title>INFF</title>
             <description>Informe Final</description>
@@ -229,8 +320,12 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:subActos">
             <title>SUBACT</title>
             <description>Subvención Actos Administrativos</description>
@@ -248,6 +343,7 @@
                         <constraint name="aecid:LIST_ACTOTYPE" type="LIST">
                             <parameter name="allowedValues">
                                 <list>
+                                	<value></value>
                                     <value>Auditoría</value>
                                     <value>Reintegro</value>
                                     <value>Subsanación</value>
@@ -267,8 +363,12 @@
             </properties>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:protocol">
             <title>PROT</title>
             <description>Protocolo</description>
@@ -276,8 +376,12 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:subModification">
             <title>SUBMOD</title>
             <description>Subvención Modificación</description>
@@ -285,8 +389,12 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:budgetSheet">
             <title>CEJE</title>
             <description>Cuadro de Ejecución Presupuestal</description>
@@ -294,8 +402,12 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:referenceTerm">
             <title>TDR</title>
             <description>Términos de Referencia</description>
@@ -303,8 +415,12 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:normative">
             <title>NORM</title>
             <description>Normativa</description>
@@ -314,6 +430,7 @@
             <overrides/>
             <mandatory-aspects/>
         </type>
+        
         <type name="aecid:subAdenda">
             <title>SUBADD</title>
             <description>Subvención Adenda</description>
@@ -321,17 +438,25 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:preIdentFile">
             <title>PREID</title>
-            <description>Ficha pre identificable</description>
+            <description>Ficha pre identificacion</description>
             <parent>aecid:contentProject</parent>
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:subsidy">
             <title>SUB</title>
             <description>Subvención Estatal</description>
@@ -339,17 +464,25 @@
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:subAcept">
             <title>SUBACE</title>
             <description>Subvención Aceptación</description>
-            <parent>cm:content</parent>
+            <parent>aecid:subsidy</parent>
             <properties/>
             <associations/>
             <overrides/>
-            <mandatory-aspects/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
+  			</mandatory-aspects>
         </type>
+        
         <type name="aecid:agreement">
             <title>AEC</title>
             <description>Acuerdo Entidad Colaboradora</description>
@@ -359,6 +492,7 @@
             <overrides/>
             <mandatory-aspects/>
         </type>
+        
         <type name="aecid:countryReport">
             <title>NPAIS</title>
             <description>Nota País</description>
@@ -369,6 +503,7 @@
             <mandatory-aspects/>
         </type>
     </types>
+    
     <aspects>
         <aspect name="aecid:projectWorkflow">
             <title>Workflow de Proyecto</title>
@@ -447,16 +582,16 @@
                 <property name="aecid:projectTitle">
                     <title>Titulo del Proyecto</title>
                     <type>d:text</type>
-                    <mandatory>false</mandatory>
+                    <mandatory>true</mandatory>
                     <index enabled="true">
                         <tokenised>TRUE</tokenised>
                         <facetable>false</facetable>
                     </index>
                 </property>
                 <property name="aecid:projectTag">
-                    <title>Etiqueta del Proyecto</title>
+                    <title>Abreviatura del Proyecto</title>
                     <type>d:text</type>
-                    <mandatory>false</mandatory>
+                    <mandatory>true</mandatory>
                     <index enabled="true">
                         <tokenised>TRUE</tokenised>
                         <facetable>false</facetable>
@@ -542,9 +677,12 @@
                         <constraint name="aecid:LIST_PROGRAM" type="LIST">
                             <parameter name="allowedValues">
                                 <list>
+                                	<value></value>
                                     <value>Arauclima (ARAU)</value>
                                     <value>Fondo del Agua (FCAS)</value>
                                     <value>Fondo Mixto (FMIXTO)</value>
+                                    <value>Fondo Mixto Fase I (FMIXTO-I)</value>
+                                    <value>Fondo Mixto Fase II (FMIXTO-II)</value>
                                     <value>Programa Indígena (PIND)</value>
                                     <value>Programa Mercosur (PMERC)</value>
                                     <value>Programa Afro (PAFRO)</value>
@@ -573,6 +711,7 @@
                         <constraint name="aecid:LIST_MODALITY" type="LIST">
                             <parameter name="allowedValues">
                                 <list>
+                                	<value></value>
                                     <value>Cooperación técnica (CTEC)</value>
                                     <value>Formación y gestión del conocimiento (GC)</value>
                                     <value>Alianzas público privadas para el desarrollo (APPD)</value>
@@ -584,6 +723,35 @@
                                     <value>Cooperación Delegada (CD)</value>
                                     <value>Cooperación Triangular (CT)</value>
                                     <value>Cooperación Sur Sur (CSS)</value>
+                                </list>
+                            </parameter>
+                            <parameter name="caseSensitive">
+                                <value>true</value>
+                            </parameter>
+                            <parameter name="sorted">
+                                <value>false</value>
+                            </parameter>
+                        </constraint>
+                    </constraints>
+                </property>
+                
+                <property name="aecid:component">
+                    <title>Componente del programa</title>
+                    <description>Componente del programa</description>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                    <constraints>
+                        <constraint name="aecid:LIST_COMPONENT" type="LIST">
+                            <parameter name="allowedValues">
+                                <list>
+                                	<value></value>
+                                    <value>Infraestructura (INFRA)</value>
+                                    <value>Social (SOCIAL)</value>
+                                    <value>Otros (OTROS)</value>
                                 </list>
                             </parameter>
                             <parameter name="caseSensitive">
