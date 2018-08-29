@@ -84,6 +84,16 @@
 							<param name="successMessage">aecid.alfresco.doclib.action.desclasifier.msg.success</param>
 							<param name="failureMessage">aecid.alfresco.doclib.action.desclasifier.msg.failure</param>
     					</action>
+    					
+    					<action id="aecid.alfresco.doclib.action.propagater"
+							icon="email" type="javascript"
+							label="aecid.alfresco.doclib.action.propagater.label">
+							<param name="function">onActionSimpleRepoAction</param>
+							<param name="action">propagater</param>
+							<param name="successMessage">aecid.alfresco.doclib.action.propagater.msg.success</param>
+							<param name="failureMessage">aecid.alfresco.doclib.action.propagater.msg.failure</param>
+    					</action>
+    					
 <!-- 					
 						<action id="alfresco.tutorials.doclib.action.callWebScript"
 							icon="callws" type="javascript"
@@ -96,29 +106,16 @@
 						</action>
 					</actions>
 -->	
-<!-- 
-					<action id="someco-web-enable" type="javascript"
-						label="actions.someco-web-enable" icon="someco-web-enable">
-						<param name="function">onActionSimpleRepoAction</param>
-						<param name="action">set-web-flag</param>
-						<param name="active">true</param>
-						<param name="successMessage">message.web-flag.enabled</param>
-						<param name="failureMessage">message.web-flag.failure</param>
-					</action>
-					<action id="someco-web-disable" type="javascript"
-						label="actions.someco-web-disable" icon="someco-web-disable">
-						<param name="function">onActionSimpleRepoAction</param>
-						<param name="action">set-web-flag</param>
-						<param name="active">false</param>
-						<param name="successMessage">message.web-flag.disabled</param>
-						<param name="failureMessage">message.web-flag.failure</param>
-					</action>
--->
+
 					</actions>
 					
 					<actionGroups>
 						<actionGroup id="document-browse">
-<!-- 							<action index="400"
+						        <action index="760" id="document-change-type" subgroup="70" appendEvaluators="true">
+               						<evaluator>evaluator.doclib.action.DocumentEnableInSmartFolder</evaluator>
+            					</action>
+<!-- 							
+<action index="400"
 								id="alfresco.tutorials.doclib.action.sendAsEmail" />
 -->							<action index="402"
 								id="aecid.alfresco.doclib.action.renamer" />
@@ -126,7 +123,10 @@
 								id="aecid.alfresco.doclib.action.sumarizer" />
 							<action index="404"
 								id="aecid.alfresco.doclib.action.desclasifier" />
+							<action index="405"
+								id="aecid.alfresco.doclib.action.propagater" />
 						</actionGroup>
+						
 						<actionGroup id="document-details">
 <!-- 							<action index="400"
 								id="alfresco.tutorials.doclib.action.sendAsEmail" />
@@ -137,7 +137,40 @@
 								id="aecid.alfresco.doclib.action.sumarizer" />
 							<action index="404"
 								id="aecid.alfresco.doclib.action.desclasifier" />
+							<action index="405"
+								id="aecid.alfresco.doclib.action.propagater" />
 						</actionGroup>
+						
+						<actionGroup id="folder-browse">
+<!-- 							<action index="400"
+								id="alfresco.tutorials.doclib.action.sendAsEmail" />
+-->							<action index="402"
+								id="aecid.alfresco.doclib.action.renamer" />
+							<action index="403"
+								id="aecid.alfresco.doclib.action.sumarizer" />
+							<action index="404"
+								id="aecid.alfresco.doclib.action.desclasifier" />
+							<action index="405"
+								id="aecid.alfresco.doclib.action.propagater" />
+					
+					        <action index="650" id="document-change-type" subgroup="60" appendEvaluators="true">
+                				<evaluator>evaluator.doclib.action.FolderEnableInSmartFolder</evaluator>
+            				</action>
+						</actionGroup>
+						<actionGroup id="folder-details">
+<!-- 							<action index="400"
+								id="alfresco.tutorials.doclib.action.sendAsEmail" />
+								-->
+							<action index="402"
+								id="aecid.alfresco.doclib.action.renamer" />
+							<action index="403"
+								id="aecid.alfresco.doclib.action.sumarizer" />
+							<action index="404"
+								id="aecid.alfresco.doclib.action.desclasifier" />
+							<action index="405"
+								id="aecid.alfresco.doclib.action.propagater" />
+						</actionGroup>
+						
 					</actionGroups>
 				</config>					
 <!-- 

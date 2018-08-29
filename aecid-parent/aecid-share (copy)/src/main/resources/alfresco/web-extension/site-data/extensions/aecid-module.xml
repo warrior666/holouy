@@ -1,0 +1,483 @@
+<extension>
+	<modules>
+		<module>
+			<id>aecid-share</id>
+			<version>1.0</version>
+			<auto-deploy>true</auto-deploy>
+			<configurations>
+
+	<!-- Custom Execute Script Action -->
+	<config evaluator="string-compare" condition="DocLibActions">
+		<actionGroups>
+			<actionGroup id="folder-browse">
+				<action index="980" id="org_sharextras_execute-script" />
+			</actionGroup>
+			<actionGroup id="folder-details">
+				<action index="980" id="org_sharextras_execute-script" />
+			</actionGroup>
+			<actionGroup id="document-browse">
+				<action index="980" id="org_sharextras_execute-script" />
+			</actionGroup>
+			<actionGroup id="document-details">
+				<action index="980" id="org_sharextras_execute-script" />
+			</actionGroup>
+		</actionGroups>
+	</config>
+
+    <config evaluator="string-compare" condition="DocLibCustom">   
+        <dependencies>
+            <!-- Geotag action dependencies -->
+            <css src="/extras/components/documentlibrary/execute-script-action.css" />
+            <js src="/extras/components/documentlibrary/execute-script-action.js" />
+        </dependencies> 
+    </config>
+	
+    <config evaluator="string-compare" condition="DocLibActions">
+        <actions>
+            <!-- Execute script action definition -->
+            <action id="org_sharextras_execute-script" 
+            		type="javascript" 
+            		label="actions.document.execute-script" 
+            		icon="../../../extras/components/documentlibrary/execute-script">
+                <param name="function">onActionExecuteScript</param>
+            </action>
+        </actions>
+    </config>
+    
+				<config evaluator="string-compare" condition="WebFramework"
+					replace="false">
+					<web-framework>
+						<dojo-pages>
+							<packages>
+								<package name="tutorials"
+									location="resources/generator-alfresco-share-jar/js/tutorials" />
+							</packages>
+						</dojo-pages>
+					</web-framework>
+				</config>
+
+
+				<!-- Document Library config section -->
+				<config condition="DocumentLibrary"
+					evaluator="string-compare" replace="false">
+					<types>
+						<type name="cm:content">
+							<subtype name="aecid:content" />
+							<subtype name="aecid:dscProy" />
+							<subtype name="aecid:contentProject" />
+
+							<subtype name="aecid:diagnosis" />
+							<subtype name="aecid:convenio" />
+							<subtype name="aecid:memo" />
+							<subtype name="aecid:publication" />
+							<subtype name="aecid:trackingSheet" />
+							<subtype name="aecid:subResolution" />
+							<subtype name="aecid:contentGral" />
+							<subtype name="aecid:acta" />
+							<subtype name="aecid:product" />
+							<subtype name="aecid:contract" />
+							<subtype name="aecid:subExtension" />
+							<subtype name="aecid:evaluation" />
+							<subtype name="aecid:report" />
+							<subtype name="aecid:formulation" />
+							<subtype name="aecid:generalPlan" />
+							<subtype name="aecid:anualPlan" />
+							<subtype name="aecid:subJustification" />
+							<subtype name="aecid:finalReport" />
+							<subtype name="aecid:subActos" />
+							<subtype name="aecid:protocol" />
+							<subtype name="aecid:subModification" />
+							<subtype name="aecid:budgetSheet" />
+							<subtype name="aecid:referenceTerm" />
+							<subtype name="aecid:normative" />
+							<subtype name="aecid:subAdenda" />
+							<subtype name="aecid:preIdentFile" />
+							<subtype name="aecid:subsidy" />
+							<subtype name="aecid:subAcept" />
+							<subtype name="aecid:agreement" />
+							<subtype name="aecid:countryReport" />
+						</type>
+
+						<type name="aecid:content">
+							<subtype name="aecid:dscProy" />
+							<subtype name="aecid:contentProject" />
+
+							<subtype name="aecid:diagnosis" />
+							<subtype name="aecid:convenio" />
+							<subtype name="aecid:memo" />
+							<subtype name="aecid:publication" />
+							<subtype name="aecid:trackingSheet" />
+							<subtype name="aecid:subResolution" />
+							<subtype name="aecid:contentGral" />
+							<subtype name="aecid:acta" />
+							<subtype name="aecid:product" />
+							<subtype name="aecid:contract" />
+							<subtype name="aecid:subExtension" />
+							<subtype name="aecid:evaluation" />
+							<subtype name="aecid:report" />
+							<subtype name="aecid:formulation" />
+							<subtype name="aecid:generalPlan" />
+							<subtype name="aecid:anualPlan" />
+							<subtype name="aecid:subJustification" />
+							<subtype name="aecid:finalReport" />
+							<subtype name="aecid:subActos" />
+							<subtype name="aecid:protocol" />
+							<subtype name="aecid:subModification" />
+							<subtype name="aecid:budgetSheet" />
+							<subtype name="aecid:referenceTerm" />
+							<subtype name="aecid:normative" />
+							<subtype name="aecid:subAdenda" />
+							<subtype name="aecid:preIdentFile" />
+							<subtype name="aecid:subsidy" />
+							<subtype name="aecid:subAcept" />
+							<subtype name="aecid:agreement" />
+							<subtype name="aecid:countryReport" />
+						</type>
+						
+						<type name="aecid:dscProy" >
+						</type>
+						
+						<type name="aecid:contentProject" >
+							<subtype name="aecid:dscProy" />
+							<subtype name="aecid:diagnosis" />
+							<subtype name="aecid:memo" />
+							<subtype name="aecid:publication" />
+							<subtype name="aecid:trackingSheet" />
+							<subtype name="aecid:acta" />
+							<subtype name="aecid:product" />
+							<subtype name="aecid:contract" />
+							<subtype name="aecid:evaluation" />
+							<subtype name="aecid:report" />
+							<subtype name="aecid:formulation" />
+							<subtype name="aecid:generalPlan" />
+							<subtype name="aecid:anualPlan" />
+							<subtype name="aecid:finalReport" />
+							<subtype name="aecid:protocol" />
+							<subtype name="aecid:budgetSheet" />
+							<subtype name="aecid:referenceTerm" />
+							<subtype name="aecid:preIdentFile" />
+
+						</type>
+													
+						<type name="aecid:diagnosis" >
+						</type>
+												
+						<type name="aecid:convenio" >
+						</type>
+												
+						<type name="aecid:memo" >
+						</type>
+												
+						<type name="aecid:publication" >
+						</type>
+												
+						<type name="aecid:trackingSheet" >
+						</type>
+												
+						<type name="aecid:subResolution" >
+						</type>
+						
+						<type name="aecid:contentGral" >
+							<subtype name="aecid:convenio" />
+							<subtype name="aecid:memo" />
+							<subtype name="aecid:publication" />
+							<subtype name="aecid:acta" />
+							<subtype name="aecid:normative" />
+							<subtype name="aecid:agreement" />
+							<subtype name="aecid:countryReport" />
+						</type>
+												
+												
+						<type name="aecid:acta" >
+						</type>
+						
+						<type name="aecid:product" >
+							<subtype name="aecid:publication" />
+							<subtype name="aecid:report" />
+							<subtype name="aecid:finalReport" />
+							<subtype name="aecid:protocol" />
+
+						</type>
+												
+						<type name="aecid:contract" >
+						</type>
+												
+						<type name="aecid:subExtension" >
+						</type>
+						
+						<type name="aecid:evaluation" >
+
+						</type>
+						
+						<type name="aecid:report" >
+							<subtype name="aecid:finalReport" />
+
+						</type>
+						
+						<type name="aecid:formulation" >
+						</type>
+												
+						<type name="aecid:generalPlan" >
+						</type>
+						
+						<type name="aecid:anualPlan" >
+						</type>
+												
+						<type name="aecid:subJustification" >
+						</type>
+												
+						<type name="aecid:finalReport" >
+						</type>
+												
+						<type name="aecid:subActos" >
+						</type>
+												
+						<type name="aecid:protocol" >
+						</type>
+						
+						<type name="aecid:subModification" >
+						</type>
+						
+						<type name="aecid:budgetSheet" >
+						</type>
+						
+						<type name="aecid:referenceTerm" >
+						</type>
+						
+						<type name="aecid:normative" >
+						</type>
+						
+						<type name="aecid:subAdenda" >
+						</type>
+										
+						<type name="aecid:preIdentFile" >
+						</type>
+						
+						<type name="aecid:subsidy" >
+							<subtype name="aecid:subResolution" />
+							<subtype name="aecid:subExtension" />
+							<subtype name="aecid:subJustification" />
+							<subtype name="aecid:subActos" />
+							<subtype name="aecid:subModification" />
+							<subtype name="aecid:subAdenda" />
+							<subtype name="aecid:subAcept" />
+
+						</type>
+						
+						<type name="aecid:subAcept" >
+						</type>
+						
+						<type name="aecid:agreement" >
+						</type>
+						
+						<type name="aecid:countryReport" >
+						</type>
+		
+						
+						<type name="cm:folder">
+							<subtype name="aecid:folderProject" />
+						</type>
+					</types>
+					
+					
+					<aspects>
+						<visible>
+							<aspect label="Workflow de Proyecto"
+								name="aecid:projectWorkflow" />
+							<aspect label="Parte de un proyecto"
+								name="aecid:projectable" />
+							<aspect label="Cooperacion" name="aecid:cooperation" />
+						</visible>
+					</aspects>
+				</config>
+
+				<!-- Form configuration section - type -->
+
+				<!-- Form configuration section - aspect -->
+				<config condition="aecid:projectable" evaluator="aspect">
+					<forms>
+						<form>
+							<field-visibility>
+							               <show id="cm:name" />
+               				
+               				<!-- Se editara el nombre estandarizado en caso de que se repita			
+               					<show id="cm:title" force="true" />
+							-->
+							
+								<show id="aecid:projectTitle" />
+				<!-- 			<show id="aecid:purpose" />
+								<show id="aecid:executionWay" />
+				-->
+								<show id="aecid:projectTag" />
+								<show id="aecid:budgetYear" />
+						<show id="aecid:country" />
+								<show id="aecid:fileNumber" />
+								<show id="aecid:startDate" />
+								<show id="aecid:endingDate" />
+								<show id="aecid:justificationDate" />
+								<show id="aecid:extensionDate" />
+
+				<show id="aecid:modality" />
+				<show id="aecid:program" />
+				
+								<show id="aecid:location" />
+								<show id="aecid:beneficiary" />
+								<show id="aecid:counterpart" />
+								<show id="aecid:colaborator" />
+												
+               <!-- tags and categories -->
+               <show id="cm:taggable" for-mode="edit" force="true" />
+               <show id="cm:categories" />
+								
+			   <show id="cm:description" force="true" />
+                       
+               <show id="size" for-mode="view" />
+               <show id="cm:creator" for-mode="view" />
+               <show id="cm:created" for-mode="view" />
+               <show id="cm:modifier" for-mode="view" />
+               <show id="cm:modified" for-mode="view" />
+               
+							</field-visibility>
+							
+							<appearance>
+								<set appearance="whitespace" id="aecid:projectable_cmm_set0" />
+								<set appearance="whitespace" id="aecid:projectable_cmm_set1"
+									template="/org/alfresco/components/form/3-column-set.ftl" />
+								<set appearance="whitespace" id="aecid:projectable_cmm_set2"
+									template="/org/alfresco/components/form/2-column-set.ftl" />
+								<set appearance="whitespace" id="aecid:projectable_cmm_set3" />
+								
+					           	<field id="cm:name" set="aecid:projectable_cmm_set0">
+                 					<control>
+                    					<control-param name="maxLength">255</control-param>
+                 					</control>
+               					</field>
+               					<field id="cm:title" set="aecid:projectable_cmm_set0">
+                  					<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+                  				</field>
+                  				
+								<field id="aecid:projectTitle"
+									set="aecid:projectable_cmm_set0">
+								</field>
+								<field id="aecid:country"
+									set="aecid:projectable_cmm_set0">
+								</field>
+																
+								<field id="aecid:projectTag"
+									set="aecid:projectable_cmm_set1">
+								</field>
+								<field id="aecid:budgetYear"
+									set="aecid:projectable_cmm_set1">
+								</field>
+								<field id="aecid:fileNumber"
+									set="aecid:projectable_cmm_set1">
+								</field>
+								
+								<field id="aecid:endingDate"
+									set="aecid:projectable_cmm_set2">
+								</field>
+
+								<field id="aecid:justificationDate"
+									set="aecid:projectable_cmm_set2">
+								</field>
+							<!-- 	<field id="aecid:executionWay"
+									set="aecid:projectable_cmm_set0">
+									</field>
+							-->
+							<!-- 
+								<field id="aecid:purpose" 
+									set="aecid:projectable_cmm_set0">
+								</field>
+							-->	
+							
+								<field id="aecid:extensionDate"
+									set="aecid:projectable_cmm_set2">
+								</field>
+								<field id="aecid:startDate"
+									set="aecid:projectable_cmm_set2">
+								</field>
+
+								<field id="aecid:modality"
+									set="aecid:projectable_cmm_set3">
+								</field>
+								<field id="aecid:program"
+									set="aecid:projectable_cmm_set3">
+								</field>
+								
+								<field id="aecid:counterpart"
+									set="aecid:projectable_cmm_set3">
+								</field>
+								
+								<field id="aecid:location"
+									set="aecid:projectable_cmm_set3">
+								</field>
+								<field id="aecid:beneficiary"
+									set="aecid:projectable_cmm_set3">
+								</field>
+								<field id="aecid:colaborator"
+									set="aecid:projectable_cmm_set3">
+								</field>
+													
+               <field id="cm:taggable" set="aecid:projectable_cmm_set3">
+                  <control>
+                     <control-param name="compactMode">true</control-param>
+                     <control-param name="params">aspect=cm:taggable</control-param>
+                     <control-param name="createNewItemUri">/api/tag/workspace/SpacesStore</control-param>
+                     <control-param name="createNewItemIcon">tag</control-param>
+                  </control>
+               </field>
+               
+               <field id="cm:categories" set="aecid:projectable_cmm_set3">
+                  <control>
+                     <control-param name="compactMode">true</control-param>
+                  </control>
+               </field>
+               
+               <field id="cm:description" set="aecid:projectable_cmm_set3">
+                  <control>
+                     <control-param name="activateLinks">true</control-param>
+                  </control>
+               </field>
+               
+							</appearance>
+						</form>
+					</forms>
+				</config>
+
+				<!-- Entity form designer configuration -->
+				<config condition="FormDefinition" evaluator="string-compare">
+					<form-definition id="projectable">[{"elementconfig":{"label":"","appearance":"title"},"pseudonym":"cmm/editor/layout/1cols","label":"cmm.form-editor.palette.one-column","type":["layout"],"column":[{"pseudonym":"cmm/editor/property/text","id":"aecid:projectTitle","elementconfig":{"infoname":"projectTitle","infolabel":"Titulo
+						del Proyecto","infotype":"d:text"},"label":"Titulo del Proyecto
+						[projectTitle]","type":["property"]},{"pseudonym":"cmm/editor/property/text","id":"aecid:purpose","elementconfig":{"infoname":"purpose","infolabel":"Propósito","infotype":"d:text"},"label":"Propósito
+						[purpose]","type":["property"]},{"pseudonym":"cmm/editor/property/text","id":"aecid:executionWay","elementconfig":{"infoname":"executionWay","infolabel":"Forma
+						de Ejecución","infotype":"d:text"},"label":"Forma de Ejecución
+						[executionWay]","type":["property"]}],"alfValidForm":true,"wrapperSettings":{"type":"one"}},{"elementconfig":{"label":"","appearance":"bordered-panel"},"pseudonym":"cmm/editor/layout/3cols","label":"cmm.form-editor.palette.three-column","type":["layout"],"column":[{"pseudonym":"cmm/editor/property/text","id":"aecid:projectTag","elementconfig":{"infoname":"projectTag","infolabel":"Etiqueta
+						del Proyecto","infotype":"d:text"},"label":"Etiqueta del Proyecto
+						[projectTag]","type":["property"]},{"pseudonym":"cmm/editor/property/int","id":"aecid:budgetYear","elementconfig":{"infoname":"budgetYear","infolabel":"Año
+						presupuestal","infotype":"d:int"},"label":"Año presupuestal
+						[budgetYear]","type":["property"]},{"pseudonym":"cmm/editor/property/text","id":"aecid:fileNumber","elementconfig":{"infoname":"fileNumber","infolabel":"Número
+						de Expediente","infotype":"d:text"},"label":"Número de Expediente
+						[fileNumber]","type":["property"]}]},{"elementconfig":{"label":"","appearance":"bordered-panel"},"pseudonym":"cmm/editor/layout/2cols","label":"cmm.form-editor.palette.two-column","type":["layout"],"column":[{"pseudonym":"cmm/editor/property/date","id":"aecid:startDate","elementconfig":{"infoname":"startDate","infolabel":"Fecha
+						de Inicio","infotype":"d:date"},"label":"Fecha de Inicio
+						[startDate]","type":["property"]},{"pseudonym":"cmm/editor/property/date","id":"aecid:endingDate","elementconfig":{"infoname":"endingDate","infolabel":"Fecha
+						de Fin","infotype":"d:date"},"label":"Fecha de Fin
+						[endingDate]","type":["property"]},{"pseudonym":"cmm/editor/property/date","id":"aecid:justificationDate","elementconfig":{"infoname":"justificationDate","infolabel":"Fecha
+						de Justificación","infotype":"d:date"},"label":"Fecha de
+						Justificación
+						[justificationDate]","type":["property"]},{"pseudonym":"cmm/editor/property/date","id":"aecid:extensionDate","elementconfig":{"infoname":"extensionDate","infolabel":"Fecha
+						de Prórroga","infotype":"d:date"},"label":"Fecha de Prórroga
+						[extensionDate]","type":["property"]}]},{"elementconfig":{"label":"","appearance":"bordered-panel"},"pseudonym":"cmm/editor/layout/1cols","label":"cmm.form-editor.palette.one-column","type":["layout"],"column":[{"pseudonym":"cmm/editor/property/text","id":"aecid:location","elementconfig":{"infoname":"location","infolabel":"Localización
+						Geográfica","infotype":"d:text"},"label":"Localización Geográfica
+						[location]","type":["property"]},{"pseudonym":"cmm/editor/property/text","id":"aecid:beneficiary","elementconfig":{"infoname":"beneficiary","infolabel":"Beneficiario","infotype":"d:text"},"label":"Beneficiario
+						[beneficiary]","type":["property"]},{"pseudonym":"cmm/editor/property/text","id":"aecid:counterpart","elementconfig":{"infoname":"counterpart","infolabel":"Contraparte","infotype":"d:text"},"label":"Contraparte
+						[counterpart]","type":["property"]},{"pseudonym":"cmm/editor/property/text","id":"aecid:colaborator","elementconfig":{"infoname":"colaborator","infolabel":"Entidad
+						Colaboradora","infotype":"d:text"},"label":"Entidad Colaboradora
+						[colaborator]","type":["property"]}]}]</form-definition>
+				</config>
+
+
+
+			</configurations>
+		</module>
+	</modules>
+</extension>

@@ -48,6 +48,16 @@
     </property>
 </bean>
 
+  <bean id="propagater" class="org.aecid.alfresco.PropertiesPropagationActionExecuter" parent="action-executer">
+   <property name="fileFolderService">
+        <ref bean="FileFolderService" />
+    </property>
+
+    <property name="nodeService">
+        <ref bean="NodeService" />
+    </property>
+</bean>
+
   <bean id="sumarizer" class="org.aecid.alfresco.SummaryActionExecuter" parent="action-executer">
    <property name="fileFolderService">
         <ref bean="FileFolderService" />

@@ -82,7 +82,7 @@
             
 			<mandatory-aspects>
   				<aspect>aecid:projectable</aspect> 
-  				<aspect>aecid:cooperation</aspect> 
+  				<aspect>aecid:cooperation</aspect>
   			</mandatory-aspects>
         </type>
         
@@ -215,7 +215,7 @@
         
         <type name="aecid:contract">
             <title>CON</title>
-            <parent>cm:content</parent>
+            <parent>aecid:contentGral</parent>
             <properties/>
             <associations/>
             <overrides/>
@@ -530,6 +530,7 @@
             <overrides/>
             <mandatory-aspects/>
         </aspect>
+        
         <aspect name="aecid:projectable">
             <title>Parte de un proyecto</title>
             <properties>
@@ -660,6 +661,7 @@
             <overrides/>
             <mandatory-aspects/>
         </aspect>
+        
         <aspect name="aecid:cooperation">
             <title>Cooperacion</title>
             <description>Aplica al contenido o carpeta donde se manejen datos sobre la cooperacion (modalidad o programa) </description>
@@ -734,7 +736,16 @@
                         </constraint>
                     </constraints>
                 </property>
-                
+                </properties>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </aspect>
+               
+        <aspect name="aecid:componentable">
+            <title>Componentable</title>
+            <description>Aplica a contenidos del proyectos de chile </description>
+            <properties> 
                 <property name="aecid:component">
                     <title>Componente del programa</title>
                     <description>Componente del programa</description>

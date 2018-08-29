@@ -79,11 +79,11 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 		}
 		
 		if (!name.contains(type)) {
-			sw.write(type + TYPE_SEPARATOR);
+			sw.write(type);
 		}
 		
 		if (!budgetYear.equals(STRING_EMPTY)) {
-			sw.write("(" + budgetYear + ")");
+			sw.write(" (" + budgetYear + ")");
 			log.info("renamer add budgetYear: " + budgetYear);
 			
 		} else if (!program.equals(STRING_EMPTY)) {
@@ -95,15 +95,13 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 				sw.write(TYPE_SEPARATOR + component);
 			}
 		}
-		
-		sw.write(title);
-		
+				
 		log.info("Rename: " + sw.toString());
 		
 		nodeService.setProperty(nodeRef, ContentModel.PROP_NAME, sw.toString());
-
 	}
 
+	
 	private String getTypeTitle(NodeRef nodeRef) {
 		QName qtype = nodeService.getType(nodeRef);
 		TypeDefinition typeDef = dictionaryService.getType(qtype);

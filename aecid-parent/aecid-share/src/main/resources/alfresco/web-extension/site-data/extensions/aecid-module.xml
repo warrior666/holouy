@@ -250,12 +250,182 @@
 							<aspect label="Parte de un proyecto"
 								name="aecid:projectable" />
 							<aspect label="Cooperacion" name="aecid:cooperation" />
+							<aspect label="Componentes" name="aecid:componentable" />
 						</visible>
 					</aspects>
 				</config>
 
-				<!-- Form configuration section - type -->
+<				!-- Form configuration section - type creating -->
+				<config evaluator="model-type" condition="aecid:folderProject" replace="true">
+					<forms>
+						<form>
+							<field-visibility>
+								<show id="cm:name" />
 
+								<show id="aecid:projectTitle" />
+								<show id="aecid:projectTag" />
+								<show id="aecid:budgetYear" />
+								<show id="aecid:fileNumber" />
+								
+							</field-visibility>
+
+							<appearance>
+								<set appearance="whitespace" id="aecid:projectable_cmm_set0" />
+								<set appearance="whitespace" id="aecid:projectable_cmm_set1"
+									template="/org/alfresco/components/form/3-column-set.ftl" />
+								<set appearance="whitespace" id="aecid:projectable_cmm_set2"
+									template="/org/alfresco/components/form/2-column-set.ftl" />
+								<set appearance="whitespace" id="aecid:projectable_cmm_set3" />
+
+								<field id="cm:name" set="aecid:projectable_cmm_set0">
+									<control>
+										<control-param name="maxLength">255</control-param>
+									</control>
+								</field>
+
+								<field id="aecid:projectTitle"
+									set="aecid:projectable_cmm_set0">
+								</field>
+								<field id="aecid:country" set="aecid:projectable_cmm_set0">
+								</field>
+
+								<field id="aecid:projectTag"
+									set="aecid:projectable_cmm_set1">
+								</field>
+								<field id="aecid:budgetYear"
+									set="aecid:projectable_cmm_set1">
+								</field>
+								<field id="aecid:fileNumber"
+									set="aecid:projectable_cmm_set1">
+								</field>
+
+							</appearance>
+						</form>
+					</forms>
+				</config>
+				
+				<!-- Form configuration section - type existing -->
+				<config evaluator="node-type" condition="aecid:folderProject" replace="true">
+					<forms>
+						<form>
+						 	<edit-form template="/2-column-edit-form.ftl" />
+							
+							<field-visibility>
+								<show id="cm:name" />
+
+								<show id="aecid:projectTitle" />
+								<show id="aecid:projectTag" />
+								<show id="aecid:budgetYear" />
+								<show id="aecid:country" />
+								<show id="aecid:fileNumber" />
+								<show id="aecid:startDate" />
+								<show id="aecid:endingDate" />
+								<show id="aecid:justificationDate" />
+								<show id="aecid:extensionDate" />
+
+								<show id="aecid:modality" />
+								<show id="aecid:program" />
+								<show id="aecid:component" />
+								
+								<show id="aecid:location" />
+								<show id="aecid:beneficiary" />
+								<show id="aecid:counterpart" />
+								<show id="aecid:colaborator" />
+
+								<!-- tags and categories -->
+								<show id="cm:taggable" for-mode="edit" force="true" />
+								<show id="cm:categories" />
+
+               <hide id="cm:title"/>
+               <hide id="cm:description"  />
+               
+               <hide id="cm:creator" />
+               <hide id="cm:created" />
+               <hide id="cm:modifier"  />
+               <hide id="cm:modified" />                       
+               
+                <!-- cm:ownable aspect -->
+               <hide id="cm:owner" />
+               
+               
+               <!-- emailserver:aliasable aspect -->
+               <hide id="emailserver:alias" />
+               
+							</field-visibility>
+
+							<appearance>
+								<field id="cm:name">
+									<control>
+										<control-param name="maxLength">255</control-param>
+									</control>
+								</field>
+								<field id="cm:title">
+									<control
+										template="/org/alfresco/components/form/controls/textfield.ftl" />
+								</field>
+
+								<field id="aecid:projectTitle">
+								</field>
+								<field id="aecid:country">
+								</field>
+
+								<field id="aecid:projectTag">
+								</field>
+								<field id="aecid:budgetYear">
+								</field>
+								<field id="aecid:fileNumber">
+								</field>
+
+								<field id="aecid:endingDate">
+								</field>
+
+								<field id="aecid:justificationDate">
+								</field>
+								<field id="aecid:extensionDate">
+								</field>
+								<field id="aecid:startDate">
+								</field>
+
+								<field id="aecid:modality">
+								</field>
+								<field id="aecid:program" >
+								</field>
+								<field id="aecid:component" >
+								</field>
+
+								<field id="aecid:counterpart">
+								</field>
+
+								<field id="aecid:location">
+								</field>
+								<field id="aecid:beneficiary">
+								</field>
+								<field id="aecid:colaborator">
+								</field>
+
+								<field id="cm:taggable">
+									<control>
+										<control-param name="compactMode">true</control-param>
+										<control-param name="params">aspect=cm:taggable
+										</control-param>
+										<control-param name="createNewItemUri">/api/tag/workspace/SpacesStore
+										</control-param>
+										<control-param name="createNewItemIcon">tag</control-param>
+									</control>
+								</field>
+
+								<field id="cm:categories">
+									<control>
+										<control-param name="compactMode">true</control-param>
+									</control>
+								</field>
+
+							</appearance>
+						</form>
+					</forms>
+				</config>
+				
+				
 				<!-- Form configuration section - aspect -->
 				<config condition="aecid:projectable" evaluator="aspect">
 					<forms>
@@ -267,7 +437,6 @@
 									<show id="cm:title" force="true" /> -->
 
 								<show id="aecid:projectTitle" />
-								<!-- <show id="aecid:purpose" /> <show id="aecid:executionWay" /> -->
 								<show id="aecid:projectTag" />
 								<show id="aecid:budgetYear" />
 								<show id="aecid:country" />
@@ -292,12 +461,6 @@
 
 								<show id="cm:description" force="true" />
 
-								<show id="size" for-mode="view" />
-								<show id="cm:creator" for-mode="view" />
-								<show id="cm:created" for-mode="view" />
-								<show id="cm:modifier" for-mode="view" />
-								<show id="cm:modified" for-mode="view" />
-
 							</field-visibility>
 
 							<appearance>
@@ -313,32 +476,33 @@
 										<control-param name="maxLength">255</control-param>
 									</control>
 								</field>
+								<!-- 
 								<field id="cm:title" set="aecid:projectable_cmm_set0">
 									<control
 										template="/org/alfresco/components/form/controls/textfield.ftl" />
 								</field>
-
-								<field id="aecid:projectTitle"
+-->
+								<field id="aecid:projectTitle" read-only="true"
 									set="aecid:projectable_cmm_set0">
 								</field>
-								<field id="aecid:country" set="aecid:projectable_cmm_set0">
+								<field id="aecid:country" read-only="true" set="aecid:projectable_cmm_set0">
 								</field>
 
-								<field id="aecid:projectTag"
+								<field id="aecid:projectTag" read-only="true"
 									set="aecid:projectable_cmm_set1">
 								</field>
-								<field id="aecid:budgetYear"
+								<field id="aecid:budgetYear" read-only="true"
 									set="aecid:projectable_cmm_set1">
 								</field>
-								<field id="aecid:fileNumber"
+								<field id="aecid:fileNumber" read-only="true"
 									set="aecid:projectable_cmm_set1">
 								</field>
 
-								<field id="aecid:endingDate"
+								<field id="aecid:endingDate" read-only="true"
 									set="aecid:projectable_cmm_set2">
 								</field>
 
-								<field id="aecid:justificationDate"
+								<field id="aecid:justificationDate" read-only="true"
 									set="aecid:projectable_cmm_set2">
 								</field>
 								<!-- <field id="aecid:executionWay" set="aecid:projectable_cmm_set0"> 
@@ -346,34 +510,34 @@
 								<!-- <field id="aecid:purpose" set="aecid:projectable_cmm_set0"> 
 									</field> -->
 
-								<field id="aecid:extensionDate"
+								<field id="aecid:extensionDate" read-only="true"
 									set="aecid:projectable_cmm_set2">
 								</field>
-								<field id="aecid:startDate"
+								<field id="aecid:startDate" read-only="true"
 									set="aecid:projectable_cmm_set2">
 								</field>
 
-								<field id="aecid:modality"
+								<field id="aecid:modality" read-only="true"
 									set="aecid:projectable_cmm_set3">
 								</field>
-								<field id="aecid:program" 
+								<field id="aecid:program" read-only="true"
 									set="aecid:projectable_cmm_set3">
 								</field>
 								<field id="aecid:component" 
 									set="aecid:projectable_cmm_set3">
 								</field>
 
-								<field id="aecid:counterpart"
+								<field id="aecid:counterpart" read-only="true"
 									set="aecid:projectable_cmm_set3">
 								</field>
 
-								<field id="aecid:location"
+								<field id="aecid:location" read-only="true"
 									set="aecid:projectable_cmm_set3">
 								</field>
-								<field id="aecid:beneficiary"
+								<field id="aecid:beneficiary" read-only="true"
 									set="aecid:projectable_cmm_set3">
 								</field>
-								<field id="aecid:colaborator"
+								<field id="aecid:colaborator" read-only="true"
 									set="aecid:projectable_cmm_set3">
 								</field>
 
