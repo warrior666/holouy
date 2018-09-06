@@ -23,9 +23,7 @@ import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by jpascal on 15/12/2015.
- */
+
 public class NodeBodyCreate
 {
     @SerializedName("name")

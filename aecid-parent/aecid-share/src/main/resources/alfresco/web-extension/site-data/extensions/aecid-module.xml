@@ -28,73 +28,89 @@
 							<subtype name="aecid:content" />
 							<subtype name="aecid:dscProy" />
 							<subtype name="aecid:contentProject" />
-
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:convenio" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:subResolution" />
 							<subtype name="aecid:contentGral" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
+
+							<subtype name="aecid:acta" />							
+							<subtype name="aecid:agreement" />
 							<subtype name="aecid:contract" />
-							<subtype name="aecid:subExtension" />
+							<subtype name="aecid:convenio" />
+							<subtype name="aecid:budgetSheet" />   <!--  Cuadro de Ejecución Presupuestal  -->
+							<subtype name="aecid:diagnosis" />
 							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
+							
+							<subtype name="aecid:preIdentFile" />  <!--  Ficha de Pre identificacion -->
+							<subtype name="aecid:trackingSheet" /> <!--  Ficha de Seguimiento -->
 							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:subJustification" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:subActos" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:subModification" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
+
+							<subtype name="aecid:report" />
+							<subtype name="aecid:finalReport" />							
+							<subtype name="aecid:countryReport" />
+														
 							<subtype name="aecid:normative" />
-							<subtype name="aecid:subAdenda" />
-							<subtype name="aecid:preIdentFile" />
+							<subtype name="aecid:memo" />
+							
+							<subtype name="aecid:generalPlan" />  <!--  Plan Operativo General POG -->
+							<subtype name="aecid:anualPlan" />    <!--  Plan Operativo Anual -->
+							
+							<subtype name="aecid:product" />
+							<subtype name="aecid:protocol" />
+
+							<subtype name="aecid:publication" />
+							
+							<subtype name="aecid:referenceTerm" />
+																												
 							<subtype name="aecid:subsidy" />
 							<subtype name="aecid:subAcept" />
-							<subtype name="aecid:agreement" />
-							<subtype name="aecid:countryReport" />
+							<subtype name="aecid:subActos" />
+							<subtype name="aecid:subAdenda" />
+							<subtype name="aecid:subExtension" />
+							<subtype name="aecid:subJustification" />
+							<subtype name="aecid:subModification" />
+							<subtype name="aecid:subResolution" />				
 						</type>
 
 						<type name="aecid:content">
 							<subtype name="aecid:dscProy" />
 							<subtype name="aecid:contentProject" />
-
-							<subtype name="aecid:diagnosis" />
-							<subtype name="aecid:convenio" />
-							<subtype name="aecid:memo" />
-							<subtype name="aecid:publication" />
-							<subtype name="aecid:trackingSheet" />
-							<subtype name="aecid:subResolution" />
 							<subtype name="aecid:contentGral" />
-							<subtype name="aecid:acta" />
-							<subtype name="aecid:product" />
+
+							<subtype name="aecid:acta" />							
+							<subtype name="aecid:agreement" />
 							<subtype name="aecid:contract" />
-							<subtype name="aecid:subExtension" />
+							<subtype name="aecid:convenio" />
+							<subtype name="aecid:budgetSheet" />   <!--  Cuadro de Ejecución Presupuestal  -->
+							<subtype name="aecid:diagnosis" />
 							<subtype name="aecid:evaluation" />
-							<subtype name="aecid:report" />
+							
+							<subtype name="aecid:preIdentFile" />  <!--  Ficha de Pre identificacion -->
+							<subtype name="aecid:trackingSheet" /> <!--  Ficha de Seguimiento -->
 							<subtype name="aecid:formulation" />
-							<subtype name="aecid:generalPlan" />
-							<subtype name="aecid:anualPlan" />
-							<subtype name="aecid:subJustification" />
-							<subtype name="aecid:finalReport" />
-							<subtype name="aecid:subActos" />
-							<subtype name="aecid:protocol" />
-							<subtype name="aecid:subModification" />
-							<subtype name="aecid:budgetSheet" />
-							<subtype name="aecid:referenceTerm" />
+
+							<subtype name="aecid:report" />
+							<subtype name="aecid:finalReport" />							
+							<subtype name="aecid:countryReport" />
+														
 							<subtype name="aecid:normative" />
-							<subtype name="aecid:subAdenda" />
-							<subtype name="aecid:preIdentFile" />
+							<subtype name="aecid:memo" />
+							
+							<subtype name="aecid:generalPlan" />  <!--  Plan Operativo General POG -->
+							<subtype name="aecid:anualPlan" />    <!--  Plan Operativo Anual -->
+							
+							<subtype name="aecid:product" />
+							<subtype name="aecid:protocol" />
+
+							<subtype name="aecid:publication" />
+							
+							<subtype name="aecid:referenceTerm" />
+																												
 							<subtype name="aecid:subsidy" />
 							<subtype name="aecid:subAcept" />
-							<subtype name="aecid:agreement" />
-							<subtype name="aecid:countryReport" />
+							<subtype name="aecid:subActos" />
+							<subtype name="aecid:subAdenda" />
+							<subtype name="aecid:subExtension" />
+							<subtype name="aecid:subJustification" />
+							<subtype name="aecid:subModification" />
+							<subtype name="aecid:subResolution" />
 						</type>
 
 						<type name="aecid:dscProy">
@@ -242,20 +258,118 @@
 						</type>
 					</types>
 
-
 					<aspects>
 						<visible>
-							<aspect label="Workflow de Proyecto"
-								name="aecid:projectWorkflow" />
-							<aspect label="Parte de un proyecto"
-								name="aecid:projectable" />
+							<aspect label="Workflow de Proyecto" name="aecid:projectWorkflow" />
+							<aspect label="Parte de un proyecto" name="aecid:projectable" />
 							<aspect label="Cooperacion" name="aecid:cooperation" />
 							<aspect label="Componentes" name="aecid:componentable" />
 						</visible>
 					</aspects>
 				</config>
 
-<				!-- Form configuration section - type creating -->
+                <!-- Form configuration section - type creating -->
+				<config evaluator="model-type" condition="aecid:contentGral" replace="true">
+					<forms>
+						<form>
+							<field-visibility>
+								<show id="cm:name" />
+								<show id="aecid:country" />
+								<show id="cm:title" />
+								<show id="cm:description" />
+								<show id="aecid:budgetYear" />
+								<show id="aecid:contentDate" />					
+								<show id="cm:description" />	
+							</field-visibility>
+
+							<appearance>
+								<field id="cm:name">
+									<control>
+										<control-param name="maxLength">255</control-param>
+									</control>
+								</field>
+
+								<field id="cm:title">
+								</field>
+								<field id="aecid:country" read-only="true">
+								</field>
+								<field id="aecid:budgetYear">
+								</field>
+								<field id="aecid:contentDate">
+								</field>
+								<field id="cm:description">
+									<control>
+										<control-param name="activateLinks">true</control-param>
+									</control>
+								</field>
+							</appearance>
+						</form>
+					</forms>
+				</config>
+				
+				<!-- Form configuration section - type existing -->
+				<config evaluator="node-type" condition="aecid:contentGral"> <!-- replace="true"> -->
+					<forms>
+						<form>
+							<field-visibility>
+								<show id="cm:name" />
+								<show id="aecid:country" />
+								<show id="cm:title" />
+								<show id="cm:description" />
+								<show id="aecid:budgetYear" />
+								<show id="aecid:contentDate" />
+
+								<!-- tags and categories -->
+								<show id="cm:taggable" for-mode="edit" force="true" />
+								<show id="cm:categories" />
+
+							</field-visibility>
+
+							<appearance>
+								<field id="cm:name">
+									<control>
+										<control-param name="maxLength">255</control-param>
+									</control>
+								</field>
+
+								<field id="cm:title">
+								</field>
+								<field id="aecid:country" read-only="true">
+								</field>
+								<field id="aecid:budgetYear">
+								</field>
+								<field id="aecid:contentDate">
+								</field>
+								<field id="cm:description">
+									<control>
+										<control-param name="activateLinks">true</control-param>
+									</control>
+								</field>
+
+								<field id="cm:taggable">
+									<control>
+										<control-param name="compactMode">true</control-param>
+										<control-param name="params">aspect=cm:taggable
+										</control-param>
+										<control-param name="createNewItemUri">/api/tag/workspace/SpacesStore
+										</control-param>
+										<control-param name="createNewItemIcon">tag</control-param>
+									</control>
+								</field>
+
+								<field id="cm:categories">
+									<control>
+										<control-param name="compactMode">true</control-param>
+									</control>
+								</field>
+
+							</appearance>
+						</form>
+					</forms>
+				</config>
+				
+
+                <!-- Form configuration section - type creating -->
 				<config evaluator="model-type" condition="aecid:folderProject" replace="true">
 					<forms>
 						<form>
@@ -305,11 +419,12 @@
 				</config>
 				
 				<!-- Form configuration section - type existing -->
-				<config evaluator="node-type" condition="aecid:folderProject" replace="true">
+				<config evaluator="node-type" condition="aecid:folderProject"> <!-- replace="true"> -->
 					<forms>
 						<form>
+						<!-- 
 						 	<edit-form template="/2-column-edit-form.ftl" />
-							
+							-->
 							<field-visibility>
 								<show id="cm:name" />
 
@@ -336,21 +451,6 @@
 								<show id="cm:taggable" for-mode="edit" force="true" />
 								<show id="cm:categories" />
 
-               <hide id="cm:title"/>
-               <hide id="cm:description"  />
-               
-               <hide id="cm:creator" />
-               <hide id="cm:created" />
-               <hide id="cm:modifier"  />
-               <hide id="cm:modified" />                       
-               
-                <!-- cm:ownable aspect -->
-               <hide id="cm:owner" />
-               
-               
-               <!-- emailserver:aliasable aspect -->
-               <hide id="emailserver:alias" />
-               
 							</field-visibility>
 
 							<appearance>
@@ -358,10 +458,6 @@
 									<control>
 										<control-param name="maxLength">255</control-param>
 									</control>
-								</field>
-								<field id="cm:title">
-									<control
-										template="/org/alfresco/components/form/controls/textfield.ftl" />
 								</field>
 
 								<field id="aecid:projectTitle">
@@ -376,16 +472,6 @@
 								<field id="aecid:fileNumber">
 								</field>
 
-								<field id="aecid:endingDate">
-								</field>
-
-								<field id="aecid:justificationDate">
-								</field>
-								<field id="aecid:extensionDate">
-								</field>
-								<field id="aecid:startDate">
-								</field>
-
 								<field id="aecid:modality">
 								</field>
 								<field id="aecid:program" >
@@ -393,6 +479,16 @@
 								<field id="aecid:component" >
 								</field>
 
+								<field id="aecid:startDate">
+								</field>
+								<field id="aecid:endingDate">
+								</field>
+								
+								<field id="aecid:justificationDate">
+								</field>
+								<field id="aecid:extensionDate">
+								</field>
+								
 								<field id="aecid:counterpart">
 								</field>
 
@@ -476,12 +572,7 @@
 										<control-param name="maxLength">255</control-param>
 									</control>
 								</field>
-								<!-- 
-								<field id="cm:title" set="aecid:projectable_cmm_set0">
-									<control
-										template="/org/alfresco/components/form/controls/textfield.ftl" />
-								</field>
--->
+
 								<field id="aecid:projectTitle" read-only="true"
 									set="aecid:projectable_cmm_set0">
 								</field>

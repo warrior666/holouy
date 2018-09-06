@@ -17,7 +17,16 @@
 	</parent>
 	
 	<properties />
-	<dependencies />
+	
+	<dependencies>
+	<!--  Avoiding messages: Caused by: java.lang.ClassNotFoundException: org.bouncycastle.jce.provider.BouncyCastleProvider -->
+	 <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.55</version>
+        </dependency>
+    </dependencies>
+	
 	<dependencyManagement />
 	<build />
 	<reporting />

@@ -21,9 +21,9 @@ package com.alfresco.client.api.tests.core;
 import java.io.IOException;
 import java.util.List;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import com.alfresco.client.api.AlfrescoAPITestCase;
 import com.alfresco.client.api.common.representation.ResultPaging;
@@ -31,7 +31,12 @@ import com.alfresco.client.api.core.PeopleAPI;
 import com.alfresco.client.api.core.SitesAPI;
 import com.alfresco.client.api.core.model.body.SiteBodyCreate;
 import com.alfresco.client.api.core.model.body.SiteMembershipRequestBodyCreate;
-import com.alfresco.client.api.core.model.representation.*;
+import com.alfresco.client.api.core.model.representation.PersonRepresentation;
+import com.alfresco.client.api.core.model.representation.SiteContainerRepresentation;
+import com.alfresco.client.api.core.model.representation.SiteMemberRepresentation;
+import com.alfresco.client.api.core.model.representation.SiteMembershipRequestRepresentation;
+import com.alfresco.client.api.core.model.representation.SiteRepresentation;
+import com.alfresco.client.api.core.model.representation.SiteVisibilityEnum;
 
 import retrofit2.Response;
 
@@ -58,15 +63,12 @@ public class SiteApiTest extends AlfrescoAPITestCase
 
         // Check Response
         SiteRepresentation siteRepresentation = response.body();
-        Assert.assertNotNull(siteRepresentation, "Response is empty");
-        Assert.assertEquals(siteRepresentation.getId(), SWSDP_ID, "Site Id seems wrong.");
-        Assert.assertEquals(siteRepresentation.getDescription(), "This is a Sample Alfresco Team site.",
-                "Site description seems wrong.");
-        Assert.assertEquals(siteRepresentation.getVisibility(), "PUBLIC", "Site visibility seems wrong.");
-        Assert.assertEquals(siteRepresentation.getTitle(), "Sample: Web Site Design Project",
-                "Site title seems wrong.");
-        Assert.assertEquals(siteRepresentation.getGuid(), "b4cff62a-664d-4d45-9302-98723eac1319",
-                "Site guid seems wrong.");
+        Assert.assertNotNull("Response is empty", siteRepresentation);
+        Assert.assertEquals("Site Id seems wrong.", siteRepresentation.getId(), SWSDP_ID);
+        Assert.assertEquals("Site description seems wrong.", siteRepresentation.getDescription(), "This is a Sample Alfresco Team site.");
+        Assert.assertEquals("Site visibility seems wrong.", siteRepresentation.getVisibility(), "PUBLIC");
+        Assert.assertEquals("Site title seems wrong.", siteRepresentation.getTitle(), "Sample: Web Site Design Project");
+        Assert.assertEquals("Site guid seems wrong.", siteRepresentation.getGuid(), "b4cff62a-664d-4d45-9302-98723eac1319");
     }
 
     @Test
@@ -82,19 +84,19 @@ public class SiteApiTest extends AlfrescoAPITestCase
 
         // Check Response
         ResultPaging<SiteContainerRepresentation> siteContainerResponse = containersResponse.body();
-        Assert.assertNotNull(siteContainerResponse, "Response is empty");
-        Assert.assertNotNull(siteContainerResponse.getList(), "Response has no data");
-        Assert.assertNotNull(siteContainerResponse.getPagination(), "Response has no pagination");
-        Assert.assertEquals(siteContainerResponse.getPagination().getCount(), 5, "Pagination count is wrong.");
-        Assert.assertFalse(siteContainerResponse.getPagination().getHasMoreItems(), "Pagination HasMoreItem is wrong.");
-        Assert.assertEquals(siteContainerResponse.getPagination().getSkipCount(), 0, "Pagination SkipCount is wrong.");
-        Assert.assertEquals(siteContainerResponse.getPagination().getTotalItems(), 5, "Pagination TotalItem is wrong.");
+        Assert.assertNotNull("Response is empty", siteContainerResponse);
+        Assert.assertNotNull("Response has no data", siteContainerResponse.getList());
+        Assert.assertNotNull("Response has no pagination", siteContainerResponse.getPagination());
+        Assert.assertEquals("Pagination count is wrong.", siteContainerResponse.getPagination().getCount(), 5);
+        Assert.assertFalse("Pagination HasMoreItem is wrong.", siteContainerResponse.getPagination().getHasMoreItems());
+        Assert.assertEquals("Pagination SkipCount is wrong.", siteContainerResponse.getPagination().getSkipCount(), 0);
+        Assert.assertEquals("Pagination TotalItem is wrong.", siteContainerResponse.getPagination().getTotalItems(), 5);
 
         // Loop over Container Information
         for (int i = 0; i < siteContainerResponse.getPagination().getCount(); i++)
         {
-            Assert.assertNotNull(siteContainerResponse.getList().get(i).getId(), "Container ID is empty");
-            Assert.assertNotNull(siteContainerResponse.getList().get(i).getFolderId(), "Container Folder ID is empty");
+            Assert.assertNotNull("Container ID is empty", siteContainerResponse.getList().get(i).getId());
+            Assert.assertNotNull("Container Folder ID is empty", siteContainerResponse.getList().get(i).getFolderId());
         }
     }
 
@@ -156,10 +158,9 @@ public class SiteApiTest extends AlfrescoAPITestCase
                 "Site description seems wrong.");
         Assert.assertEquals(siteRepresentation.getVisibility(), SITE_TEST_VISIBILITY.toString(),
                 "Site visibility seems wrong.");
-        Assert.assertEquals(siteRepresentation.getVisibilityEnum(), SiteVisibilityEnum.PUBLIC,
-                "Site visibility seems wrong.");
-        Assert.assertEquals(siteRepresentation.getTitle(), SITE_TEST_TITLE, "Site title seems wrong.");
-        Assert.assertNotNull(siteRepresentation.getGuid(), "Site guid seems wrong.");
+        Assert.assertEquals("Site visibility seems wrong.", siteRepresentation.getVisibilityEnum(), SiteVisibilityEnum.PUBLIC);
+        Assert.assertEquals("Site title seems wrong.", siteRepresentation.getTitle(), SITE_TEST_TITLE);
+        Assert.assertNotNull("Site guid seems wrong.", siteRepresentation.getGuid());
 
         // Delete Site
         // Delete Site
@@ -190,28 +191,28 @@ public class SiteApiTest extends AlfrescoAPITestCase
 
         // Check Response
         ResultPaging<SiteMemberRepresentation> membersResponse = response.body();
-        Assert.assertNotNull(membersResponse, "Response is empty");
-        Assert.assertNotNull(membersResponse.getList(), "Response has no data");
-        Assert.assertNotNull(membersResponse.getPagination(), "Response has no pagination");
-        Assert.assertEquals(membersResponse.getPagination().getCount(), 3, "Pagination count is wrong.");
-        Assert.assertFalse(membersResponse.getPagination().getHasMoreItems(), "Pagination HasMoreItem is wrong.");
-        Assert.assertEquals(membersResponse.getPagination().getSkipCount(), 0, "Pagination SkipCount is wrong.");
+        Assert.assertNotNull("Response is empty", membersResponse);
+        Assert.assertNotNull("Response has no data", membersResponse.getList());
+        Assert.assertNotNull("Response has no pagination", membersResponse.getPagination());
+        Assert.assertEquals("Pagination count is wrong.", membersResponse.getPagination().getCount(), 3);
+        Assert.assertFalse("Pagination HasMoreItem is wrong.", membersResponse.getPagination().getHasMoreItems());
+        Assert.assertEquals("Pagination SkipCount is wrong.", membersResponse.getPagination().getSkipCount(), 0);
 
         // Loop over Container Information
         for (SiteMemberRepresentation member : membersResponse.getList())
         {
-            Assert.assertNotNull(member.getId(), "Member ID is empty");
-            Assert.assertNotNull(member.getRole(), "Member Role is empty");
-            Assert.assertNotNull(member.getPerson(), "Member PersonInfo is empty");
+            Assert.assertNotNull("Member ID is empty", member.getId());
+            Assert.assertNotNull("Member Role is empty", member.getRole());
+            Assert.assertNotNull("Member PersonInfo is empty", member.getPerson());
 
             PersonRepresentation person = member.getPerson();
-            Assert.assertNotNull(person.getFirstName(), "Person Firstname is empty");
+            Assert.assertNotNull("Person Firstname is empty", person.getFirstName());
             // Assert.assertNotNull(person.getLastName(), "Person LastName is
             // empty");
-            Assert.assertNotNull(person.getEmail(), "Person Email is empty");
+            Assert.assertNotNull("Person Email is empty", person.getEmail());
             // Assert.assertTrue(person.isEnabled(), "Person IsEnabled is
             // False");
-            Assert.assertTrue(person.isEmailNotificationsEnabled(), "Person EmailNotificationsEnabled is False");
+            Assert.assertTrue( "Person EmailNotificationsEnabled is False", person.isEmailNotificationsEnabled());
 
             // Request One Member Info
             Response<SiteMemberRepresentation> memberInfoResponse = siteService
@@ -241,14 +242,14 @@ public class SiteApiTest extends AlfrescoAPITestCase
 
         // Check Response
         ResultPaging<SiteRepresentation> sitesResponse = response.body();
-        Assert.assertNotNull(sitesResponse, "Response is empty");
-        Assert.assertNotNull(sitesResponse.getList(), "Response has no listActivitiesForPersonCall of sites");
+        Assert.assertNotNull("Response is empty", sitesResponse);
+        Assert.assertNotNull("Response has no listActivitiesForPersonCall of sites", sitesResponse.getList());
 
         // Check Pagination & Entries
         List<SiteRepresentation> sitesRepresentation = sitesResponse.getList();
         // Assert.assertNotNull(sitesRepresentation.getEntries(), "Response has
         // no listActivitiesForPersonCall of sites");
-        Assert.assertNotNull(sitesResponse.getPagination(), "Response has no pagination");
+        Assert.assertNotNull("Response has no pagination", sitesResponse.getPagination());
 
         // Retrieve SWSDP Site and check we have the information
         for (int i = 0; i < sitesResponse.getPagination().getCount(); i++)
@@ -256,21 +257,17 @@ public class SiteApiTest extends AlfrescoAPITestCase
             SiteRepresentation siteRepresentation = sitesRepresentation.get(i);
             if (SWSDP_ID.equals(siteRepresentation.getId()))
             {
-                Assert.assertEquals(siteRepresentation.getId(), SWSDP_ID, "Site Id seems wrong.");
-                Assert.assertEquals(siteRepresentation.getDescription(), "This is a Sample Alfresco Team site.",
-                        "Site description seems wrong.");
-                Assert.assertEquals(siteRepresentation.getVisibility(), "PUBLIC", "Site visibility seems wrong.");
-                Assert.assertEquals(siteRepresentation.getVisibilityEnum(), SiteVisibilityEnum.PUBLIC,
-                        "Site visibility seems wrong.");
-                Assert.assertEquals(siteRepresentation.getTitle(), "Sample: Web Site Design Project",
-                        "Site title seems wrong.");
-                Assert.assertEquals(siteRepresentation.getGuid(), "b4cff62a-664d-4d45-9302-98723eac1319",
-                        "Site guid seems wrong.");
+                Assert.assertEquals("Site Id seems wrong.", siteRepresentation.getId(), SWSDP_ID);
+                Assert.assertEquals("Site description seems wrong.", siteRepresentation.getDescription(), "This is a Sample Alfresco Team site.");
+                Assert.assertEquals("Site visibility seems wrong.", siteRepresentation.getVisibility(), "PUBLIC");
+                Assert.assertEquals("Site visibility seems wrong.", siteRepresentation.getVisibilityEnum(), SiteVisibilityEnum.PUBLIC);
+                Assert.assertEquals("Site title seems wrong.", siteRepresentation.getTitle(), "Sample: Web Site Design Project");
+                Assert.assertEquals("Site guid seems wrong.", siteRepresentation.getGuid(), "b4cff62a-664d-4d45-9302-98723eac1319");
             }
         }
     }
 
-    @Test(enabled = false)
+    @Test
     public void siteMemberships() throws IOException
     {
         PeopleAPI peopleAPI = client.getPeopleAPI();
@@ -284,8 +281,8 @@ public class SiteApiTest extends AlfrescoAPITestCase
 
         // Check Response
         ResultPaging<SiteMembershipRequestRepresentation> siteMembership = response.body();
-        Assert.assertNotNull(siteMembership, "Response is empty");
-        Assert.assertNotNull(siteMembership.getList(), "Response has no listActivitiesForPersonCall of body");
+        Assert.assertNotNull("Response is empty", siteMembership);
+        Assert.assertNotNull("Response has no listActivitiesForPersonCall of body", siteMembership.getList());
         Assert.assertEquals(siteMembership.getPagination().getCount(), 0);
 
         // CREATE MEMBERSHIP REQUEST
@@ -297,11 +294,11 @@ public class SiteApiTest extends AlfrescoAPITestCase
 
         // Check Response
         SiteMembershipRequestRepresentation siteMembershipR = respM.body();
-        Assert.assertNotNull(siteMembershipR, "Response is empty");
-        Assert.assertNotNull(siteMembershipR.getId(), "Response has no Id");
-        Assert.assertNotNull(siteMembershipR.getSite(), "Response has no Site");
-        Assert.assertEquals(siteMembershipR.getSite().getId(), "moderatedsite", "Wrong site");
-        Assert.assertNotNull(siteMembershipR.getCreatedAt(), "Response has no Creation Date");
+        Assert.assertNotNull("Response is empty", siteMembershipR);
+        Assert.assertNotNull("Response has no Id", siteMembershipR.getId());
+        Assert.assertNotNull("Response has no Site", siteMembershipR.getSite());
+        Assert.assertEquals("Wrong site", siteMembershipR.getSite().getId(), "moderatedsite");
+        Assert.assertNotNull("Response has no Creation Date", siteMembershipR.getCreatedAt());
 
         // LIST MEMBERSHIP REQUEST
         response = siteAPI.listSiteMembershipRequestsForPersonCall(TEST_USERNAME).execute();

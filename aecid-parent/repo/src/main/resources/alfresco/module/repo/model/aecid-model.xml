@@ -18,7 +18,7 @@
             <parent>cm:content</parent>
             
             <properties>
-            <property name="aecid:country">
+            	<property name="aecid:country">
                     <title>Pais</title>
                     <type>d:text</type>
                     <mandatory>true</mandatory>
@@ -69,6 +69,29 @@
             <overrides/>
 			<mandatory-aspects>
    				<aspect>cm:generalclassifiable</aspect>
+  			</mandatory-aspects>
+        </type>
+        
+        <type name="aecid:contentGral">
+            <title>CONGRAL</title>
+            <description>Contenidos no asociados a proyectos</description>
+            <parent>aecid:content</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        
+        <type name="aecid:folderProject">
+            <title>PROY</title>
+            <description>Carpeta para contener todos los documentos asociados a un proyecto, así como definir la metadata a ser heredada por estos por estar dentro de la carpeta.</description>
+            <parent>cm:folder</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+			<mandatory-aspects>
+  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
         
@@ -159,29 +182,6 @@
             <title>SUBRES</title>
             <description>Subvención Resolución</description>
             <parent>aecid:subsidy</parent>
-            <properties/>
-            <associations/>
-            <overrides/>
-			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
-  				<aspect>aecid:cooperation</aspect> 
-  			</mandatory-aspects>
-        </type>
-        
-        <type name="aecid:contentGral">
-            <title>CONGRAL</title>
-            <description>Contenidos no asociados a proyectos</description>
-            <parent>aecid:content</parent>
-            <properties/>
-            <associations/>
-            <overrides/>
-            <mandatory-aspects/>
-        </type>
-        
-        <type name="aecid:folderProject">
-            <title>PROY</title>
-            <description>Carpeta para contener todos los documentos asociados a un proyecto, así como definir la metadata a ser heredada por estos por estar dentro de la carpeta.</description>
-            <parent>cm:folder</parent>
             <properties/>
             <associations/>
             <overrides/>
@@ -508,14 +508,6 @@
         <aspect name="aecid:projectWorkflow">
             <title>Workflow de Proyecto</title>
             <properties>
-                <property name="aecid:elaborationDate">
-                    <title>Fecha de Elaboración</title>
-                    <type>d:date</type>
-                    <mandatory>false</mandatory>
-                    <index enabled="true">
-                        <tokenised>TRUE</tokenised>
-                    </index>
-                </property>
                 <property name="aecid:status">
                     <title>Estado</title>
                     <type>d:text</type>
@@ -524,6 +516,26 @@
                         <tokenised>TRUE</tokenised>
                         <facetable>false</facetable>
                     </index>
+                    <constraints>
+                        <constraint name="aecid:LIST_STATUS" type="LIST">
+                            <parameter name="allowedValues">
+                                <list>
+                                	<value></value>
+                                    <value>1-PRE IDENTIFICADO</value>
+                                    <value>2-APROBADO</value>
+                                    <value>3-EN EJECUCION</value>
+                                    <value>4-FINALIZADO</value>
+				    <value>5-NO APROBADO</value>
+                                </list>
+                            </parameter>
+                            <parameter name="caseSensitive">
+                                <value>true</value>
+                            </parameter>
+                            <parameter name="sorted">
+                                <value>false</value>
+                            </parameter>
+                        </constraint>
+                    </constraints>
                 </property>
             </properties>
             <associations/>

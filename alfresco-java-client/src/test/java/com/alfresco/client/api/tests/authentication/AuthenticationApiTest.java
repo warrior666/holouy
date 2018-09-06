@@ -20,9 +20,9 @@ package com.alfresco.client.api.tests.authentication;
 
 import java.io.IOException;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import com.alfresco.client.api.AlfrescoAPITestCase;
 import com.alfresco.client.api.authentication.AuthenticationAPI;
@@ -59,8 +59,8 @@ public class AuthenticationApiTest extends AlfrescoAPITestCase
         Assert.assertTrue(ticketResponse.isSuccessful());
 
         TicketRepresentation ticket = ticketResponse.body();
-        Assert.assertTrue(ticket.getId().startsWith("TICKET_"), "Ticket value doesn't start with TICKET_ prefix");
-        Assert.assertEquals(TEST_USERNAME, ticket.getUserId(), "Ticket userId is not " + TEST_USERNAME);
+        Assert.assertTrue("Ticket value doesn't start with TICKET_ prefix", ticket.getId().startsWith("TICKET_"));
+        Assert.assertEquals("Ticket userId is not " + TEST_USERNAME, TEST_USERNAME, ticket.getUserId());
 
         // Get Ticket
         // Need to refresh client object with new credentials

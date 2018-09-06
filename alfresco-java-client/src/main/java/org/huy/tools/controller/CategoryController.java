@@ -1,7 +1,6 @@
 package org.huy.tools.controller;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -17,27 +16,28 @@ import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
+
 public class CategoryController extends AbstractController<CategoryController> {
 
-	private final static Logger log = Logger.getLogger(CategoryController.class);
+	private static final Logger log = Logger.getLogger(CategoryController.class);
 
 	protected static CategoryImportTool tool;
-
 	protected static CategoryController mInstance;
 
+	
 	public static CategoryImportTool getCategoryImportTool() {
 		return tool;
 	}
 
-	public static void process(String filename) throws IOException {
+	public static void process(String group, String filename) throws IOException {
 
-		log.info("Importing categories from " + filename);
+		log.info("Importing categories from " + filename + " group: " + group);
 
 		// read categories
 		List<CategoryDTO> categories = tool.readCategoriesFromFile(filename);
 
 		// Obtengo las categorias ya existentes
-		List<CategoryDTO> loaded = CategoryDTO.loadCategories(categories.get(0).getGroup());
+		List<CategoryDTO> loaded = CategoryDTO.loadCategories(group);
 		
 		// Filtro las categorias aun no guardadas
 		List<CategoryDTO> filtered = CategoryDTO.filter(categories, loaded);
@@ -46,7 +46,7 @@ public class CategoryController extends AbstractController<CategoryController> {
 		CategoryDTO.storeCategories(filtered);
 
 		// Obtengo toda las categorias
-		List<CategoryDTO> stored = CategoryDTO.loadCategories(categories.get(0).getGroup());
+		List<CategoryDTO> stored = CategoryDTO.loadCategories(group);
 		
 		// write categories
 		tool.writeCategoriesToFile(stored, filename + ".out");
@@ -62,6 +62,10 @@ public class CategoryController extends AbstractController<CategoryController> {
 		mInstance = prepareClient(DEFAULT_ENDPOINT, DEFAULT_USER, DEFAULT_PASSWORD);
 	}
 
+	public static void initInstance(String endpoint, String user, String password) {
+		mInstance = prepareClient(endpoint, user, password);
+	}
+	
 	public static CategoryController getInstance() {
 		return mInstance;
 	}

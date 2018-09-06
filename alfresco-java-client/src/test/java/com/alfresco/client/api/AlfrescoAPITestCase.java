@@ -21,9 +21,9 @@ package com.alfresco.client.api;
 import java.io.File;
 import java.io.IOException;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.log4testng.Logger;
+import org.apache.log4j.Logger;
+import org.junit.Assert;
+import org.junit.BeforeClass;
 
 import com.alfresco.client.AlfrescoClient;
 import com.alfresco.client.api.common.representation.ResultPaging;
@@ -99,7 +99,7 @@ public abstract class AlfrescoAPITestCase
     // ///////////////////////////////////////////////////////////////////////////
     public void checkResourceFile(String path)
     {
-        Assert.assertNotNull(getClass().getResource(path), "Resource file missing : " + path);
+        Assert.assertNotNull("Resource file missing : " + path, getClass().getResource(path));
     }
 
     public File getResourceFile(String path)

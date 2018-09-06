@@ -21,7 +21,7 @@
           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
 	<bean id="webscript.alfresco.tutorials.helloworld.get"
-		  class="org.alfresco.platformsample.HelloWorldWebScript"
+		  class="org.aecid.sample.HelloWorldWebScript"
 		  parent="webscript">
 	</bean>
 	

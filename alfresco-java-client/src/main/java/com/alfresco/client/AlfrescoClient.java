@@ -44,39 +44,22 @@ public class AlfrescoClient extends AbstractClient<AlfrescoClient>
     protected static final Object LOCK = new Object();
 
     protected static AlfrescoClient mInstance;
-
     protected ActivitiesAPI activitiesAPI;
-
     protected CommentsAPI commentsAPI;
-
     protected NodesAPI nodesAPI;
-
     protected PeopleAPI peopleAPI;
-
     protected QueriesAPI queriesAPI;
-
     protected RatingsAPI ratingsAPI;
-
     protected RenditionsAPI renditionsAPI;
-
     protected SharedLinksAPI sharedLinksAPI;
-
     protected SitesAPI sitesAPI;
-
     protected TagsAPI tagsAPI;
-
     protected TrashcanAPI trashcanAPI;
-
     protected FavoritesAPI favoritesAPI;
-
     protected DiscoveryAPI discoveryAPI;
-
     protected AuthenticationAPI authenticationAPI;
-
     protected SearchAPI searchAPI;
-
     // protected GroupsAPI groupsAPI;
-
     protected VersionAPI versionAPI;
 
     // ///////////////////////////////////////////////////////////////////////////

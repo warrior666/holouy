@@ -1,0 +1,20 @@
+SECTOR.Accion humanitaria 
+SECTOR.Afrodescendientes
+SECTOR.Agua y Saneamiento
+SECTOR.Bienes Publicos Globales 
+SECTOR.Ciencia, Tecnologia e Innovacion
+SECTOR.Crecimiento Economico
+SECTOR.Cultura y Desarrollo
+SECTOR.Derechos Humanos
+SECTOR.Desarrollo Rural
+SECTOR.Educacion
+SECTOR.Energias renovables
+SECTOR.Genero y generaciones
+SECTOR.Igualdad de Genero
+SECTOR.Gobernabilidad democratica 
+SECTOR.Inclusión social 
+SECTOR.Lucha contra la pobreza y desigualdad 
+SECTOR.Medio ambiente y cambio climatico
+SECTOR.Ordenamiento Territorial
+SECTOR.Salud
+SECTOR.Trabajo y Empleo

@@ -21,9 +21,9 @@ package com.alfresco.client.api.tests.core;
 import java.io.IOException;
 import java.util.List;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import com.alfresco.client.api.AlfrescoAPITestCase;
 import com.alfresco.client.api.common.representation.ResultPaging;
@@ -44,7 +44,7 @@ public class TagApiTest extends AlfrescoAPITestCase
         client = prepareClient(TEST_ENDPOINT, TEST_USERNAME, TEST_PASSWORD);
     }
 
-    @Test(enabled = false)
+    @Test
     public void retrieveTags() throws IOException
     {
         // Request All Sites
@@ -55,19 +55,19 @@ public class TagApiTest extends AlfrescoAPITestCase
 
         // Check Response
         ResultPaging<TagRepresentation> tagsResponse = response.body();
-        Assert.assertNotNull(tagsResponse, "Response is empty");
-        Assert.assertNotNull(tagsResponse.getList(), "Response has no listActivitiesForPersonCall of tags");
-        Assert.assertNotNull(tagsResponse.getPagination(), "Response has no listActivitiesForPersonCall of tags");
+        Assert.assertNotNull("Response is empty", tagsResponse);
+        Assert.assertNotNull("Response has no listActivitiesForPersonCall of tags", tagsResponse.getList());
+        Assert.assertNotNull("Response has no listActivitiesForPersonCall of tags", tagsResponse.getPagination());
 
         // Check Pagination & Entries
         List<TagRepresentation> tagRepresentation = tagsResponse.getList();
-        Assert.assertNotNull(tagRepresentation, "Response has no pagination");
+        Assert.assertNotNull("Response has no pagination", tagRepresentation);
 
     }
 
     // No way to delete tag globally
     // Need to delete nodes associated
-    @Test(enabled = false)
+    @Test
     public void tagLifeCycleTest() throws IOException, InterruptedException
     {
         NodesAPI nodesAPI = client.getAPI(NodesAPI.class);
@@ -78,7 +78,7 @@ public class TagApiTest extends AlfrescoAPITestCase
         Response<ResultPaging<TagRepresentation>> response = tagAPI.listTagsForNodeCall(dummyNode.getId()).execute();
         Assert.assertNotNull(response);
         Assert.assertEquals(response.isSuccessful(), true);
-        Assert.assertEquals(response.body().getCount(), 0, "Listing contains one+ tag");
+        Assert.assertEquals("Listing contains one+ tag", response.body().getCount(), 0);
 
         // Add and remove one tag
         TagBody request = new TagBody("test");
@@ -88,19 +88,19 @@ public class TagApiTest extends AlfrescoAPITestCase
         Assert.assertNotNull(responseTag);
         Assert.assertEquals(responseTag.isSuccessful(), true);
         TagRepresentation tag = responseTag.body();
-        Assert.assertEquals(tag.getTag(), "test", "Tag value is empty");
-        Assert.assertNotNull(tag.getId(), "Id is empty");
+        Assert.assertEquals("Tag value is empty", tag.getTag(), "test");
+        Assert.assertNotNull("Id is empty", tag.getId());
 
         response = tagAPI.listTagsForNodeCall(dummyNode.getId()).execute();
         Assert.assertNotNull(response);
         Assert.assertEquals(response.isSuccessful(), true);
-        Assert.assertEquals(response.body().getCount(), 1, "Listing doesn't contain only one tag");
+        Assert.assertEquals("Listing doesn't contain only one tag", response.body().getCount(), 1);
 
         tagAPI.deleteTagFromNodeCall(dummyNode.getId(), responseTag.body().getId()).execute();
         response = tagAPI.listTagsForNodeCall(dummyNode.getId()).execute();
         Assert.assertNotNull(response);
         Assert.assertEquals(response.isSuccessful(), true);
-        Assert.assertEquals(response.body().getCount(), 0, "Listing contains one+ tag");
+        Assert.assertEquals("Listing contains one+ tag", response.body().getCount(), 0);
 
         // Add multiple tags
         TagBody[] tags = { request, new TagBody("test2"), new TagBody("test3") };
@@ -113,7 +113,7 @@ public class TagApiTest extends AlfrescoAPITestCase
         response = tagAPI.listTagsForNodeCall(dummyNode.getId()).execute();
         Assert.assertNotNull(response);
         Assert.assertEquals(response.isSuccessful(), true);
-        Assert.assertEquals(response.body().getCount(), 3, "Listing doesn't contain only one tag");
+        Assert.assertEquals("Listing doesn't contain only one tag", response.body().getCount(), 3);
         List<TagRepresentation> testTags = response.body().getList();
         for (TagRepresentation tagRepresentation : testTags)
         {

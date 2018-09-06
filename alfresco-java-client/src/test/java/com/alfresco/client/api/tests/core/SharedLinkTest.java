@@ -23,11 +23,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import com.alfresco.client.api.AlfrescoAPITestCase;
 import com.alfresco.client.api.common.representation.ResultPaging;
@@ -45,13 +44,13 @@ import retrofit2.Response;
 public class SharedLinkTest extends AlfrescoAPITestCase
 {
 
-    @BeforeClass
+    @Before
     public void prepare() throws Exception
     {
         client = prepareClient(TEST_ENDPOINT, TEST_USERNAME, TEST_PASSWORD);
     }
 
-    @BeforeMethod
+    @Before
     public void createLocalTmpFolder()
     {
         try
@@ -65,7 +64,7 @@ public class SharedLinkTest extends AlfrescoAPITestCase
         }
     }
 
-    @AfterMethod
+    @After
     public void cleanLocalTmpFolder()
     {
         tmpFolder.delete();
@@ -82,13 +81,13 @@ public class SharedLinkTest extends AlfrescoAPITestCase
 
         // Check Response
         ResultPaging<SharedLinkRepresentation> tagsResponse = response.body();
-        Assert.assertNotNull(tagsResponse, "Response is empty");
-        Assert.assertNotNull(tagsResponse.getList(), "Response has no listActivitiesForPersonCall of tags");
-        Assert.assertNotNull(tagsResponse.getPagination(), "Response has no listActivitiesForPersonCall of tags");
+        Assert.assertNotNull("Response is empty", tagsResponse);
+        Assert.assertNotNull("Response has no listActivitiesForPersonCall of tags", tagsResponse.getList());
+        Assert.assertNotNull("Response has no listActivitiesForPersonCall of tags", tagsResponse.getPagination());
 
         // Check Pagination & Entries
         List<SharedLinkRepresentation> tagRepresentation = tagsResponse.getList();
-        Assert.assertNotNull(tagRepresentation, "Response has no pagination");
+        Assert.assertNotNull("Response has no pagination", tagRepresentation);
 
     }
 
@@ -103,7 +102,7 @@ public class SharedLinkTest extends AlfrescoAPITestCase
         Response<ResultPaging<SharedLinkRepresentation>> response = sharedLinkAPI.listSharedLinksCall().execute();
         Assert.assertNotNull(response);
         Assert.assertEquals(response.isSuccessful(), true);
-        Assert.assertEquals(response.body().getCount(), 0, "Listing contains at least one shared Link");
+        Assert.assertEquals("Listing contains at least one shared Link", response.body().getCount(), 0);
 
         // Add and remove one shared link
         SharedLinkBodyCreate request = new SharedLinkBodyCreate(dummyNode.getId());
@@ -112,14 +111,14 @@ public class SharedLinkTest extends AlfrescoAPITestCase
         Assert.assertNotNull(responseLink);
         Assert.assertEquals(responseLink.isSuccessful(), true);
         SharedLinkRepresentation link = responseLink.body();
-        Assert.assertEquals(link.getName(), dummyNode.getName(), "Tag value is empty");
-        Assert.assertNotNull(link.getId(), "Id is empty");
+        Assert.assertEquals("Tag value is empty", link.getName(), dummyNode.getName());
+        Assert.assertNotNull("Id is empty", link.getId());
 
         // Retrieve by its Id
         responseLink = sharedLinkAPI.getSharedLinkCall(link.getId()).execute();
         Assert.assertNotNull(responseLink);
         Assert.assertEquals(responseLink.isSuccessful(), true);
-        Assert.assertEquals(responseLink.body().getId(), link.getId(), "IDs are different");
+        Assert.assertEquals("IDs are different", responseLink.body().getId(), link.getId());
 
         for (int i = 0; i < 5; i++)
         {
@@ -142,7 +141,7 @@ public class SharedLinkTest extends AlfrescoAPITestCase
                 Assert.fail("Unable to retrieve sharedLink even after waiting");
             }
         }
-        Assert.assertEquals(response.body().getCount(), 1, "Listing doesn't contain only one tag");
+        Assert.assertEquals("Listing doesn't contain only one tag", response.body().getCount(), 1);
 
         // Download Content
         Call<ResponseBody> downloadCall = sharedLinkAPI.getSharedLinkContentCall(link.getId());
@@ -180,7 +179,7 @@ public class SharedLinkTest extends AlfrescoAPITestCase
         response = sharedLinkAPI.listSharedLinksCall().execute();
         Assert.assertNotNull(response);
         Assert.assertEquals(response.isSuccessful(), true);
-        Assert.assertEquals(response.body().getCount(), 0, "Listing contains one+ tag");
+        Assert.assertEquals("Listing contains one+ tag", response.body().getCount(), 0);
 
         // Clean Up
         nodesAPI.deleteNodeCall(dummyNode.getId()).execute();

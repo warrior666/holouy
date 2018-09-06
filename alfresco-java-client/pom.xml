@@ -18,14 +18,35 @@
 		<version>1.0.0-beta1</version>
 		<relativePath>../../</relativePath>
 	</parent>
-	<artifactId>alfresco-java-client</artifactId>
+	
+	<artifactId>alfresco-toolkit</artifactId>
 	<name>Alfresco One Client API</name>
 	<description>Alfresco Client API</description>
 	<packaging>jar</packaging>
 
+  <build>
+        <finalName>alfresco-toolkit</finalName>
+
+  <plugins>
+    <plugin>
+      <artifactId>maven-assembly-plugin</artifactId>
+      <configuration>
+        <archive>
+          <manifest>
+            <mainClass>org.huy.tools.main.CategoryImporterMain</mainClass>
+          </manifest>
+        </archive>
+        <descriptorRefs>
+          <descriptorRef>jar-with-dependencies</descriptorRef>
+        </descriptorRefs>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
+
 	<properties>
-		<maven.compiler.target>1.7</maven.compiler.target>
-		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.testTarget>1.8</maven.compiler.testTarget>
 		<maven.compiler.testSource>1.8</maven.compiler.testSource>
 	</properties>

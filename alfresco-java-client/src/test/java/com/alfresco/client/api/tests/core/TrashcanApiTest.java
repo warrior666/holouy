@@ -21,9 +21,9 @@ package com.alfresco.client.api.tests.core;
 import java.io.IOException;
 import java.util.List;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import com.alfresco.client.api.AlfrescoAPITestCase;
 import com.alfresco.client.api.common.representation.ResultPaging;
@@ -60,13 +60,13 @@ public class TrashcanApiTest extends AlfrescoAPITestCase
 
         // Check Response
         ResultPaging<DeletedNodeRepresentation> deletedNodeResponse = response.body();
-        Assert.assertNotNull(deletedNodeResponse, "Response is empty");
-        Assert.assertNotNull(deletedNodeResponse.getList(), "Response has no List");
-        Assert.assertNotNull(deletedNodeResponse.getPagination(), "Response has no Pagination");
+        Assert.assertNotNull("Response is empty", deletedNodeResponse);
+        Assert.assertNotNull("Response has no List", deletedNodeResponse.getList());
+        Assert.assertNotNull("Response has no Pagination", deletedNodeResponse.getPagination());
 
         // Check Pagination & Entries
         List<DeletedNodeRepresentation> deletedNodesRepresentation = deletedNodeResponse.getList();
-        Assert.assertNotNull(deletedNodesRepresentation, "Response has no pagination");
+        Assert.assertNotNull("Response has no pagination", deletedNodesRepresentation);
     }
 
     @Test
@@ -82,12 +82,12 @@ public class TrashcanApiTest extends AlfrescoAPITestCase
         // Retrieve it via Trashcan
         DeletedNodeRepresentation deletedNode = trashcanAPI.getDeletedNodeCall(dummyNode.getId()).execute().body();
         Assert.assertEquals(deletedNode.getId(), dummyNode.getId());
-        Assert.assertNotNull(deletedNode.getArchivedAt(), "Deletednode has no archivedDate");
-        Assert.assertNotNull(deletedNode.getArchivedByUser(), "Deletednode has no ArchivedByUser");
+        Assert.assertNotNull("Deletednode has no archivedDate", deletedNode.getArchivedAt());
+        Assert.assertNotNull("Deletednode has no ArchivedByUser", deletedNode.getArchivedByUser());
 
         // Check the NodesAPI
         NodeRepresentation checkNode = nodesAPI.getNodeCall(dummyNode.getId()).execute().body();
-        Assert.assertNull(checkNode, "checkNode is not null");
+        Assert.assertNull("checkNode is not null", checkNode);
 
         // Restore it via Trashcan
         NodeRepresentation restoredNode = trashcanAPI.restoreDeletedNodeCall(deletedNode.getId(), null).execute()
@@ -103,10 +103,10 @@ public class TrashcanApiTest extends AlfrescoAPITestCase
         trashcanAPI.purgeDeletedNodeCall(deletedNode.getId()).execute().body();
 
         checkNode = nodesAPI.getNodeCall(dummyNode.getId()).execute().body();
-        Assert.assertNull(checkNode, "checkNode is not null");
+        Assert.assertNull("checkNode is not null", checkNode);
 
         deletedNode = trashcanAPI.getDeletedNodeCall(dummyNode.getId()).execute().body();
-        Assert.assertNull(deletedNode, "deletedNode is not null");
+        Assert.assertNull("deletedNode is not null", deletedNode);
 
     }
 

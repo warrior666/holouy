@@ -20,9 +20,9 @@ package com.alfresco.client.api.tests.core;
 
 import java.io.IOException;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import com.alfresco.client.api.AlfrescoAPITestCase;
 import com.alfresco.client.api.core.PeopleAPI;
@@ -49,6 +49,6 @@ public class PeopleApiTest extends AlfrescoAPITestCase
 
         // Check Response
         PersonRepresentation person = response.body();
-        Assert.assertNotNull(person, "Response is empty");
+        Assert.assertNotNull("Response is empty", person);
     }
 }

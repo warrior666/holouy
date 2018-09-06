@@ -15,11 +15,6 @@ import org.huy.tools.model.CategoryDTO;
 
 import com.alfresco.client.api.common.representation.ResultPaging;
 import com.alfresco.client.api.core.model.representation.TagRepresentation;
-import com.alfresco.client.api.search.body.QueryBody;
-import com.alfresco.client.api.search.body.RequestQuery;
-import com.alfresco.client.api.search.body.RequestQuery.LanguageEnum;
-import com.alfresco.client.api.search.model.ResultNodeRepresentation;
-import com.alfresco.client.api.search.model.ResultSetRepresentation;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -28,10 +23,11 @@ public class CategoryImportTool {
 
 	private static final String NEW_LINE = "\n";
 
-	private final static Logger log = Logger.getLogger(CategoryImportTool.class);
+	private static final Logger log = Logger.getLogger(CategoryImportTool.class);
 
 	private CategoryController controller;
 
+	
 	public CategoryImportTool(CategoryController client) {
 		controller = client;
 	}
@@ -40,6 +36,7 @@ public class CategoryImportTool {
 		Call<ResultPaging<TagRepresentation>> tags = controller.getTagsAPI().listTagsCall();
 
 		System.out.println(tags.toString());
+
 		try {
 			Response<ResultPaging<TagRepresentation>> response = tags.execute();
 

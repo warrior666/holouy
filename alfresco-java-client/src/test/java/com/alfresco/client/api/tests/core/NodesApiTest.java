@@ -23,16 +23,21 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import com.alfresco.client.api.AlfrescoAPITestCase;
 import com.alfresco.client.api.common.representation.ResultPaging;
 import com.alfresco.client.api.core.NodesAPI;
-import com.alfresco.client.api.core.model.body.*;
+import com.alfresco.client.api.core.model.body.AssociationBody;
+import com.alfresco.client.api.core.model.body.ChildAssociationBody;
+import com.alfresco.client.api.core.model.body.NodeBodyCopy;
+import com.alfresco.client.api.core.model.body.NodeBodyCreate;
+import com.alfresco.client.api.core.model.body.NodeBodyLock;
+import com.alfresco.client.api.core.model.body.NodeBodyUpdate;
 import com.alfresco.client.api.core.model.representation.AssociationInfoRepresentation;
 import com.alfresco.client.api.core.model.representation.NodeRepresentation;
 import com.alfresco.client.api.tests.utils.IOUtils;
@@ -87,7 +92,7 @@ public class NodesApiTest extends AlfrescoAPITestCase
         client = prepareClient(TEST_ENDPOINT, TEST_USERNAME, TEST_PASSWORD);
     }
 
-    @BeforeMethod
+    @Before
     public void createLocalTmpFolder()
     {
         try
@@ -101,7 +106,7 @@ public class NodesApiTest extends AlfrescoAPITestCase
         }
     }
 
-    @AfterMethod
+    @After
     public void cleanLocalTmpFolder()
     {
         tmpFolder.delete();
@@ -123,33 +128,33 @@ public class NodesApiTest extends AlfrescoAPITestCase
 
         // Check Response
         NodeRepresentation nodeResponse = response.body();
-        Assert.assertNotNull(nodeResponse, "Response is empty");
-        Assert.assertNotNull(nodeResponse, "Response has no data");
+        Assert.assertNotNull("Response is empty", nodeResponse);
+        Assert.assertNotNull("Response has no data", nodeResponse);
 
         // Check Node Info
         NodeRepresentation rootNode = nodeResponse;
-        Assert.assertTrue(rootNode.isFolder(), "Root Folder is not a Folder ??");
-        Assert.assertEquals(rootNode.getName(), "Company Home", "Root Folder is not Company Home");
-        Assert.assertEquals(rootNode.getNodeType(), "cm:folder", "Root Folder is not a Folder ??");
-        Assert.assertNotNull(rootNode.getId(), "Node Identifier is empty");
-        Assert.assertTrue(NodeRefUtils.isIdentifier(rootNode.getId()), "Node Identifier is not an identifier");
-        Assert.assertNull(rootNode.getParentId(), "Company Home has a Parent ?");
+        Assert.assertTrue("Root Folder is not a Folder ??", rootNode.isFolder());
+        Assert.assertEquals("Root Folder is not Company Home", rootNode.getName(), "Company Home");
+        Assert.assertEquals("Root Folder is not a Folder ??", rootNode.getNodeType(), "cm:folder");
+        Assert.assertNotNull("Node Identifier is empty", rootNode.getId());
+        Assert.assertTrue("Node Identifier is not an identifier", NodeRefUtils.isIdentifier(rootNode.getId()));
+        Assert.assertNull("Company Home has a Parent ?", rootNode.getParentId());
 
         // Aspects
-        Assert.assertFalse(rootNode.getAspects().isEmpty(), "Root Folder is not a Folder ??");
-        Assert.assertEquals(rootNode.getAspects().size(), 3, "Root folder has more aspects");
+        Assert.assertFalse("Root Folder is not a Folder ??", rootNode.getAspects().isEmpty());
+        Assert.assertEquals("Root folder has more aspects", rootNode.getAspects().size(), 3);
         for (String aspect : rootNode.getAspects())
         {
-            Assert.assertTrue(DEFAULT_FOLDER_ASPECTS.contains(aspect), aspect + "is not a default aspect");
+            Assert.assertTrue(aspect + "is not a default aspect", DEFAULT_FOLDER_ASPECTS.contains(aspect));
         }
 
         // CreatedAt & ModifiedAt
-        Assert.assertNotNull(rootNode.getCreatedAt(), "createdAt is empty");
-        Assert.assertNotNull(rootNode.getModifiedAt(), "modifiedAt is empty");
+        Assert.assertNotNull("createdAt is empty", rootNode.getCreatedAt());
+        Assert.assertNotNull("modifiedAt is empty", rootNode.getModifiedAt());
 
         // createdByUser & modifiedByUser
-        Assert.assertNotNull(rootNode.getCreatedByUser(), "createdByUser is empty");
-        Assert.assertNotNull(rootNode.getModifiedByUser(), "modifiedByUser is empty");
+        Assert.assertNotNull("createdByUser is empty", rootNode.getCreatedByUser());
+        Assert.assertNotNull("modifiedByUser is empty", rootNode.getModifiedByUser());
         if (USERID_SYSTEM.equals(rootNode.getModifiedByUser().getDisplayName()))
         {
             Assert.assertEquals(rootNode.getModifiedByUser().getDisplayName(), USERID_SYSTEM);
@@ -166,8 +171,8 @@ public class NodesApiTest extends AlfrescoAPITestCase
         }
 
         // Properties
-        Assert.assertNotNull(rootNode.getProperties(), "Properties is empty");
-        Assert.assertEquals(rootNode.getProperties().get("cm:title"), "Company Home", "Wrong value for cm:title");
+        Assert.assertNotNull("Properties is empty", rootNode.getProperties());
+        Assert.assertEquals("Wrong value for cm:title", rootNode.getProperties().get("cm:title"), "Company Home");
 
     }
 
@@ -185,8 +190,8 @@ public class NodesApiTest extends AlfrescoAPITestCase
 
         // Check Response
         ResultPaging<NodeRepresentation> nodesResponse = response.body();
-        Assert.assertNotNull(nodesResponse, "Response is empty");
-        Assert.assertNotNull(nodesResponse.getList(), "Response has no listActivitiesForPersonCall object");
+        Assert.assertNotNull("Response is empty", nodesResponse);
+        Assert.assertNotNull("Response has no listActivitiesForPersonCall object", nodesResponse.getList());
         // Assert.assertNotNull(nodesResponse.getList().getPagination(),
         // "Response has no pagination");
 
@@ -204,46 +209,45 @@ public class NodesApiTest extends AlfrescoAPITestCase
             nodesResponse = nodeService.listNodeChildrenCall(NodesAPI.FOLDER_MY).execute().body();
         }
 
-        Assert.assertEquals(nodesResponse.getCount(), 7, "Pagination Total items is wrong. Stale state ?");
+        Assert.assertEquals("Pagination Total items is wrong. Stale state ?", nodesResponse.getCount(), 7);
         // Assert.assertEquals(nodesResponse.getCount(), 7,
         // "Pagination Count is wrong. Stale state ?");
 
-        Assert.assertNotNull(nodesResponse.getList().get(0), "Response has no pagination");
+        Assert.assertNotNull("Response has no pagination", nodesResponse.getList().get(0));
 
         // CREATE
         NodeBodyCreate request = new NodeBodyCreate("Test", "cm:folder");
         Response<NodeRepresentation> testNodeResponse = nodeService.createNodeCall(NodesAPI.FOLDER_ROOT, request)
                 .execute();
-        Assert.assertNotNull(testNodeResponse, "Response is empty");
+        Assert.assertNotNull("Response is empty", testNodeResponse);
         Assert.assertEquals(testNodeResponse.isSuccessful(), true);
-        Assert.assertNotNull(testNodeResponse.body(), "Response body is empty");
+        Assert.assertNotNull("Response body is empty", testNodeResponse.body());
 
         // Check Node Info
         NodeRepresentation testNode = testNodeResponse.body();
-        Assert.assertTrue(testNode.isFolder(), "Test Folder is not a Folder ??");
-        Assert.assertEquals(testNode.getName(), "Test", "Root Folder is not Company Home");
-        Assert.assertEquals(testNode.getNodeType(), "cm:folder", "Root Folder is not a Folder ??");
-        Assert.assertNotNull(testNode.getId(), "Node Identifier is empty");
-        Assert.assertTrue(NodeRefUtils.isIdentifier(testNode.getId()), "Node Identifier is not an identifier");
-        Assert.assertNotNull(testNode.getParentId(), "Test has a Parent ?");
+        Assert.assertTrue("Test Folder is not a Folder ??", testNode.isFolder());
+        Assert.assertEquals("Root Folder is not Company Home", testNode.getName(), "Test");
+        Assert.assertEquals("Root Folder is not a Folder ??", testNode.getNodeType(), "cm:folder");
+        Assert.assertNotNull("Node Identifier is empty", testNode.getId());
+        Assert.assertTrue("Node Identifier is not an identifier", NodeRefUtils.isIdentifier(testNode.getId()));
+        Assert.assertNotNull("Test has a Parent ?", testNode.getParentId());
         for (String aspect : testNode.getAspects())
         {
-            Assert.assertTrue(DEFAULT_FOLDER_ASPECTS.contains(aspect), aspect + "is not a default aspect");
+            Assert.assertTrue(aspect + "is not a default aspect", DEFAULT_FOLDER_ASPECTS.contains(aspect));
         }
 
-        Assert.assertFalse(testNode.hasAspects("cm:titled"), "Titled has been set without requesting");
-        Assert.assertNull(testNode.getProperties(), "Properties is defined");
+        Assert.assertFalse("Titled has been set without requesting", testNode.hasAspects("cm:titled"));
+        Assert.assertNull("Properties is defined", testNode.getProperties());
 
         // RENAME
         NodeBodyUpdate renameRequest = new NodeBodyUpdate("TestV2");
         Response<NodeRepresentation> updatedResponse = nodeService.updateNodeCall(testNode.getId(), renameRequest)
                 .execute();
-        Assert.assertEquals(updatedResponse.body().getName(), "TestV2", "Folder renaming is wrong");
+        Assert.assertEquals("Folder renaming is wrong", updatedResponse.body().getName(), "TestV2");
 
         Response<NodeRepresentation> updated2Response = nodeService.getNodeCall(testNode.getId()).execute();
-        Assert.assertEquals(updated2Response.body().getName(), "TestV2", "Folder renaming is wrong");
-        Assert.assertEquals(updated2Response.body().getName(), updatedResponse.body().getName(),
-                "Folder renaming is wrong");
+        Assert.assertEquals("Folder renaming is wrong", updated2Response.body().getName(), "TestV2");
+        Assert.assertEquals("Folder renaming is wrong", updated2Response.body().getName(), updatedResponse.body().getName());
 
         // EDIT PROPERTIES
         LinkedTreeMap<String, Object> properties = new LinkedTreeMap<>();
@@ -252,19 +256,17 @@ public class NodesApiTest extends AlfrescoAPITestCase
         Response<NodeRepresentation> editedResponse = nodeService.updateNodeCall(testNode.getId(), editRequest)
                 .execute();
 
-        Assert.assertEquals(editedResponse.body().getProperties().get("cm:title"), "ALFRESCO",
-                "Wrong value for cm:title");
-        Assert.assertNull(editedResponse.body().getProperties().get("cm:description"),
-                "Wrong value for cm:description");
+        Assert.assertEquals("Wrong value for cm:title", editedResponse.body().getProperties().get("cm:title"), "ALFRESCO");
+        Assert.assertNull("Wrong value for cm:description", editedResponse.body().getProperties().get("cm:description"));
 
         // DELETE
         Response<Void> deleteResponse = nodeService.deleteNodeCall(testNode.getId()).execute();
-        Assert.assertNotNull(deleteResponse, "Response is empty");
+        Assert.assertNotNull("Response is empty", deleteResponse);
         Assert.assertEquals(deleteResponse.isSuccessful(), true);
-        Assert.assertNull(deleteResponse.body(), "Response body is not empty");
+        Assert.assertNull("Response body is not empty", deleteResponse.body());
     }
 
-    @Test(enabled = false)
+    @Test
     public void ContentLifeCycleTests() throws IOException
     {
         NodesAPI nodeService = client.getAPI(NodesAPI.class);
@@ -301,29 +303,29 @@ public class NodesApiTest extends AlfrescoAPITestCase
 
         // Check Result
         Assert.assertNotNull(createdNodeResponse);
-        Assert.assertEquals(createdNodeResponse.isSuccessful(), true, "Upload doesn't work");
+        Assert.assertEquals("Upload doesn't work", createdNodeResponse.isSuccessful(), true);
 
         // Check Response
         NodeRepresentation testNode = createdNodeResponse.body();
-        Assert.assertNotNull(testNode, "Response is empty");
-        Assert.assertFalse(testNode.isFolder(), "Test Content is a Folder ??");
-        Assert.assertTrue(testNode.isFile(), "Test Content is not a Content ??");
-        Assert.assertEquals(testNode.getName(), "test.txt", "Root Folder is not Company Home");
-        Assert.assertEquals(testNode.getNodeType(), "cm:content", "Root Folder is not a Folder ??");
-        Assert.assertNotNull(testNode.getId(), "Node Identifier is empty");
-        Assert.assertTrue(NodeRefUtils.isIdentifier(testNode.getId()), "Node Identifier is not an identifier");
-        Assert.assertNotNull(testNode.getParentId(), "Test has a Parent ?");
+        Assert.assertNotNull("Response is empty", testNode);
+        Assert.assertFalse("Test Content is a Folder ??", testNode.isFolder());
+        Assert.assertTrue("Test Content is not a Content ??", testNode.isFile());
+        Assert.assertEquals("Root Folder is not Company Home", testNode.getName(), "test.txt");
+        Assert.assertEquals("Root Folder is not a Folder ??", testNode.getNodeType(), "cm:content");
+        Assert.assertNotNull("Node Identifier is empty", testNode.getId());
+        Assert.assertTrue("Node Identifier is not an identifier", NodeRefUtils.isIdentifier(testNode.getId()));
+        Assert.assertNotNull("Test has a Parent ?", testNode.getParentId());
         for (String aspect : testNode.getAspects())
         {
-            Assert.assertTrue(DEFAULT_FILE_ASPECTS.contains(aspect), aspect + " is not a default aspect");
+            Assert.assertTrue(aspect + " is not a default aspect", DEFAULT_FILE_ASPECTS.contains(aspect));
         }
 
-        Assert.assertNotNull(testNode.getParentId(), "Test has a Parent ?");
+        Assert.assertNotNull("Test has a Parent ?", testNode.getParentId());
 
-        Assert.assertNotNull(testNode.getContent(), "Content is empty.");
-        Assert.assertEquals(testNode.getContent().getSizeInBytes(), 12, "Content Size is wrong");
-        Assert.assertEquals(testNode.getContent().getMimeType(), "text/plain", "Content Mimetype is wrong");
-        Assert.assertEquals(testNode.getContent().getMimeTypeName(), "Plain Text", "Content MimeType Name is false");
+        Assert.assertNotNull("Content is empty.", testNode.getContent());
+        Assert.assertEquals("Content Size is wrong", testNode.getContent().getSizeInBytes(), 12);
+        Assert.assertEquals("Content Mimetype is wrong", testNode.getContent().getMimeType(), "text/plain");
+        Assert.assertEquals("Content MimeType Name is false", testNode.getContent().getMimeTypeName(), "Plain Text");
 
         // Download Content
         Call<ResponseBody> downloadCall = nodeService.getNodeContentCall(testNode.getId());
@@ -343,16 +345,15 @@ public class NodesApiTest extends AlfrescoAPITestCase
                 .updateNodeContentCall(testNode.getId(), requestBody).execute();
         // Check Result
         Assert.assertNotNull(updateNodeResponse);
-        Assert.assertEquals(updateNodeResponse.isSuccessful(), true, "Update doesn't work");
+        Assert.assertEquals("Update doesn't work", updateNodeResponse.isSuccessful(), true);
 
         // Check Response
         NodeRepresentation nodeUpdatedResponse = updateNodeResponse.body();
-        Assert.assertNotNull(nodeUpdatedResponse, "Response is empty");
-        Assert.assertNotNull(nodeUpdatedResponse.getName(), "Response has no data");
-        Assert.assertEquals(nodeUpdatedResponse.getContent().getSizeInBytes(), 30, "Content Size is wrong");
-        Assert.assertEquals(nodeUpdatedResponse.getContent().getMimeType(), "text/plain", "Content Mimetype is wrong");
-        Assert.assertEquals(nodeUpdatedResponse.getContent().getMimeTypeName(), "Plain Text",
-                "Content MimeType Name is false");
+        Assert.assertNotNull("Response is empty", nodeUpdatedResponse);
+        Assert.assertNotNull("Response has no data", nodeUpdatedResponse.getName());
+        Assert.assertEquals("Content Size is wrong", nodeUpdatedResponse.getContent().getSizeInBytes(), 30);
+        Assert.assertEquals("Content Mimetype is wrong", nodeUpdatedResponse.getContent().getMimeType(), "text/plain");
+        Assert.assertEquals("Content MimeType Name is false", nodeUpdatedResponse.getContent().getMimeTypeName(), "Plain Text");
 
         // COPY
         NodeBodyCreate request = new NodeBodyCreate("Test", "cm:folder");
@@ -364,17 +365,17 @@ public class NodesApiTest extends AlfrescoAPITestCase
 
         // Check Result
         Assert.assertNotNull(copiedNodeResponse);
-        Assert.assertEquals(copiedNodeResponse.isSuccessful(), true, "Update doesn't work");
+        Assert.assertEquals("Update doesn't work", copiedNodeResponse.isSuccessful(), true);
 
         // Check Response
         NodeRepresentation copiedNode = copiedNodeResponse.body();
-        Assert.assertNotNull(copiedNode, "Response is empty");
-        Assert.assertEquals(copiedNode.getName(), "Copied.txt");
+        Assert.assertNotNull("Response is empty", copiedNode);
+        Assert.assertEquals("Copied.txt", copiedNode.getName());
         Assert.assertEquals(copiedNode.getParentId(), testFolder.getId());
 
         // DELETE
         Response<Void> deleteResponse = nodeService.deleteNodeCall(testNode.getId()).execute();
-        Assert.assertTrue(deleteResponse.isSuccessful(), "Deletion has failed");
+        Assert.assertTrue("Deletion has failed", deleteResponse.isSuccessful());
 
         // MOVE
         NodeRepresentation rootFolder = nodeService.getNodeCall(NodesAPI.FOLDER_ROOT).execute().body();
@@ -384,12 +385,12 @@ public class NodesApiTest extends AlfrescoAPITestCase
 
         // Check Result
         Assert.assertNotNull(movedNodeResponse);
-        Assert.assertEquals(movedNodeResponse.isSuccessful(), true, "Update doesn't work");
+        Assert.assertEquals("Update doesn't work", movedNodeResponse.isSuccessful(), true);
 
         // Check Response
         NodeRepresentation movedNode = movedNodeResponse.body();
-        Assert.assertNotNull(movedNode, "Response is empty");
-        Assert.assertEquals(movedNode.getName(), "MovedText.txt");
+        Assert.assertNotNull("Response is empty", movedNode);
+        Assert.assertEquals("MovedText.txt", movedNode.getName());
         Assert.assertEquals(movedNode.getParentId(), rootFolder.getId());
 
         // DELETE
@@ -417,26 +418,26 @@ public class NodesApiTest extends AlfrescoAPITestCase
         // CopiedNode contains a target association
         ResultPaging<NodeRepresentation> targetAssocNodes = nodeService.listTargetAssociationsCall(copiedNode.getId())
                 .execute().body();
-        Assert.assertEquals(targetAssocNodes.getCount(), 1, "Copied Association is not present after copy");
+        Assert.assertEquals("Copied Association is not present after copy", targetAssocNodes.getCount(), 1);
         AssociationInfoRepresentation association = targetAssocNodes.getList().get(0).getAssociation();
         Assert.assertNotNull(association);
-        Assert.assertEquals(association.getAssocType(), CM_ORIGINAL, "AssocType is not cm:original");
+        Assert.assertEquals("AssocType is not cm:original", association.getAssocType(), CM_ORIGINAL);
 
         // dummyNode contains source association
         ResultPaging<NodeRepresentation> sourceAssocNodes = nodeService.listSourceAssociationsCall(originalNode.getId())
                 .execute().body();
-        Assert.assertEquals(sourceAssocNodes.getCount(), 1, "Copied Association is not present after copy");
+        Assert.assertEquals("Copied Association is not present after copy", sourceAssocNodes.getCount(), 1);
         AssociationInfoRepresentation sourceAssociation = sourceAssocNodes.getList().get(0).getAssociation();
         Assert.assertNotNull(sourceAssociation);
-        Assert.assertEquals(sourceAssociation.getAssocType(), CM_ORIGINAL, "AssocType is not cm:original");
+        Assert.assertEquals("AssocType is not cm:original", sourceAssociation.getAssocType(), CM_ORIGINAL);
 
         // Remove Association
         nodeService.deleteAssocationCall(copiedNode.getId(), originalNode.getId(), CM_ORIGINAL).execute();
 
         targetAssocNodes = nodeService.listTargetAssociationsCall(copiedNode.getId()).execute().body();
-        Assert.assertEquals(targetAssocNodes.getCount(), 0, "Copied Association is still present after copy");
+        Assert.assertEquals("Copied Association is still present after copy", targetAssocNodes.getCount(), 0);
         sourceAssocNodes = nodeService.listSourceAssociationsCall(originalNode.getId()).execute().body();
-        Assert.assertEquals(sourceAssocNodes.getCount(), 0, "Copied Association is still present after copy");
+        Assert.assertEquals("Copied Association is still present after copy", sourceAssocNodes.getCount(), 0);
 
         // Recreate Association
         nodeService
@@ -444,9 +445,9 @@ public class NodesApiTest extends AlfrescoAPITestCase
                 .execute();
 
         targetAssocNodes = nodeService.listTargetAssociationsCall(copiedNode.getId()).execute().body();
-        Assert.assertEquals(targetAssocNodes.getCount(), 1, "Copied Association is still present after copy");
+        Assert.assertEquals("Copied Association is still present after copy", targetAssocNodes.getCount(), 1);
         sourceAssocNodes = nodeService.listSourceAssociationsCall(originalNode.getId()).execute().body();
-        Assert.assertEquals(sourceAssocNodes.getCount(), 1, "Copied Association is still present after copy");
+        Assert.assertEquals("Copied Association is still present after copy", sourceAssocNodes.getCount(), 1);
 
         // Secondary Children
         // Create a folder and add it as second parent for copied Node
@@ -454,31 +455,26 @@ public class NodesApiTest extends AlfrescoAPITestCase
                 .createNodeCall(originalNode.getParentId(), new NodeBodyCreate("T", "cm:folder")).execute().body();
         ResultPaging<NodeRepresentation> childrenNodes = nodeService.listNodeChildrenCall(parentNode2.getId()).execute()
                 .body();
-        Assert.assertEquals(childrenNodes.getCount(), 0, "Wrong number of children for newly created folder");
+        Assert.assertEquals("Wrong number of children for newly created folder", childrenNodes.getCount(), 0);
 
         nodeService.createSecondaryChildAssocationCall(parentNode2.getId(),
                 new ChildAssociationBody(copiedNode.getId(), "cm:contains"), null).execute();
 
         // List children as usual
         childrenNodes = nodeService.listNodeChildrenCall(parentNode2.getId()).execute().body();
-        Assert.assertEquals(childrenNodes.getCount(), 1,
-                "Wrong number of children after adding a node as second children");
-        Assert.assertEquals(childrenNodes.getList().get(0).getId(), copiedNode.getId(),
-                "CopiedId is not the node expected");
+        Assert.assertEquals("Wrong number of children after adding a node as second children", childrenNodes.getCount(), 1);
+        Assert.assertEquals( "CopiedId is not the node expected", childrenNodes.getList().get(0).getId(), copiedNode.getId());
 
         // List secondary children
         ResultPaging<NodeRepresentation> secondaryChildrenNodes = nodeService
                 .listSecondaryChildrenCall(parentNode2.getId()).execute().body();
-        Assert.assertEquals(secondaryChildrenNodes.getCount(), 1,
-                "Wrong number of children after adding a node as second children");
-        Assert.assertEquals(secondaryChildrenNodes.getList().get(0).getId(), copiedNode.getId(),
-                "CopiedId is not the node expected");
+        Assert.assertEquals("Wrong number of children after adding a node as second children", secondaryChildrenNodes.getCount(), 1);
+        Assert.assertEquals("CopiedId is not the node expected", secondaryChildrenNodes.getList().get(0).getId(), copiedNode.getId());
 
         // List parents
         ResultPaging<NodeRepresentation> parentCopiedNode = nodeService.listParentsCall(copiedNode.getId()).execute()
                 .body();
-        Assert.assertEquals(parentCopiedNode.getCount(), 2,
-                "Wrong number of parents. It should be 2 (primary & secondary)");
+        Assert.assertEquals("Wrong number of parents. It should be 2 (primary & secondary)", parentCopiedNode.getCount(), 2);
 
         for (NodeRepresentation parent : parentCopiedNode.getList())
         {
@@ -491,7 +487,7 @@ public class NodesApiTest extends AlfrescoAPITestCase
 
         // List parents
         parentCopiedNode = nodeService.listParentsCall(copiedNode.getId()).execute().body();
-        Assert.assertEquals(parentCopiedNode.getCount(), 1, "Wrong number of parents. It should be 1 (primary only)");
+        Assert.assertEquals("Wrong number of parents. It should be 1 (primary only)", parentCopiedNode.getCount(), 1);
 
         for (NodeRepresentation parent : parentCopiedNode.getList())
         {

@@ -23,17 +23,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-import com.alfresco.client.AlfrescoClient;
 import com.alfresco.client.api.AlfrescoAPITestCase;
-import com.alfresco.client.api.search.body.*;
+import com.alfresco.client.api.search.body.QueryBody;
+import com.alfresco.client.api.search.body.RequestFacetFields;
+import com.alfresco.client.api.search.body.RequestFacetFieldsFacets;
+import com.alfresco.client.api.search.body.RequestFacetQuery;
+import com.alfresco.client.api.search.body.RequestPagination;
+import com.alfresco.client.api.search.body.RequestQuery;
+import com.alfresco.client.api.search.body.RequestSortDefinition;
 import com.alfresco.client.api.search.model.ResultNodeRepresentation;
 import com.alfresco.client.api.search.model.ResultSetRepresentation;
 
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Response;
 
 public class SearchApiTest extends AlfrescoAPITestCase
@@ -62,9 +66,9 @@ public class SearchApiTest extends AlfrescoAPITestCase
 
         // Check Response
         ResultSetRepresentation<ResultNodeRepresentation> resultSet = response.body();
-        Assert.assertNotNull(resultSet, "Response is empty");
-        Assert.assertNotNull(resultSet.getList(), "Response has no entries  ");
-        Assert.assertNotNull(resultSet.getPagination(), "Response has no Pagination Info");
+        Assert.assertNotNull("Response is empty", resultSet);
+        Assert.assertNotNull("Response has no entries  ", resultSet.getList());
+        Assert.assertNotNull("Response has no Pagination Info", resultSet.getPagination());
      //   Assert.assertNull(resultSet.getContext(), "Response has Context");
 
         // Check Pagination & Entries
@@ -89,10 +93,10 @@ public class SearchApiTest extends AlfrescoAPITestCase
 
         // Check Response
         ResultSetRepresentation<ResultNodeRepresentation> resultSet = response.body();
-        Assert.assertNotNull(resultSet, "Response is empty");
-        Assert.assertNotNull(resultSet.getList(), "Response has no entries  ");
-        Assert.assertNotNull(resultSet.getPagination(), "Response has no Pagination Info");
-        Assert.assertNull(resultSet.getContext(), "Response has Context");
+        Assert.assertNotNull("Response is empty", resultSet);
+        Assert.assertNotNull("Response has no entries  ", resultSet.getList());
+        Assert.assertNotNull("Response has no Pagination Info", resultSet.getPagination());
+        Assert.assertNull("Response has Context", resultSet.getContext());
 
         // Check Pagination & Entries
         List<ResultNodeRepresentation> results = resultSet.getList();
@@ -112,10 +116,10 @@ public class SearchApiTest extends AlfrescoAPITestCase
 
         // Check Response
         ResultSetRepresentation<ResultNodeRepresentation> resultSet = response.body();
-        Assert.assertNotNull(resultSet, "Response is empty");
-        Assert.assertNotNull(resultSet.getList(), "Response has no entries  ");
-        Assert.assertNotNull(resultSet.getPagination(), "Response has no Pagination Info");
-        Assert.assertNull(resultSet.getContext(), "Response has Context");
+        Assert.assertNotNull("Response is empty", resultSet);
+        Assert.assertNotNull("Response has no entries  ", resultSet.getList());
+        Assert.assertNotNull("Response has no Pagination Info", resultSet.getPagination());
+        Assert.assertNull("Response has Context", resultSet.getContext());
 
         // Check Pagination & Entries
         List<ResultNodeRepresentation> results = resultSet.getList();
@@ -166,10 +170,10 @@ public class SearchApiTest extends AlfrescoAPITestCase
 
         // Check Response
         ResultSetRepresentation<ResultNodeRepresentation> resultSet = response.body();
-        Assert.assertNotNull(resultSet, "Response is empty");
-        Assert.assertNotNull(resultSet.getList(), "Response has no entries  ");
-        Assert.assertNotNull(resultSet.getPagination(), "Response has no Pagination Info");
-        Assert.assertNotNull(resultSet.getContext(), "Response has no Context");
+        Assert.assertNotNull("Response is empty", resultSet);
+        Assert.assertNotNull("Response has no entries  ", resultSet.getList());
+        Assert.assertNotNull("Response has no Pagination Info", resultSet.getPagination());
+        Assert.assertNotNull("Response has no Context", resultSet.getContext());
 
         // Check Pagination
         Assert.assertEquals(1, resultSet.getPagination().getSkipCount());
@@ -178,12 +182,12 @@ public class SearchApiTest extends AlfrescoAPITestCase
         Assert.assertEquals(5, resultSet.getList().size());
 
         // Check Context
-        Assert.assertNull(resultSet.getContext().getConsistency(), "Consistency is not empty");
-        Assert.assertNotNull(resultSet.getContext().getSpellcheck(), "SpellCheck is null");
-        Assert.assertTrue(resultSet.getContext().getSpellcheck().isEmpty(), "SpellCheck is not empty");
-        Assert.assertNotNull(resultSet.getContext().getFacetFields(), "Facet Fields is null");
-        Assert.assertTrue(resultSet.getContext().getFacetFields().isEmpty(), "Facet Fields is not empty");
-        Assert.assertNotNull(resultSet.getContext().getFacetQueries(), "Facet Queryies is empty");
+        Assert.assertNull("Consistency is not empty", resultSet.getContext().getConsistency());
+        Assert.assertNotNull("SpellCheck is null", resultSet.getContext().getSpellcheck());
+        Assert.assertTrue("SpellCheck is not empty", resultSet.getContext().getSpellcheck().isEmpty());
+        Assert.assertNotNull("Facet Fields is null", resultSet.getContext().getFacetFields());
+        Assert.assertTrue("Facet Fields is not empty", resultSet.getContext().getFacetFields().isEmpty());
+        Assert.assertNotNull("Facet Queryies is empty", resultSet.getContext().getFacetQueries());
 
         // Check Results (Filter Fields)
         List<ResultNodeRepresentation> results = resultSet.getList();

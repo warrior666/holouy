@@ -77,11 +77,18 @@
 	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" classpathref="catalina-ant-classpath"/>
 
 	<target name="tomcat-stop" description="stop application in tomcat">
+		<!--
 		<stop url="${tomcat-manager-url}" username="${tomcat-manager-username}"
 			password="${tomcat-manager-password}" path="/${repo.module}" />
 		
 		<stop url="${tomcat-manager-url}" username="${tomcat-manager-username}"
 					password="${tomcat-manager-password}" path="/${share.module}" />
+		-->
+		
+		<exec executable="./catalina.sh" dir="${alfresco.install}/tomcat/bin">
+		    <arg value="stop"/>
+		  </exec>
+			
 	</target>
 
 	<target name="alfresco-stop">
@@ -91,14 +98,20 @@
 	</target>
 		  	
 	<target name="tomcat-start" description="start application in tomcat">
-		<start url="${tomcat-manager-url}" username="${tomcat-manager-username}"
+	<!--	<start url="${tomcat-manager-url}" username="${tomcat-manager-username}"
 			password="${tomcat-manager-password}" path="/${repo.module}" />
 		<start url="${tomcat-manager-url}" username="${tomcat-manager-username}"
 			password="${tomcat-manager-password}" path="/${share.module}" />
+		-->
+		
+		<exec executable="./catalina.sh" dir="${alfresco.install}/tomcat/bin">
+		    <arg value="start"/>
+		  </exec>
+
 	</target>
 	
 	<target name="alfresco-start">
-		  <exec executable="./alfresco.sh" dir="${alfresco.install}">
+		<exec executable="./alfresco.sh" dir="${alfresco.install}">
 		    <arg value="start"/>
 		  </exec>
 	</target>
@@ -296,10 +309,10 @@
 	
 	<target name="compile-and-deploy">
 		  <antcall target="compile"/>
-		  <antcall target="alfresco-stop"/>
+		  <antcall target="tomcat-stop"/>
 		  <antcall target="delete-logs"/>
 		  <antcall target="install_amps"/>
 		  <antcall target="delete-webapps"/>
-		  <antcall target="alfresco-start"/>
+		  <antcall target="tomcat-start"/>
 	</target>
 </project>

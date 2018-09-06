@@ -23,9 +23,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import com.alfresco.client.api.AlfrescoAPITestCase;
 import com.alfresco.client.api.common.representation.ResultPaging;
@@ -73,7 +73,7 @@ public class CommentsApiTest extends AlfrescoAPITestCase
                 .execute();
         Assert.assertNotNull(response);
         Assert.assertEquals(response.isSuccessful(), true);
-        Assert.assertEquals(response.body().getCount(), 0, "Comment already present?");
+        Assert.assertEquals("Comment already present?", response.body().getCount(), 0);
 
         // Add Comment
         CommentBody request = new CommentBody(COMMENT_1);
@@ -97,8 +97,8 @@ public class CommentsApiTest extends AlfrescoAPITestCase
 
         // Check Response
         ResultPaging<CommentRepresentation> commentsResponse = response.body();
-        Assert.assertNotNull(commentsResponse, "Response is empty");
-        Assert.assertNotNull(commentsResponse.getList(), "Response has no comments");
+        Assert.assertNotNull("Response is empty", commentsResponse);
+        Assert.assertNotNull("Response has no comments", commentsResponse.getList());
 
         // Check Pagination & Entries
         List<CommentRepresentation> commentList = commentsResponse.getList();

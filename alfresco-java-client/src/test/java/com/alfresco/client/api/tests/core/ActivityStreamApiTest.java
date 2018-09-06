@@ -21,9 +21,9 @@ package com.alfresco.client.api.tests.core;
 import java.io.IOException;
 import java.util.List;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import com.alfresco.client.api.AlfrescoAPITestCase;
 import com.alfresco.client.api.common.representation.ResultPaging;
@@ -51,12 +51,12 @@ public class ActivityStreamApiTest extends AlfrescoAPITestCase
 
         // Check Response
         ResultPaging<ActivityRepresentation> activitiPaging = response.body();
-        Assert.assertNotNull(activitiPaging, "Response is empty");
-        Assert.assertNotNull(activitiPaging.getList(), "Response has no listActivitiesForPersonCall of comments");
+        Assert.assertNotNull("Response is empty", activitiPaging);
+        Assert.assertNotNull("Response has no listActivitiesForPersonCall of comments", activitiPaging.getList());
 
         // Check Pagination & Entries
         List<ActivityRepresentation> activities = activitiPaging.getList();
-        Assert.assertNotNull(activities, "Response has no pagination");
+        Assert.assertNotNull("Response has no pagination", activities);
 
         // Check Entry
         for (int i = 0; i < activitiPaging.getCount(); i++)

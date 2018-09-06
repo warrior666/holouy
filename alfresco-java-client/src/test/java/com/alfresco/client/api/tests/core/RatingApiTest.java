@@ -20,8 +20,8 @@ package com.alfresco.client.api.tests.core;
 
 import java.io.IOException;
 
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import com.alfresco.client.api.AlfrescoAPITestCase;
 

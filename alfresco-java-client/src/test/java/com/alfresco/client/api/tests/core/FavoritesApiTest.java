@@ -20,9 +20,9 @@ package com.alfresco.client.api.tests.core;
 
 import java.io.IOException;
 
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import com.alfresco.client.api.AlfrescoAPITestCase;
 import com.alfresco.client.api.common.representation.ResultPaging;
@@ -54,7 +54,7 @@ public class FavoritesApiTest extends AlfrescoAPITestCase
                 .execute();
         Assert.assertNotNull(response);
         Assert.assertEquals(response.isSuccessful(), true);
-        Assert.assertEquals(response.body().getCount(), 1, "Favorite already present?");
+        Assert.assertEquals("Favorite already present?", response.body().getCount(), 1);
 
         // Add Favorite File
         Response<FavoriteRepresentation> favResponse = favoritesAPI.createFavoriteCall(TEST_USERNAME,
@@ -66,18 +66,18 @@ public class FavoritesApiTest extends AlfrescoAPITestCase
 
         // Check One Favorites
         response = favoritesAPI.listFavoritesCall(TEST_USERNAME).execute();
-        Assert.assertEquals(response.body().getCount(), 1, "Favorite already present?");
+        Assert.assertEquals("Favorite already present?", response.body().getCount(), 1);
 
         // Retrieve one favorite
         Response<FavoriteRepresentation> favResponse2 = favoritesAPI.getFavoriteCall(TEST_USERNAME, favId).execute();
-        Assert.assertEquals(favResponse2.body(), favResponse.body(), "Favorite are not the same?");
+        Assert.assertEquals("Favorite are not the same?", favResponse2.body(), favResponse.body());
 
         // Remove Favorite
         favoritesAPI.deleteFavoriteCall(TEST_USERNAME, favId).execute();
 
         // Check No Favorites
         response = favoritesAPI.listFavoritesCall(TEST_USERNAME).execute();
-        Assert.assertEquals(response.body().getCount(), 0, "Favorite already present?");
+        Assert.assertEquals("Favorite already present?", response.body().getCount(), 0);
 
     }
 }
