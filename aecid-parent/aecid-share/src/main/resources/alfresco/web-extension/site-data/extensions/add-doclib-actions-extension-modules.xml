@@ -24,17 +24,29 @@
 								<show id="to" />
 								<show id="subject" />
 								<show id="body_text" />
+								<show id="notification_type" />
+								<show id="date" />
 							</field-visibility>
 							<appearance>
+								<field id="notification_type"
+									label-id="alfresco.tutorials.doclib.action.notification.form.field.notification_type" >
+									<control template="/org/alfresco/components/form/controls/selectone.ftl">
+										<control-param name="options">Fichas de preidentificacion,Seguimiento de ejecucion,Nota Pais,Otras Notificaciones</control-param>
+ 									</control>
+								</field>
 								<field id="to"
-									label-id="alfresco.tutorials.doclib.action.sendAsEmail.form.field.to" />
+									label-id="alfresco.tutorials.doclib.action.notification.form.field.to" />
 								<field id="subject"
-									label-id="alfresco.tutorials.doclib.action.sendAsEmail.form.field.subject" />
+									label-id="alfresco.tutorials.doclib.action.notification.form.field.subject" />
 								<field id="body_text"
-									label-id="alfresco.tutorials.doclib.action.sendAsEmail.form.field.body_text">
+									label-id="alfresco.tutorials.doclib.action.notification.form.field.body_text">
 									<control
 										template="/org/alfresco/components/form/controls/textarea.ftl" />
 								</field>
+								<field id="date"
+									label-id="alfresco.tutorials.doclib.action.notification.form.field.date">
+                					<control template="/org/alfresco/components/form/controls/date.ftl" />
+            					</field>
 							</appearance>
 						</form>
 					</forms>
@@ -42,17 +54,17 @@
 
 				<config evaluator="string-compare" condition="DocLibActions">
 					<actions>
-						<action id="alfresco.tutorials.doclib.action.sendAsEmail"
+						<action id="alfresco.tutorials.doclib.action.notification"
 							icon="email" type="javascript"
-							label="alfresco.tutorials.doclib.action.sendAsEmail.label">
+							label="alfresco.tutorials.doclib.action.notification.label">
 							<param name="function">onActionFormDialog</param>
 							<param name="itemKind">action</param>
 							<param name="itemId">send-as-email</param> <!-- Repository action id = Spring Bean id -->
 							<param name="mode">create</param>
 							<param name="destination">{node.nodeRef}</param>
-							<param name="successMessage">alfresco.tutorials.doclib.action.sendAsEmail.msg.success
+							<param name="successMessage">alfresco.tutorials.doclib.action.notification.msg.success
 							</param>
-							<param name="failureMessage">alfresco.tutorials.doclib.action.sendAsEmail.msg.failure
+							<param name="failureMessage">alfresco.tutorials.doclib.action.notification.msg.failure
 							</param>
 							<evaluator negate="true">alfresco.tutorials.evaluator.isEmailed
 							</evaluator>
@@ -113,11 +125,10 @@
 						<actionGroup id="document-browse">
 						        <action index="760" id="document-change-type" subgroup="70" appendEvaluators="true">
                						<evaluator>evaluator.doclib.action.DocumentEnableInSmartFolder</evaluator>
-            					</action>
-<!-- 							
-<action index="400"
-								id="alfresco.tutorials.doclib.action.sendAsEmail" />
--->							<action index="402"
+            					</action>			
+							<action index="400"
+								id="alfresco.tutorials.doclib.action.notification" />
+    						<action index="402"
 								id="aecid.alfresco.doclib.action.renamer" />
 							<action index="403"
 								id="aecid.alfresco.doclib.action.sumarizer" />
@@ -128,9 +139,8 @@
 						</actionGroup>
 						
 						<actionGroup id="document-details">
-<!-- 							<action index="400"
-								id="alfresco.tutorials.doclib.action.sendAsEmail" />
-								-->
+							<action index="400"
+								id="alfresco.tutorials.doclib.action.notification" />
 							<action index="402"
 								id="aecid.alfresco.doclib.action.renamer" />
 							<action index="403"
@@ -142,9 +152,9 @@
 						</actionGroup>
 						
 						<actionGroup id="folder-browse">
-<!-- 							<action index="400"
-								id="alfresco.tutorials.doclib.action.sendAsEmail" />
--->							<action index="402"
+ 							<action index="400"
+								id="alfresco.tutorials.doclib.action.notification" />
+							<action index="402"
 								id="aecid.alfresco.doclib.action.renamer" />
 							<action index="403"
 								id="aecid.alfresco.doclib.action.sumarizer" />
@@ -158,9 +168,8 @@
             				</action>
 						</actionGroup>
 						<actionGroup id="folder-details">
-<!-- 							<action index="400"
-								id="alfresco.tutorials.doclib.action.sendAsEmail" />
-								-->
+ 							<action index="400"
+								id="alfresco.tutorials.doclib.action.notification" />
 							<action index="402"
 								id="aecid.alfresco.doclib.action.renamer" />
 							<action index="403"

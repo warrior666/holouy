@@ -9,7 +9,9 @@
         <namespace uri="http://aecid.org/model/aecid/1.0" prefix="aecid"/>
     </namespaces>
     <data-types/>
-    <constraints/>
+
+<constraints/>
+
     
     <types>
         <type name="aecid:content">
@@ -46,7 +48,7 @@
                         </constraint>
                     </constraints>
                 </property>
-                <property name="aecid:keywords">
+<!--                 <property name="aecid:keywords">
                     <title>Palabras Claves</title>
                     <type>d:text</type>
                     <mandatory>false</mandatory>
@@ -56,6 +58,7 @@
                         <facetable>false</facetable>
                     </index>
                 </property>
+-->                
                 <property name="aecid:contentDate">
                     <title>Fecha Elaboracion</title>
                     <type>d:date</type>
@@ -90,8 +93,9 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:fprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
+  				<aspect>aecid:projectWorkflow</aspect>
   			</mandatory-aspects>
         </type>
         
@@ -104,7 +108,7 @@
             <overrides/>
             
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect>
   			</mandatory-aspects>
         </type>
@@ -117,7 +121,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -130,7 +134,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -161,7 +165,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -173,7 +177,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -186,7 +190,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -208,13 +212,14 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
         
         <type name="aecid:contract">
             <title>CON</title>
+            <description>Contrato</description>
             <parent>aecid:contentGral</parent>
             <properties/>
             <associations/>
@@ -230,7 +235,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -243,7 +248,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -256,7 +261,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -269,7 +274,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -282,7 +287,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -295,7 +300,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -308,7 +313,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -321,7 +326,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -364,7 +369,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -377,7 +382,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -390,7 +395,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -403,7 +408,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -416,7 +421,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -439,7 +444,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -452,7 +457,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -465,7 +470,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -478,7 +483,7 @@
             <associations/>
             <overrides/>
 			<mandatory-aspects>
-  				<aspect>aecid:projectable</aspect> 
+  				<aspect>aecid:cprojectable</aspect> 
   				<aspect>aecid:cooperation</aspect> 
   			</mandatory-aspects>
         </type>
@@ -674,6 +679,16 @@
             <mandatory-aspects/>
         </aspect>
         
+         <aspect name="aecid:cprojectable">
+             <title>Contenido de Proyecto</title>
+         	 <parent>aecid:projectable</parent> 
+         </aspect>
+         
+         <aspect name="aecid:fprojectable">
+             <title>Carpeta de Proyecto</title>
+         	 <parent>aecid:projectable</parent> 
+         </aspect>
+                  
         <aspect name="aecid:cooperation">
             <title>Cooperacion</title>
             <description>Aplica al contenido o carpeta donde se manejen datos sobre la cooperacion (modalidad o programa) </description>

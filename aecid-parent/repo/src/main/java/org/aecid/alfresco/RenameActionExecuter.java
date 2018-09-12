@@ -61,7 +61,7 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 
 		log.info("renamer name: " + name + " title: " + title);
 		
-		if (title.equals(STRING_EMPTY)) {
+		if (title == null || title.equals(STRING_EMPTY)) {
 			title = name;
 			nodeService.setProperty(nodeRef, ContentModel.PROP_TITLE, title);
 		}

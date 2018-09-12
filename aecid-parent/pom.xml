@@ -9,33 +9,41 @@
 	<packaging>pom</packaging>
 	<name>aecid-parent</name>
 	<description>AECID alfresco customization</description>
-	
+
 	<parent>
 		<groupId>org.alfresco</groupId>
 		<artifactId>generator-alfresco</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-	
+
 	<properties />
-	
+
 	<dependencies>
-	<!--  Avoiding messages: Caused by: java.lang.ClassNotFoundException: org.bouncycastle.jce.provider.BouncyCastleProvider -->
-	 <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk15on</artifactId>
-            <version>1.55</version>
-        </dependency>
-    </dependencies>
-	
+		<!-- Avoiding messages: Caused by: java.lang.ClassNotFoundException: org.bouncycastle.jce.provider.BouncyCastleProvider -->
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
+			<version>1.55</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.10</version>
+		</dependency>
+
+	</dependencies>
+
 	<dependencyManagement />
 	<build />
 	<reporting />
-	
+
 	<modules>
 		<module>aecid-share</module>
 		<module>repo</module>
 	</modules>
-	
+
 	<repositories />
 	<pluginRepositories />
 	<profiles />

@@ -45,7 +45,7 @@
             <list>
                 <props>
                     <prop key="engineId">activiti</prop>
-                    <prop key="location">alfresco/module/${project.artifactId}/workflow/sample-process.bpmn20.xml</prop>
+                    <prop key="location">alfresco/module/${project.artifactId}/workflow/notification-process.xml</prop>
                     <prop key="mimetype">text/xml</prop>
                 </props>
             </list>

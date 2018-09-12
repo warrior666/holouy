@@ -82,7 +82,22 @@
     
 </bean>
 
-  <bean id="send-as-email" class="org.aecid.alfresco.SendAsEmailActionExecuter" parent="action-executer">
+  <bean id="send-as-email" class="org.aecid.alfresco.NotificationActionExecuter" parent="action-executer">
+  	<property name="calendarService">
+        <ref bean="CalendarService" />
+    </property>
+    <property name="workflowService">
+        <ref bean="WorkflowService" />
+    </property>
+    <property name="namespaceService">
+        <ref bean="NamespaceService" />
+    </property>
+    <property name="nodeService">
+        <ref bean="NodeService" />
+    </property>
+    <property name="personService">
+        <ref bean="PersonService" />
+    </property>    
 </bean>
 
 </beans>
