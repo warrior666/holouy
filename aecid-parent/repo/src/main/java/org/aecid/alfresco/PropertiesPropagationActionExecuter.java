@@ -9,7 +9,6 @@ import org.alfresco.repo.action.executer.ActionExecuterAbstractBase;
 import org.alfresco.service.cmr.action.Action;
 import org.alfresco.service.cmr.action.ParameterDefinition;
 import org.alfresco.service.cmr.dictionary.DictionaryService;
-import org.alfresco.service.cmr.dictionary.TypeDefinition;
 import org.alfresco.service.cmr.model.FileFolderService;
 import org.alfresco.service.cmr.repository.ChildAssociationRef;
 import org.alfresco.service.cmr.repository.NodeRef;
@@ -24,6 +23,7 @@ public class PropertiesPropagationActionExecuter extends ActionExecuterAbstractB
 	private static final String TYPE_SEPARATOR = "-";
 	private static final String PROJECT_TAG_SEPARATOR = "_";
 	private static final String STRING_EMPTY = "";
+	
 	private static final String PROJECT_TAG_PROPERTY = "projectTag";
 	private static final String BUDGET_YEAR_PROPERTY = "budgetYear";
 	private static final String PROGRAM_PROPERTY = "program";
@@ -53,7 +53,7 @@ public class PropertiesPropagationActionExecuter extends ActionExecuterAbstractB
 		if (isProjectFolder(nodeRef)) {
 			propagateProperties(nodeRef);
 			
-		} else if (isProjectable(nodeRef)) {
+		} else {
 			obtainProperties(nodeRef);
 		}
 	}
@@ -104,7 +104,13 @@ public class PropertiesPropagationActionExecuter extends ActionExecuterAbstractB
 		copyProperty(props, "beneficiary", toNode);
 		copyProperty(props, "counterpart", toNode);
 		copyProperty(props, "colaborator", toNode);
-		
+				
+		if (props.containsKey(ContentModel.PROP_CATEGORIES)) {
+			Object o = props.get(ContentModel.PROP_CATEGORIES);
+			
+			log.info("copyProperty categories to node: " + toNode.getId());
+			nodeService.setProperty(toNode, ContentModel.PROP_CATEGORIES, (Serializable) o);
+		}
 	}
 	
 	
@@ -122,6 +128,7 @@ public class PropertiesPropagationActionExecuter extends ActionExecuterAbstractB
 	}
 
 	public void propagateProperties(NodeRef nodeRef) {
+		log.info("propagateProperties: " + nodeRef.getId());
 		List<ChildAssociationRef> childs = nodeService.getChildAssocs(nodeRef);
 		propagateProperties(nodeRef, childs);
 	}
@@ -152,12 +159,14 @@ public class PropertiesPropagationActionExecuter extends ActionExecuterAbstractB
 				log.info("childRef null.");
 				continue;
 			}
-			
+
 			if (isProjectable(childRef)) {
 				log.info("copyProperties: " + nodeRef.getId() + " to node: " + childRef.getId());
 				copyProperties(nodeRef, childRef);
-				
-			} else {
+			}
+			
+			// Es una carpeta
+			if (isProjectFolder(childRef)) {
 				List<ChildAssociationRef> list = nodeService.getChildAssocs(childRef);
 				log.info("looking childs of : " + getNodeName(childRef));
 				propagateProperties(nodeRef, list);
@@ -176,12 +185,13 @@ public class PropertiesPropagationActionExecuter extends ActionExecuterAbstractB
 	}
 	
 	private boolean isProjectable(NodeRef nodeRef) {
+
 		QName qtype = nodeService.getType(nodeRef);
 
 		log.info("isProjectable : " + getNodeName(nodeRef) + " type: " + qtype.getLocalName());
 		
 		switch (qtype.getLocalName()) {
-		case "folderProject": return false;
+		case "folderProject": return true;
 		case "contentProject": return true;
 		case "dscProy": return true;
 		case "diagnosis": return true;

@@ -1,21 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn"
-   xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
-   xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema"
-   expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
-
-   <process id="my-process">
-
-      <startEvent id="start" />
-      <sequenceFlow id="flow1" sourceRef="start" targetRef="someTask" />
-      
-      <userTask id="someTask" name="Activiti is awesome!" />
-      <sequenceFlow id="flow2" sourceRef="someTask" targetRef="end" />
-
-      <endEvent id="end" />
-
-   </process>
-
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="notification-process" isExecutable="true">
+    <startEvent id="start">
+      <extensionElements>
+        <activiti:formProperty id="destination" name="destination" type="string"></activiti:formProperty>
+        <activiti:formProperty id="subject" name="subject" type="string"></activiti:formProperty>
+        <activiti:formProperty id="body" name="body" type="string"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <sequenceFlow id="flow1" sourceRef="start" targetRef="waitingTask"></sequenceFlow>
+    <userTask id="waitingTask" name="Waiting Task" default="startNotificating"></userTask>
+    <endEvent id="end"></endEvent>
+    <serviceTask id="NotificationTask" name="Notification Task" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="html">
+          <activiti:expression><![CDATA[${initiator.properties.body}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${initiator.properties.to}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:expression><![CDATA[${initiator.properties.subject}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:expression><![CDATA[${bpm_assignee.properties.email}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="startNotificating" name="startNotificating" sourceRef="waitingTask" targetRef="NotificationTask"></sequenceFlow>
+    <boundaryEvent id="boundarytimer1" name="Timer" attachedToRef="waitingTask" cancelActivity="true">
+      <timerEventDefinition>
+        <timeDuration>P10D</timeDuration>
+      </timerEventDefinition>
+    </boundaryEvent>
+    <sequenceFlow id="reNotification" name="reNotification" sourceRef="NotificationTask" targetRef="NotificationTask"></sequenceFlow>
+    <boundaryEvent id="boundarytimer2" name="Timer" attachedToRef="NotificationTask" cancelActivity="true">
+      <timerEventDefinition>
+        <timeDuration>P7D</timeDuration>
+      </timerEventDefinition>
+    </boundaryEvent>
+    <sequenceFlow id="finish" name="finish" sourceRef="NotificationTask" targetRef="end"></sequenceFlow>
+    <sequenceFlow id="finishWithoutNotification" name="finishWithoutNotification" sourceRef="waitingTask" targetRef="end"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_notification-process">
+    <bpmndi:BPMNPlane bpmnElement="notification-process" id="BPMNPlane_notification-process">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="35.0" width="35.0" x="0.0" y="15.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="waitingTask" id="BPMNShape_waitingTask">
+        <omgdc:Bounds height="60.0" width="100.0" x="80.0" y="0.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="boundarytimer1" id="BPMNShape_boundarytimer1">
+        <omgdc:Bounds height="30.0" width="30.0" x="140.0" y="50.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="end" id="BPMNShape_end">
+        <omgdc:Bounds height="35.0" width="35.0" x="510.0" y="190.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="NotificationTask" id="BPMNShape_NotificationTask">
+        <omgdc:Bounds height="55.0" width="105.0" x="200.0" y="180.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="boundarytimer2" id="BPMNShape_boundarytimer2">
+        <omgdc:Bounds height="30.0" width="30.0" x="290.0" y="220.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="35.0" y="32.0"></omgdi:waypoint>
+        <omgdi:waypoint x="42.0" y="30.0"></omgdi:waypoint>
+        <omgdi:waypoint x="42.0" y="30.0"></omgdi:waypoint>
+        <omgdi:waypoint x="80.0" y="30.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="startNotificating" id="BPMNEdge_startNotificating">
+        <omgdi:waypoint x="130.0" y="60.0"></omgdi:waypoint>
+        <omgdi:waypoint x="252.0" y="180.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="12.0" width="75.0" x="170.0" y="68.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="reNotification" id="BPMNEdge_reNotification">
+        <omgdi:waypoint x="252.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="319.0" y="155.0"></omgdi:waypoint>
+        <omgdi:waypoint x="319.0" y="117.0"></omgdi:waypoint>
+        <omgdi:waypoint x="252.0" y="117.0"></omgdi:waypoint>
+        <omgdi:waypoint x="252.0" y="180.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="12.0" width="63.0" x="306.0" y="151.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="finish" id="BPMNEdge_finish">
+        <omgdi:waypoint x="305.0" y="207.0"></omgdi:waypoint>
+        <omgdi:waypoint x="510.0" y="207.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="12.0" width="25.0" x="329.0" y="220.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="finishWithoutNotification" id="BPMNEdge_finishWithoutNotification">
+        <omgdi:waypoint x="180.0" y="30.0"></omgdi:waypoint>
+        <omgdi:waypoint x="527.0" y="30.0"></omgdi:waypoint>
+        <omgdi:waypoint x="527.0" y="190.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="36.0" width="100.0" x="199.0" y="-10.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
 </definitions>

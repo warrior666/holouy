@@ -47,6 +47,7 @@
 							<subtype name="aecid:countryReport" />
 														
 							<subtype name="aecid:normative" />
+							<subtype name="aecid:pressNote" />
 							<subtype name="aecid:memo" />
 							
 							<subtype name="aecid:generalPlan" />  <!--  Plan Operativo General POG -->
@@ -91,6 +92,7 @@
 							<subtype name="aecid:countryReport" />
 														
 							<subtype name="aecid:normative" />
+							<subtype name="aecid:pressNote" />
 							<subtype name="aecid:memo" />
 							
 							<subtype name="aecid:generalPlan" />  <!--  Plan Operativo General POG -->
@@ -164,6 +166,7 @@
 							<subtype name="aecid:normative" />
 							<subtype name="aecid:agreement" />
 							<subtype name="aecid:countryReport" />
+							<subtype name="aecid:pressNote" />
 						</type>
 
 
@@ -252,7 +255,9 @@
 						<type name="aecid:countryReport">
 						</type>
 
-
+							<type name="aecid:pressNote">
+							</type>
+							
 						<type name="cm:folder">
 							<subtype name="aecid:folderProject" />
 						</type>
@@ -745,6 +750,70 @@
 					</forms>
 				</config>
 
+
+								<!-- Form configuration section - type existing -->
+				<config evaluator="node-type" condition="aecid:pressNote"> <!-- replace="true"> -->
+					<forms>
+						<form>
+							<field-visibility>
+								<show id="cm:name" />
+								<show id="aecid:country" />
+								<show id="cm:title" />
+								<show id="cm:description" />
+								<show id="aecid:budgetYear" />
+								<show id="aecid:contentDate" />
+
+								<!-- tags and categories -->
+								<show id="cm:categories" for-mode="edit" force="true" />
+								<show id="cm:taggable" for-mode="edit" force="true" />
+
+							</field-visibility>
+
+							<appearance>
+							
+								<set id="" appearance="panel" label="Comunicado de Prensa" />
+								<field id="cm:name">
+									<control>
+										<control-param name="maxLength">255</control-param>
+									</control>
+								</field>
+
+								<field id="cm:title">
+								</field>
+								<field id="aecid:country" read-only="true">
+								</field>
+								<field id="aecid:budgetYear">
+								</field>
+								<field id="aecid:contentDate">
+								</field>
+
+								<field id="cm:categories">
+									<control>
+										<control-param name="compactMode">true</control-param>
+									</control>
+								</field>
+								
+								<field id="cm:taggable">
+									<control>
+										<control-param name="compactMode">true</control-param>
+										<control-param name="params">aspect=cm:taggable
+										</control-param>
+										<control-param name="createNewItemUri">/api/tag/workspace/SpacesStore
+										</control-param>
+										<control-param name="createNewItemIcon">tag</control-param>
+									</control>
+								</field>
+
+								<field id="cm:description">
+									<control>
+										<control-param name="activateLinks">true</control-param>
+									</control>
+								</field>
+
+							</appearance>
+						</form>
+					</forms>
+				</config>
 				
 
                 <!-- Form configuration section - type creating -->
@@ -1094,11 +1163,6 @@
 				<show id="cm:description" />
 				<show id="aecid:budgetYear" />
 				<show id="aecid:contentDate" />
-
-				<!-- tags and categories -->
-				<show id="cm:categories" />
-				<show id="cm:taggable" for-mode="edit" force="true" />
-
 			</field-visibility>
 
 			<appearance>
@@ -1115,20 +1179,6 @@
 				<field id="aecid:budgetYear">
 				</field>
 				<field id="aecid:contentDate">
-				</field>
-
-				<field id="cm:categories">
-					<control>
-						<control-param name="compactMode">true</control-param>
-					</control>
-				</field>
-				<field id="cm:taggable">
-					<control>
-						<control-param name="compactMode">true</control-param>
-						<control-param name="params">aspect=cm:taggable</control-param>
-						<control-param name="createNewItemUri">/api/tag/workspace/SpacesStore</control-param>
-						<control-param name="createNewItemIcon">tag</control-param>
-					</control>
 				</field>
 
 			</appearance>
@@ -1161,12 +1211,6 @@
 								<show id="aecid:counterpart" />
 								<show id="aecid:colaborator" />
 
-								<!-- tags and categories -->
-								<show id="cm:categories" />
-								<show id="cm:taggable" for-mode="edit" force="true" />
-
-								<show id="cm:description" force="true" />
-
 							</field-visibility>
 
 							<appearance>
@@ -1186,79 +1230,55 @@
 								<field id="aecid:projectTitle" read-only="true"
 									set="aecid:projectable_cmm_set0">
 								</field>
-								<field id="aecid:country" read-only="true" set="aecid:projectable_cmm_set0">
+								<field id="aecid:country" read-only="false" set="aecid:projectable_cmm_set0">
 								</field>
 
-								<field id="aecid:projectTag" read-only="true"
+								<field id="aecid:projectTag" read-only="false"
 									set="aecid:projectable_cmm_set1">
 								</field>
-								<field id="aecid:budgetYear" read-only="true"
+								<field id="aecid:budgetYear" read-only="false"
 									set="aecid:projectable_cmm_set1">
 								</field>
-								<field id="aecid:fileNumber" read-only="true"
+								<field id="aecid:fileNumber" read-only="false"
 									set="aecid:projectable_cmm_set1">
 								</field>
 
-								<field id="aecid:endingDate" read-only="true"
+								<field id="aecid:endingDate" read-only="false"
 									set="aecid:projectable_cmm_set2">
 								</field>
 
-								<field id="aecid:justificationDate" read-only="true"
+								<field id="aecid:justificationDate" read-only="false"
 									set="aecid:projectable_cmm_set2">
 								</field>
-								<field id="aecid:extensionDate" read-only="true"
+								<field id="aecid:extensionDate" read-only="false"
 									set="aecid:projectable_cmm_set2">
 								</field>
-								<field id="aecid:startDate" read-only="true"
+								<field id="aecid:startDate" read-only="false"
 									set="aecid:projectable_cmm_set2">
 								</field>
 
-								<field id="aecid:modality" read-only="true"
+								<field id="aecid:modality" read-only="false"
 									set="aecid:projectable_cmm_set3">
 								</field>
-								<field id="aecid:program" read-only="true"
+								<field id="aecid:program" read-only="false"
 									set="aecid:projectable_cmm_set3">
 								</field>
 								<field id="aecid:component" 
 									set="aecid:projectable_cmm_set3">
 								</field>
 
-								<field id="aecid:counterpart" read-only="true"
+								<field id="aecid:counterpart" read-only="false"
 									set="aecid:projectable_cmm_set3">
 								</field>
 
-								<field id="aecid:location" read-only="true"
+								<field id="aecid:location" read-only="false"
 									set="aecid:projectable_cmm_set3">
 								</field>
-								<field id="aecid:beneficiary" read-only="true"
+								<field id="aecid:beneficiary" read-only="false"
 									set="aecid:projectable_cmm_set3">
 								</field>
-								<field id="aecid:colaborator" read-only="true"
+								<field id="aecid:colaborator" read-only="false"
 									set="aecid:projectable_cmm_set3">
-								</field>
-
-								<field id="cm:categories" set="aecid:projectable_cmm_set3">
-									<control>
-										<control-param name="compactMode">true</control-param>
-									</control>
-								</field>
-								
-								<field id="cm:taggable" set="aecid:projectable_cmm_set3">
-									<control>
-										<control-param name="compactMode">true</control-param>
-										<control-param name="params">aspect=cm:taggable
-										</control-param>
-										<control-param name="createNewItemUri">/api/tag/workspace/SpacesStore
-										</control-param>
-										<control-param name="createNewItemIcon">tag</control-param>
-									</control>
-								</field>
-
-								<field id="cm:description"
-									set="aecid:projectable_cmm_set3">
-									<control>
-										<control-param name="activateLinks">true</control-param>
-									</control>
 								</field>
 
 							</appearance>

@@ -21,11 +21,14 @@
 					<forms>
 						<form>
 							<field-visibility>
+								<show id="notification_type" />
+								
 								<show id="to" />
 								<show id="subject" />
 								<show id="body_text" />
-								<show id="notification_type" />
+
 								<show id="date" />
+								<show id="site" />
 							</field-visibility>
 							<appearance>
 								<field id="notification_type"
@@ -47,6 +50,13 @@
 									label-id="alfresco.tutorials.doclib.action.notification.form.field.date">
                 					<control template="/org/alfresco/components/form/controls/date.ftl" />
             					</field>
+            					
+            					<field id="site"
+									label-id="alfresco.tutorials.doclib.action.notification.form.field.site" >
+									<control template="/org/alfresco/components/form/controls/selectone.ftl">
+										<control-param name="options">Mercosur,Brasil,Argentina,Uruguay,Chile</control-param>
+ 									</control>
+								</field>
 							</appearance>
 						</form>
 					</forms>

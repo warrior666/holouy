@@ -255,7 +255,7 @@
         
         <type name="aecid:report">
             <title>INF</title>
-            <description>Informe</description>
+            <description>Informe Técnico</description>
             <parent>aecid:product</parent>
             <properties/>
             <associations/>
@@ -435,7 +435,15 @@
             <overrides/>
             <mandatory-aspects/>
         </type>
-        
+        <type name="aecid:pressNote">
+            <title>NORM</title>
+            <description>Normativa</description>
+            <parent>aecid:contentGral</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
         <type name="aecid:subAdenda">
             <title>SUBADD</title>
             <description>Subvención Adenda</description>

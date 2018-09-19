@@ -86,18 +86,66 @@
   	<property name="calendarService">
         <ref bean="CalendarService" />
     </property>
-    <property name="workflowService">
+</bean>
+
+
+<bean id="scheduledJobExecuter"
+    class="org.aecid.alfresco.ScheduledJobExecuter">
+  <property name="serviceRegistry">
+      <ref bean="ServiceRegistry" />
+  </property>
+      <property name="namespaceService">
+        <ref bean="NamespaceService" />
+    </property>   
+    	<property name="calendarService">
+        <ref bean="CalendarService" />
+    </property>
+      <property name="workflowService">
         <ref bean="WorkflowService" />
     </property>
-    <property name="namespaceService">
-        <ref bean="NamespaceService" />
-    </property>
-    <property name="nodeService">
+        <property name="nodeService">
         <ref bean="NodeService" />
     </property>
     <property name="personService">
         <ref bean="PersonService" />
-    </property>    
+    </property> 
+</bean>
+
+
+<bean id="scheduledjob.jobDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
+  <property name="jobClass">
+      <value>org.aecid.alfresco.ScheduledJob</value>
+  </property>
+  <property name="jobDataAsMap">
+      <map>
+          <entry key="jobExecuter">
+              <ref bean="scheduledJobExecuter" />
+          </entry>
+          <entry key="jobLockService">
+              <ref bean="jobLockService" />
+          </entry>
+      </map>
+  </property>
+</bean>
+
+<bean id="scheduledjob.trigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+  <property name="jobDetail">
+      <ref bean="scheduledjob.jobDetail" />
+  </property>
+  <property name="cronExpression">
+      <value>${scheduledjob.cronexpression}</value>
+  </property>
+  <property name="startDelay">
+      <value>${scheduledjob.cronstartdelay}</value>
+  </property>
+</bean>
+
+<bean id="scheduledjob.SchedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+      <list>
+          <ref bean="scheduledjob.trigger"/>
+      </list>
+  </property>
 </bean>
 
 </beans>

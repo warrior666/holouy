@@ -17,6 +17,7 @@ import org.alfresco.service.cmr.repository.NodeService;
 import org.alfresco.service.namespace.QName;
 import org.apache.log4j.Logger;
 
+
 public class RenameActionExecuter extends ActionExecuterAbstractBase {
 
 	private final static Logger log = Logger.getLogger(RenameActionExecuter.class);
@@ -24,7 +25,10 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 	private static final String TYPE_SEPARATOR = "-";
 	private static final String PROJECT_TAG_SEPARATOR = "_";
 	private static final String STRING_EMPTY = "";
+	
 	private static final String PROJECT_TAG_PROPERTY = "projectTag";
+	private static final String PROJECT_TITLE_PROPERTY = "projectTitle";
+
 	private static final String BUDGET_YEAR_PROPERTY = "budgetYear";
 	private static final String PROGRAM_PROPERTY = "program";
 	private static final String COMPONENT_PROPERTY = "component";
@@ -49,8 +53,9 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 
 		log.info("executeImpl action renamer by rule v2: " + ruleAction.getActionDefinitionName());
 		log.info("Noderef: " + nodeRef.getId());
-		
-		String type = getTypeTitle(nodeRef);
+
+		String typeAbrev = getTypeAbrev(nodeRef);
+		String typeTitle = getTypeTitle(nodeRef);
 	
 		// Fetch all the properties
 		Map<QName, Serializable> props = nodeService.getProperties(nodeRef);
@@ -67,42 +72,49 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 		}
 		
 		String projectTag = getProperty(props, PROJECT_TAG_PROPERTY);
+		String projectTitle = getProperty(props, PROJECT_TITLE_PROPERTY);
 		String budgetYear =  getProperty(props, BUDGET_YEAR_PROPERTY);
 		String program =  getProperty(props, PROGRAM_PROPERTY);
 		String component =  getProperty(props, COMPONENT_PROPERTY);
 		
 		
-		StringWriter sw = new StringWriter();
-
+		StringWriter swName = new StringWriter();
+		StringWriter swTitle = new StringWriter();
+		
 		if (!projectTag.equals(STRING_EMPTY)) {
-			sw.write(projectTag + PROJECT_TAG_SEPARATOR);
+			swName.write(projectTag + PROJECT_TAG_SEPARATOR);
+		}
+
+		if (!projectTitle.equals(STRING_EMPTY)) {
+			swTitle.write(projectTitle + PROJECT_TAG_SEPARATOR);
 		}
 		
-		if (!name.contains(type)) {
-			sw.write(type);
-		}
+		// En todos los casos el type es parte del nombre
+		swName.write(typeAbrev);
+		swTitle.write(typeTitle);
 		
 		if (!budgetYear.equals(STRING_EMPTY)) {
-			sw.write(" (" + budgetYear + ")");
+			swName.write(" (" + budgetYear + ")");
+			swTitle.write(" (" + budgetYear + ")");
 			log.info("renamer add budgetYear: " + budgetYear);
 			
 		} else if (!program.equals(STRING_EMPTY)) {
-			sw.write(TYPE_SEPARATOR + program);
-			
+			swName.write(TYPE_SEPARATOR + program);
 			log.info("renamer add program: " + program);
 			
 			if (!component.equals(STRING_EMPTY)) {
-				sw.write(TYPE_SEPARATOR + component);
+				swName.write(TYPE_SEPARATOR + component);
 			}
 		}
 				
-		log.info("Rename: " + sw.toString());
+		log.info("Rename: " + swName.toString());
 		
-		nodeService.setProperty(nodeRef, ContentModel.PROP_NAME, sw.toString());
+		nodeService.setProperty(nodeRef, ContentModel.PROP_NAME, swName.toString());
+		nodeService.setProperty(nodeRef, ContentModel.PROP_TITLE, swTitle.toString());
 	}
 
 	
-	private String getTypeTitle(NodeRef nodeRef) {
+	private String getTypeAbrev(NodeRef nodeRef) {
 		QName qtype = nodeService.getType(nodeRef);
 		TypeDefinition typeDef = dictionaryService.getType(qtype);
 		
@@ -149,7 +161,60 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 			abrev = typeTitle;
 		}
 		
-		log.info("getTypeTitle - Looking for abrev: " + abrev + " for qname: " + qtype.getLocalName());
+		log.info("getTypeAbrev - Looking for abrev: " + abrev + " for qname: " + qtype.getLocalName());
+		
+		return abrev;
+	}
+	
+	
+	private String getTypeTitle(NodeRef nodeRef) {
+		QName qtype = nodeService.getType(nodeRef);
+		TypeDefinition typeDef = dictionaryService.getType(qtype);
+		
+		String typeTitle = typeDef.getTitle();
+		
+		String abrev = "";
+		
+		switch (qtype.getLocalName()) {
+		case "content": abrev = "Contenido sin clasificar"; break;
+		case "contentProject": abrev = "Contenido de proyecto"; break;
+		case "dscProy": abrev = "Descripcion de Proyecto"; break;
+		case "diagnosis": abrev = "Diagnostico"; break;
+		case "convenio": abrev = "Convenio"; break;
+		case "memo": abrev = "Memorandum de Entendimiento"; break;
+		case "publication": abrev = "Publicacion"; break;
+		case "trackingSheet": abrev = "Ficha de Seguimiento Trimestral"; break;
+		case "subResolution": abrev = "Subvencion Resolucion"; break;
+		case "contentGral": abrev = "Contenido general"; break;
+		case "acta" : abrev = "Acta"; break;
+		case "product" : abrev = "Producto"; break;
+		case "contract" : abrev = "Contrato"; break;
+		case "subExtension" : abrev = "Subvencion Extension"; break;
+		case "evaluation" : abrev = "Informe Evaluacion"; break;
+		case "report" : abrev = "Informe"; break;
+		case "formulation" : abrev = "Documento de Formulacion"; break;
+		case "generalPlan" : abrev = "Plan Operativo General"; break;
+		case "anualPlan" : abrev = "Plan Operativo Anual"; break;
+		case "subJustification" : abrev = "Subvencion Justificacion"; break;
+		case "finalReport" : abrev = "Informe Final"; break;
+		case "subActos" : abrev = "Subvencion Acto"; break;
+		case "protocol" : abrev = "Protocolo"; break;
+		case "subModification" : abrev = "Subvencion Modificacion"; break;
+		case "budgetSheet" : abrev = "Cuadro de Ejecucion Presupuestal"; break;
+		case "referenceTerm" : abrev = "Terminos de Referencia"; break;
+		case "normative" : abrev = "Normativa"; break;
+		case "subAdenda" : abrev = "Subvencion Addenda"; break;
+		case "preIdentFile" : abrev = "Ficha pre Identificacion"; break;
+		case "subsidy" : abrev = "Subvencion"; break;
+		case "subAcept" : abrev = "Subvencion Aceptacion"; break;
+		case "agreement" : abrev = "Acuerdo Entidad Colaboradora"; break;
+		case "countryReport" : abrev = "Nota Pais"; break;
+		
+		default:
+			abrev = typeTitle;
+		}
+		
+		log.info("getTypeTitle - Looking for title: " + abrev + " for qname: " + qtype.getLocalName());
 		
 		return abrev;
 	}
