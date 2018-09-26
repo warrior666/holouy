@@ -48,6 +48,7 @@
 														
 							<subtype name="aecid:normative" />
 							<subtype name="aecid:pressNote" />
+							<subtype name="aecid:brochure" />
 							<subtype name="aecid:memo" />
 							
 							<subtype name="aecid:generalPlan" />  <!--  Plan Operativo General POG -->
@@ -167,6 +168,7 @@
 							<subtype name="aecid:agreement" />
 							<subtype name="aecid:countryReport" />
 							<subtype name="aecid:pressNote" />
+							<subtype name="aecid:brochure" />
 						</type>
 
 
@@ -258,6 +260,9 @@
 							<type name="aecid:pressNote">
 							</type>
 							
+						<type name="aecid:brochure" >
+						</type>
+						
 						<type name="cm:folder">
 							<subtype name="aecid:folderProject" />
 						</type>
@@ -815,6 +820,70 @@
 					</forms>
 				</config>
 				
+				
+												<!-- Form configuration section - type existing -->
+				<config evaluator="node-type" condition="aecid:brochure"> <!-- replace="true"> -->
+					<forms>
+						<form>
+							<field-visibility>
+								<show id="cm:name" />
+								<show id="aecid:country" />
+								<show id="cm:title" />
+								<show id="cm:description" />
+								<show id="aecid:budgetYear" />
+								<show id="aecid:contentDate" />
+
+								<!-- tags and categories -->
+								<show id="cm:categories" for-mode="edit" force="true" />
+								<show id="cm:taggable" for-mode="edit" force="true" />
+
+							</field-visibility>
+
+							<appearance>
+							
+								<set id="" appearance="panel" label="Folleto" />
+								<field id="cm:name">
+									<control>
+										<control-param name="maxLength">255</control-param>
+									</control>
+								</field>
+
+								<field id="cm:title">
+								</field>
+								<field id="aecid:country" read-only="true">
+								</field>
+								<field id="aecid:budgetYear">
+								</field>
+								<field id="aecid:contentDate">
+								</field>
+
+								<field id="cm:categories">
+									<control>
+										<control-param name="compactMode">true</control-param>
+									</control>
+								</field>
+								
+								<field id="cm:taggable">
+									<control>
+										<control-param name="compactMode">true</control-param>
+										<control-param name="params">aspect=cm:taggable
+										</control-param>
+										<control-param name="createNewItemUri">/api/tag/workspace/SpacesStore
+										</control-param>
+										<control-param name="createNewItemIcon">tag</control-param>
+									</control>
+								</field>
+
+								<field id="cm:description">
+									<control>
+										<control-param name="activateLinks">true</control-param>
+									</control>
+								</field>
+
+							</appearance>
+						</form>
+					</forms>
+				</config>
 
                 <!-- Form configuration section - type creating -->
 				<config evaluator="model-type" condition="aecid:folderProject" replace="true">

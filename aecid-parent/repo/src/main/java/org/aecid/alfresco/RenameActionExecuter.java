@@ -2,6 +2,9 @@ package org.aecid.alfresco;
 
 import java.io.Serializable;
 import java.io.StringWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +35,7 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 	private static final String BUDGET_YEAR_PROPERTY = "budgetYear";
 	private static final String PROGRAM_PROPERTY = "program";
 	private static final String COMPONENT_PROPERTY = "component";
+	private static final String CONTENT_DATE_PROPERTY = "contentDate";
 	
 	private final static String AECID_MODEL_1_0_URI = "http://aecid.org/model/aecid/1.0";
 	
@@ -76,7 +80,7 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 		String budgetYear =  getProperty(props, BUDGET_YEAR_PROPERTY);
 		String program =  getProperty(props, PROGRAM_PROPERTY);
 		String component =  getProperty(props, COMPONENT_PROPERTY);
-		
+		String contentDate = getProperty(props, CONTENT_DATE_PROPERTY);
 		
 		StringWriter swName = new StringWriter();
 		StringWriter swTitle = new StringWriter();
@@ -104,6 +108,25 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 			
 			if (!component.equals(STRING_EMPTY)) {
 				swName.write(TYPE_SEPARATOR + component);
+			}
+		} else if (!contentDate.equals(STRING_EMPTY)) {
+			
+			SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+			SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+			
+			Date date;
+
+			try {
+				date = inputFormat.parse(contentDate);
+				String dateStr = outputFormat.format(date);
+				
+				swName.write(" (" + dateStr + ")");
+				swTitle.write(" (" + dateStr + ")");
+				log.info("renamer add contentDate: " + dateStr);
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+				log.error("Error formato de fecha", e);
 			}
 		}
 				
@@ -156,6 +179,8 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 		case "subAcept" : abrev = "SUBACE"; break;
 		case "agreement" : abrev = "AEC"; break;
 		case "countryReport" : abrev = "NPAIS"; break;
+		case "pressNote" : abrev = "PREN"; break;
+		case "brochure" : abrev = "FOLL"; break;
 		
 		default:
 			abrev = typeTitle;
@@ -209,6 +234,8 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 		case "subAcept" : abrev = "Subvencion Aceptacion"; break;
 		case "agreement" : abrev = "Acuerdo Entidad Colaboradora"; break;
 		case "countryReport" : abrev = "Nota Pais"; break;
+		case "pressNote" : abrev = "Comunicado de Prensa"; break;
+		case "brochure" : abrev = "Folleto"; break;
 		
 		default:
 			abrev = typeTitle;

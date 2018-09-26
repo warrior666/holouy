@@ -436,8 +436,17 @@
             <mandatory-aspects/>
         </type>
         <type name="aecid:pressNote">
-            <title>NORM</title>
-            <description>Normativa</description>
+            <title>PREN</title>
+            <description>Nota de Prensa</description>
+            <parent>aecid:contentGral</parent>
+            <properties/>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+        <type name="aecid:brochure">
+            <title>FOLL</title>
+            <description>Folleto</description>
             <parent>aecid:contentGral</parent>
             <properties/>
             <associations/>
