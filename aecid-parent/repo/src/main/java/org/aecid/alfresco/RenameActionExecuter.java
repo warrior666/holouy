@@ -111,23 +111,9 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 			}
 		} else if (!contentDate.equals(STRING_EMPTY)) {
 			
-			SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
-			SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
-			
-			Date date;
-
-			try {
-				date = inputFormat.parse(contentDate);
-				String dateStr = outputFormat.format(date);
-				
-				swName.write(" (" + dateStr + ")");
-				swTitle.write(" (" + dateStr + ")");
-				log.info("renamer add contentDate: " + dateStr);
-				
-			} catch (ParseException e) {
-				e.printStackTrace();
-				log.error("Error formato de fecha", e);
-			}
+			swName.write(" (" + contentDate + ")");
+			swTitle.write(" (" + contentDate + ")");
+			log.info("renamer add contentDate: " + contentDate);
 		}
 				
 		log.info("Rename: " + swName.toString());
@@ -256,6 +242,20 @@ public class RenameActionExecuter extends ActionExecuterAbstractBase {
 				
 			} else if (o instanceof Long) {
 				return String.valueOf(o);
+				
+			} else if (o instanceof Date) {
+				
+				try {
+					SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+				
+					Date date = (Date) o;
+
+					return outputFormat.format(date);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+					log.error("Error formato de fecha", e);
+				}
 				
 			} else {
 				return (String) o;
