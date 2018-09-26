@@ -105,11 +105,20 @@ public class PropertiesPropagationActionExecuter extends ActionExecuterAbstractB
 		copyProperty(props, "counterpart", toNode);
 		copyProperty(props, "colaborator", toNode);
 				
+		// En caso de contener, se copian las categorias
 		if (props.containsKey(ContentModel.PROP_CATEGORIES)) {
 			Object o = props.get(ContentModel.PROP_CATEGORIES);
 			
 			log.info("copyProperty categories to node: " + toNode.getId());
 			nodeService.setProperty(toNode, ContentModel.PROP_CATEGORIES, (Serializable) o);
+		}
+		
+		// En caso de existir se copian las Palabras Claves
+		if (props.containsKey(ContentModel.PROP_TAGS)) {
+			Object o = props.get(ContentModel.PROP_TAGS);
+			
+			log.info("copyProperty tags to node: " + toNode.getId());
+			nodeService.setProperty(toNode, ContentModel.PROP_TAGS, (Serializable) o);
 		}
 	}
 	

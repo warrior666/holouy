@@ -17,6 +17,7 @@
  */
 package org.alfresco.platformsample;
 
+import org.holouy.skp.handler.HelloWorldWebScript;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.extensions.webscripts.*;

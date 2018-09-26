@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alfresco.platformsample;
+package org.holouy.skp.handler;
 
 import org.alfresco.repo.module.AbstractModuleComponent;
 import org.alfresco.repo.nodelocator.NodeLocatorService;

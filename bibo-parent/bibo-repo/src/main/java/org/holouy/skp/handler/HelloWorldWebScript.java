@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alfresco.platformsample;
+package org.holouy.skp.handler;
 
 import org.springframework.extensions.webscripts.Cache;
 import org.springframework.extensions.webscripts.DeclarativeWebScript;
@@ -36,7 +36,7 @@ import java.util.Map;
 public class HelloWorldWebScript extends DeclarativeWebScript {
     private static Log logger = LogFactory.getLog(HelloWorldWebScript.class);
 
-    protected Map<String, Object> executeImpl(
+    public Map<String, Object> executeImpl(
             WebScriptRequest req, Status status, Cache cache) {
         Map<String, Object> model = new HashMap<String, Object>();
         model.put("fromJava", "HelloFromJava");

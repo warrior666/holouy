@@ -36,4 +36,15 @@
     <property name="nodeService" ref="NodeService"/>
     <property name="nodeLocatorService" ref="nodeLocatorService"/>
   </bean>
+  
+  <bean id="documentEventHandler" class="org.holouy.skp.handler.DocumentEventHandler"
+    init-method="registerEventHandlers">
+  <property name="policyComponent">
+      <ref bean="policyComponent"/>
+  </property>
+  <property name="serviceRegistry">
+      <ref bean="ServiceRegistry" />
+  </property>
+</bean>
+
 </beans>

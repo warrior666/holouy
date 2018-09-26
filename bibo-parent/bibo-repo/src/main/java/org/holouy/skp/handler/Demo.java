@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alfresco.platformsample;
+package org.holouy.skp.handler;
 
 /**
  * This class does nothing except dump some output to <i>system.out</i>.
